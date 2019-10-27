@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/portraits/pillager.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+alias = "Wolfsreiter"
+description = "Trägt seine Mahlzeit auf dem Rücken."
+portrait = ExtResource( 2 )
+background = Color( 0.282353, 0.184314, 0.184314, 1 )
