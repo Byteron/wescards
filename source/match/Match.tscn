@@ -8,6 +8,7 @@
 script = ExtResource( 2 )
 
 [node name="Map" parent="." instance=ExtResource( 1 )]
+visible = false
 tile_data = PoolIntArray( 65544, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
