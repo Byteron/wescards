@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/card/Card.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=2]
@@ -6,15 +6,22 @@
 [ext_resource path="res://graphics/images/interface/vignette-text-white.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/bg-overlay.png" type="Texture" id=5]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://graphics/images/interface/banner-white.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 14
+size = 12
 use_filter = true
 extra_spacing_top = 1
 font_data = ExtResource( 6 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
 
 [node name="Card" type="Control"]
 anchor_left = 0.5
@@ -51,7 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Portrait" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -62,7 +69,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Vignette" type="TextureRect" parent="."]
+[node name="Vignette" type="TextureRect" parent="Portrait"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
@@ -72,7 +79,88 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="Banners" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -78.0
+margin_bottom = 50.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Strength" type="TextureRect" parent="Banners"]
+self_modulate = Color( 0.909804, 0.588235, 0.588235, 1 )
+margin_right = 20.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 20, 50 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Banners/Strength"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defense" type="TextureRect" parent="Banners"]
+self_modulate = Color( 0.482353, 0.745098, 0.796078, 1 )
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 20, 50 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Banners/Defense"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="TextureRect" parent="Banners"]
+self_modulate = Color( 0.835294, 0.752941, 0.462745, 1 )
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 20, 50 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Banners/Cost"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="."]
 anchor_right = 1.0
 margin_left = 7.0
 margin_top = 236.0
@@ -86,7 +174,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Label"]
+[node name="ColorRect" type="ColorRect" parent="Name"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -97,7 +185,7 @@ margin_bottom = 2.0
 mouse_filter = 2
 color = Color( 0.980392, 0.964706, 0.929412, 0.705882 )
 
-[node name="Border" type="TextureRect" parent="Label"]
+[node name="Border" type="TextureRect" parent="Name"]
 self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
 show_behind_parent = true
 anchor_right = 1.0

@@ -3,9 +3,9 @@ class_name Card
 
 var origin_position = Vector2()
 
-onready var portrait = $TextureRect
+onready var portrait = $Portrait
 onready var description = $Description
-onready var alias = $Label
+onready var alias = $Name
 onready var back = $Background
 
 static func instance():
