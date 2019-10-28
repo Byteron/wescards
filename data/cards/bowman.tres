@@ -5,6 +5,9 @@
 
 [resource]
 script = ExtResource( 1 )
+cost = 4
+strength = 5
+defense = 2
 alias = "Bogenschütze"
 description = "Trifft auch betrunken nicht."
 portrait = ExtResource( 2 )

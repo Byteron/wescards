@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/card/Card.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/interface/vignette-text-white.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/bg-overlay.png" type="Texture" id=5]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://graphics/images/interface/banner-white.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -20,6 +20,11 @@ default_font = SubResource( 1 )
 [sub_resource type="DynamicFont" id=3]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 6
 use_filter = true
 font_data = ExtResource( 6 )
 
@@ -45,12 +50,14 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.188235, 0.270588, 0.262745, 1 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Overlay" type="TextureRect" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 1
@@ -61,17 +68,23 @@ __meta__ = {
 [node name="Portrait" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -97.0
 mouse_filter = 2
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 7
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Vignette" type="TextureRect" parent="Portrait"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 1
@@ -79,121 +92,71 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Banners" type="HBoxContainer" parent="."]
+[node name="Border" type="NinePatchRect" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+draw_center = false
+patch_margin_left = 4
+patch_margin_top = 37
+patch_margin_right = 4
+patch_margin_bottom = 97
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="NinePatchRect" parent="Border"]
+self_modulate = Color( 0.337255, 0.290196, 0.0862745, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
+texture = ExtResource( 8 )
+draw_center = false
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titel" type="HBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -78.0
-margin_bottom = 50.0
+margin_left = -256.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = 35.0
 mouse_filter = 2
+custom_constants/separation = 2
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Strength" type="TextureRect" parent="Banners"]
-self_modulate = Color( 0.909804, 0.588235, 0.588235, 1 )
-margin_right = 20.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 20, 50 )
+[node name="Name" type="ColorRect" parent="Titel"]
+margin_right = 166.0
+margin_bottom = 31.0
 mouse_filter = 2
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-
-[node name="Label" type="Label" parent="Banners/Strength"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 3.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "6"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Defense" type="TextureRect" parent="Banners"]
-self_modulate = Color( 0.482353, 0.745098, 0.796078, 1 )
-margin_left = 24.0
-margin_right = 44.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 20, 50 )
-mouse_filter = 2
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-
-[node name="Label" type="Label" parent="Banners/Defense"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 3.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "6"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cost" type="TextureRect" parent="Banners"]
-self_modulate = Color( 0.835294, 0.752941, 0.462745, 1 )
-margin_left = 48.0
-margin_right = 68.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 20, 50 )
-mouse_filter = 2
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-
-[node name="Label" type="Label" parent="Banners/Cost"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 3.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "6"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name" type="Label" parent="."]
-anchor_right = 1.0
-margin_left = 7.0
-margin_top = 236.0
-margin_right = -123.0
-margin_bottom = 261.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Elfenschamanin"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="Name"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -2.0
-margin_top = -2.0
-margin_right = 2.0
-margin_bottom = 2.0
-mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color( 0.980392, 0.964706, 0.929412, 0.705882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Border" type="TextureRect" parent="Name"]
+[node name="Border" type="TextureRect" parent="Titel/Name"]
 self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
-margin_top = -2.0
-margin_right = 2.0
-margin_bottom = 2.0
+margin_right = 4.0
+margin_bottom = 4.0
 mouse_filter = 2
 texture = ExtResource( 4 )
 expand = true
@@ -202,19 +165,143 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="Titel/Name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Elfenschamanin"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Strength" type="TextureRect" parent="Titel"]
+self_modulate = Color( 0.909804, 0.588235, 0.588235, 1 )
+margin_left = 168.0
+margin_right = 188.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+mouse_filter = 2
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 1
+
+[node name="Border" type="TextureRect" parent="Titel/Strength"]
+self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Titel/Strength"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defense" type="TextureRect" parent="Titel"]
+self_modulate = Color( 0.482353, 0.745098, 0.796078, 1 )
+margin_left = 190.0
+margin_right = 210.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+mouse_filter = 2
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 1
+
+[node name="Border" type="TextureRect" parent="Titel/Defense"]
+self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Titel/Defense"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="TextureRect" parent="Titel"]
+self_modulate = Color( 0.835294, 0.752941, 0.462745, 1 )
+margin_left = 212.0
+margin_right = 252.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 40, 0 )
+mouse_filter = 2
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 1
+
+[node name="Border" type="TextureRect" parent="Titel/Cost"]
+self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Titel/Cost"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Description" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 265.0
-margin_right = -5.0
-margin_bottom = -7.0
+margin_left = 4.0
+margin_top = 263.0
+margin_right = -4.0
+margin_bottom = -17.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Der Wald ist schön."
 align = 1
 valign = 1
 autowrap = true
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -228,7 +315,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Border" type="TextureRect" parent="Description"]
+[node name="Vignette" type="TextureRect" parent="Description"]
 self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
 show_behind_parent = true
 anchor_right = 1.0
@@ -237,3 +324,47 @@ mouse_filter = 2
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Legals" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 346.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Copyright: Max Musterman"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Legals"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.980392, 0.964706, 0.929412, 0.705882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vignette" type="TextureRect" parent="Legals"]
+self_modulate = Color( 0.203922, 0.113725, 0.0117647, 1 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

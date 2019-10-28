@@ -5,7 +5,11 @@
 
 [resource]
 script = ExtResource( 1 )
+cost = 3
+strength = 2
+defense = 2
 alias = "Elfenschamanin"
-description = "Der Wald ist schön."
+description = "Der Wald ist schön.
+Heals."
 portrait = ExtResource( 2 )
 background = Color( 0.0941176, 0.262745, 0.160784, 1 )
