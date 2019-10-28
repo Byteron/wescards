@@ -4,43 +4,54 @@
 [ext_resource path="res://source/match/Match.gd" type="Script" id=2]
 [ext_resource path="res://source/hand/Hand.tscn" type="PackedScene" id=3]
 
-[node name="Match" type="Node2D"]
+[node name="Match" type="Node2D" groups=[
+"Match",
+]]
 script = ExtResource( 2 )
 
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( 960, 540 )
 
 [node name="Row1" type="Node2D" parent="Tiles"]
-position = Vector2( 0, -280 )
+position = Vector2( 0, -240 )
 
 [node name="T1" parent="Tiles/Row1" instance=ExtResource( 1 )]
-position = Vector2( -220, 0 )
+position = Vector2( -230, 0 )
+neighbors = [ Vector2( 1, 0 ), Vector2( 1, 1 ), Vector2( 0, 1 ) ]
 
 [node name="T2" parent="Tiles/Row1" instance=ExtResource( 1 )]
+neighbors = [ Vector2( 0, 0 ), Vector2( 2, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
 
 [node name="T3" parent="Tiles/Row1" instance=ExtResource( 1 )]
-position = Vector2( 220, 0 )
+position = Vector2( 230, 0 )
+neighbors = [ Vector2( 2, 0 ), Vector2( 2, 1 ), Vector2( 1, 1 ) ]
 
 [node name="Row2" type="Node2D" parent="Tiles"]
 
 [node name="T1" parent="Tiles/Row2" instance=ExtResource( 1 )]
 position = Vector2( -300, 0 )
+neighbors = [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 1, 1 ), Vector2( 1, 2 ), Vector2( 0, 2 ) ]
 
 [node name="T2" parent="Tiles/Row2" instance=ExtResource( 1 )]
+neighbors = [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 2, 0 ), Vector2( 0, 1 ), Vector2( 2, 1 ), Vector2( 0, 2 ), Vector2( 1, 2 ), Vector2( 2, 2 ) ]
 
 [node name="T3" parent="Tiles/Row2" instance=ExtResource( 1 )]
 position = Vector2( 300, 0 )
+neighbors = [ Vector2( 2, 0 ), Vector2( 1, 0 ), Vector2( 1, 1 ), Vector2( 1, 2 ), Vector2( 2, 2 ) ]
 
 [node name="Row3" type="Node2D" parent="Tiles"]
-position = Vector2( 0, 280 )
+position = Vector2( 0, 240 )
 
 [node name="T1" parent="Tiles/Row3" instance=ExtResource( 1 )]
-position = Vector2( -220, 0 )
+position = Vector2( -230, 0 )
+neighbors = [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 1, 2 ) ]
 
 [node name="T2" parent="Tiles/Row3" instance=ExtResource( 1 )]
+neighbors = [ Vector2( 0, 2 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 2, 2 ) ]
 
 [node name="T3" parent="Tiles/Row3" instance=ExtResource( 1 )]
-position = Vector2( 220, 0 )
+position = Vector2( 230, 0 )
+neighbors = [ Vector2( 1, 2 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

@@ -1,21 +1,35 @@
 extends Control
 
-const CARD_DISTANCE = 180
+const CARD_DISTANCE = 160
 const ANIMATION_TIME = 0.2
 
 onready var tween = $Tween
 onready var cards = $Cards
+onready var units = $Units
+
+onready var active_position = $ActivePosition.rect_global_position
 
 var prev_index = 0
-var current_card = null
+
+var active_card = null
+var hovered_card = null
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released("LMB") and current_card:
-		_move_card(current_card, current_card.origin_position, ANIMATION_TIME)
+	if event.is_action_pressed("LMB") and not active_card and hovered_card:
+		active_card = hovered_card
+		active_card.locked = true
+		_move_card(active_card, active_position - active_card.rect_pivot_offset, ANIMATION_TIME)
 
-func _process(delta: float) -> void:
-	if Input.is_action_pressed("LMB") and current_card:
-		_move_card(current_card, get_global_mouse_position() - current_card.rect_pivot_offset, 0)
+	elif event.is_action_pressed("LMB") and active_card:
+		var the_game = get_tree().get_nodes_in_group("Match")[0]
+		if the_game.hovered_tile:
+			place_unit(active_card, the_game.hovered_tile)
+
+	elif event.is_action_pressed("RMB") and active_card:
+		active_card.locked = false
+		hovered_card = active_card
+		active_card = null
+		_on_Card_mouse_exited(hovered_card)
 
 func _ready() -> void:
 	var files = Loader.load_dir("res://data/cards/", ["tres"])
@@ -29,6 +43,22 @@ func _ready() -> void:
 
 	_resize_hand()
 
+func place_unit(card, tile):
+	var pos = card.rect_global_position
+	cards.remove_child(card)
+	card.disconnect("mouse_entered", self, "_on_Card_mouse_entered")
+	card.disconnect("mouse_exited", self, "_on_Card_mouse_exited")
+	card.make_unit()
+	units.add_child(card)
+	card.rect_global_position = pos
+	tween.interpolate_property(card, "rect_size", card.rect_size, tile.rect.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	card.locked = false
+	_move_card(card, tile.global_position - tile.rect.rect_size / 2, ANIMATION_TIME)
+
+	active_card = null
+	hovered_card = null
+	_resize_hand()
+
 func _resize_hand():
 	var x = 0
 	for card in cards.get_children():
@@ -37,15 +67,21 @@ func _resize_hand():
 		x -= CARD_DISTANCE
 
 func _on_Card_mouse_entered(card):
-	current_card = card
+
+	if card.locked or active_card:
+		return
+
+	hovered_card = card
 	prev_index = card.get_index()
-	print("focus: ", card, " moved to ", prev_index)
 	cards.move_child(card, cards.get_child_count() - 1)
 	_move_card(card, card.rect_global_position - card.rect_size * Vector2(0, 0.5), ANIMATION_TIME)
 
 func _on_Card_mouse_exited(card):
-	current_card = null
-	print("unfocus: ", card, " moved to ", prev_index)
+
+	if card.locked or active_card:
+		return
+
+	hovered_card = null
 	cards.move_child(card, prev_index)
 	_move_card(card, card.origin_position, ANIMATION_TIME)
 

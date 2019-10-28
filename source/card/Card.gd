@@ -3,6 +3,8 @@ class_name Card
 
 var origin_position = Vector2()
 
+var locked = false
+
 onready var portrait = $MarginContainer/VBoxContainer/Portrait
 onready var description = $MarginContainer/VBoxContainer/Description/Label
 onready var alias = $MarginContainer/VBoxContainer/Titel/Name/Label
@@ -29,6 +31,9 @@ func initialize(data: CardData):
 	cost.text = "%d" % data.cost
 	strength.text = "%d" % data.strength
 	defense.text = "%d" % data.defense
+
+func make_unit():
+	$MarginContainer/VBoxContainer/Description.hide()
 
 func save_position():
 	origin_position = rect_global_position
