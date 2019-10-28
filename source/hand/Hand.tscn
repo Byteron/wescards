@@ -39,6 +39,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+margin_left = 6.10352e-05
+margin_top = -200.0
+margin_right = 6.10352e-05
+margin_bottom = -200.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false

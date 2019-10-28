@@ -36,9 +36,9 @@ func _ready() -> void:
 
 	for file in files:
 		var card = Card.instance()
+		cards.add_child(card)
 		card.connect("mouse_entered", self, "_on_Card_mouse_entered", [ card ])
 		card.connect("mouse_exited", self, "_on_Card_mouse_exited", [ card ])
-		cards.add_child(card)
 		card.initialize(file.data)
 
 	_resize_hand()
@@ -46,14 +46,19 @@ func _ready() -> void:
 func place_unit(card, tile):
 	var pos = card.rect_global_position
 	cards.remove_child(card)
+	units.add_child(card)
+	card.make_unit()
+	card.rect_global_position = pos
+
 	card.disconnect("mouse_entered", self, "_on_Card_mouse_entered")
 	card.disconnect("mouse_exited", self, "_on_Card_mouse_exited")
-	card.make_unit()
-	units.add_child(card)
-	card.rect_global_position = pos
-	tween.interpolate_property(card, "rect_size", card.rect_size, tile.rect.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+
+	tween.interpolate_property(card, "rect_size", card.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(card, "rect_pivot_offset", card.rect_pivot_offset, tile.rect_pivot_offset, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(card, "rect_scale", card.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+
 	card.locked = false
-	_move_card(card, tile.global_position - tile.rect.rect_size / 2, ANIMATION_TIME)
+	_move_card(card, tile.rect_global_position, ANIMATION_TIME)
 
 	active_card = null
 	hovered_card = null
@@ -86,6 +91,7 @@ func _on_Card_mouse_exited(card):
 	_move_card(card, card.origin_position, ANIMATION_TIME)
 
 func _move_card(card, target_position, time):
+
 	if not time:
 		card.rect_global_position = target_position
 		return

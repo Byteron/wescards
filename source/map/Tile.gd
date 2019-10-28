@@ -1,7 +1,6 @@
-extends Position2D
+extends ColorRect
 
 var unit = null
 
 export(Array, Vector2) var neighbors = []
 
-onready var rect = $Control/ColorRect

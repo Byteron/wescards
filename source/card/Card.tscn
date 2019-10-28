@@ -18,15 +18,15 @@ font_data = ExtResource( 6 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 11
+use_filter = true
+font_data = ExtResource( 6 )
+
 [sub_resource type="DynamicFont" id=3]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 11
 use_filter = true
 font_data = ExtResource( 6 )
 
@@ -36,16 +36,9 @@ use_filter = true
 font_data = ExtResource( 6 )
 
 [node name="Card" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -140.0
-margin_top = -230.0
-margin_right = 140.0
-margin_bottom = 230.0
-rect_pivot_offset = Vector2( 140, 230 )
-mouse_filter = 1
+margin_right = 250.0
+margin_bottom = 400.0
+rect_pivot_offset = Vector2( 125, 200 )
 theme = SubResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -76,13 +69,13 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 275.0
-margin_bottom = 455.0
+margin_right = 245.0
+margin_bottom = 395.0
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="Titel" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 270.0
+margin_right = 240.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
@@ -92,7 +85,7 @@ __meta__ = {
 }
 
 [node name="Name" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_right = 207.0
+margin_right = 177.0
 margin_bottom = 30.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -116,6 +109,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Titel/Name"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Elfenschamanin"
 align = 1
@@ -125,16 +119,16 @@ __meta__ = {
 }
 
 [node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 207.0
-margin_right = 208.0
+margin_left = 177.0
+margin_right = 178.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="Strength" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 208.0
-margin_right = 228.0
+margin_left = 178.0
+margin_right = 198.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 20, 0 )
 mouse_filter = 2
@@ -171,16 +165,16 @@ color = Color( 0.792157, 0.243137, 0.243137, 1 )
 polygon = PoolVector2Array( 0, 0, 10, 16, 20, 0 )
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 228.0
-margin_right = 229.0
+margin_left = 198.0
+margin_right = 199.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="Defense" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 229.0
-margin_right = 249.0
+margin_left = 199.0
+margin_right = 219.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 20, 25 )
 mouse_filter = 2
@@ -217,16 +211,16 @@ color = Color( 0, 0.623529, 0.745098, 1 )
 polygon = PoolVector2Array( 0, 0, 10, 16, 20, 0 )
 
 [node name="Separator3" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 249.0
-margin_right = 250.0
+margin_left = 219.0
+margin_right = 220.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="Cost" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 250.0
-margin_right = 270.0
+margin_left = 220.0
+margin_right = 240.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 20, 25 )
 mouse_filter = 2
@@ -264,8 +258,8 @@ polygon = PoolVector2Array( 0, 0, 10, 16, 20, 0 )
 
 [node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 30.0
-margin_right = 270.0
-margin_bottom = 286.0
+margin_right = 240.0
+margin_bottom = 226.0
 mouse_filter = 2
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -301,9 +295,9 @@ __meta__ = {
 
 [node name="Description" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 show_behind_parent = true
-margin_top = 286.0
-margin_right = 270.0
-margin_bottom = 436.0
+margin_top = 226.0
+margin_right = 240.0
+margin_bottom = 376.0
 rect_min_size = Vector2( 0, 150 )
 mouse_filter = 2
 color = Color( 0.980392, 0.94902, 0.882353, 0.784314 )
@@ -336,9 +330,9 @@ __meta__ = {
 }
 
 [node name="Legals" type="ColorRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 436.0
-margin_right = 270.0
-margin_bottom = 450.0
+margin_top = 376.0
+margin_right = 240.0
+margin_bottom = 390.0
 rect_min_size = Vector2( 0, 14 )
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )

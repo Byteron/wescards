@@ -34,6 +34,8 @@ func initialize(data: CardData):
 
 func make_unit():
 	$MarginContainer/VBoxContainer/Description.hide()
+	$MarginContainer/VBoxContainer/Legals.hide()
+	$MarginContainer/VBoxContainer/Titel/Cost.hide()
 
 func save_position():
 	origin_position = rect_global_position
