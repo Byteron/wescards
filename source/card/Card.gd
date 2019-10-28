@@ -3,17 +3,22 @@ class_name Card
 
 var origin_position = Vector2()
 
-onready var portrait = $Portrait
-onready var description = $Description
-onready var alias = $Titel/Name/Label
+onready var portrait = $MarginContainer/VBoxContainer/Portrait
+onready var description = $MarginContainer/VBoxContainer/Description/Label
+onready var alias = $MarginContainer/VBoxContainer/Titel/Name/Label
 onready var back = $Background
 
-onready var cost := $Titel/Cost/Label
-onready var strength := $Titel/Strength/Label
-onready var defense := $Titel/Defense/Label
+onready var cost := $MarginContainer/VBoxContainer/Titel/Cost/Label
+onready var strength := $MarginContainer/VBoxContainer/Titel/Strength/Label
+onready var defense := $MarginContainer/VBoxContainer/Titel/Defense/Label
+
+onready var body := $MarginContainer
 
 static func instance():
 	return load("res://source/card/Card.tscn").instance()
+
+func _ready() -> void:
+	body.propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
 
 func initialize(data: CardData):
 	alias.text = data.alias
@@ -26,4 +31,4 @@ func initialize(data: CardData):
 	defense.text = "%d" % data.defense
 
 func save_position():
-	origin_position = rect_position
+	origin_position = rect_global_position

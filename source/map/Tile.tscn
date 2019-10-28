@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="Tile" type="Position2D"]
+
+[node name="Control" type="Control" parent="."]
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -115.0
+margin_right = 70.0
+margin_bottom = 115.0
