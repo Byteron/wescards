@@ -1,13 +1,15 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://source/match/hud/card/CardData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/mage+female.png" type="Texture" id=2]
+
 
 [resource]
 script = ExtResource( 1 )
-cost = 6
-strength = 6
-defense = 2
+cost = 7
+melee = 1
+ranged = 7
+toughness = 4
 alias = "Magier"
 description = "Zauberhaft."
 portrait = ExtResource( 2 )

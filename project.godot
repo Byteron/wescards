@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Card",
 "language": "GDScript",
-"path": "res://source/card/Card.gd"
+"path": "res://source/match/hud/card/Card.gd"
 }, {
 "base": "Resource",
 "class": "CardData",
 "language": "GDScript",
-"path": "res://source/card/CardData.gd"
+"path": "res://source/match/hud/card/CardData.gd"
 }, {
 "base": "TileMap",
 "class": "Map",

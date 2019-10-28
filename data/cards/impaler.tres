@@ -1,13 +1,15 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://source/match/hud/card/CardData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/impaler.png" type="Texture" id=2]
+
 
 [resource]
 script = ExtResource( 1 )
 cost = 4
-strength = 3
-defense = 4
+melee = 4
+ranged = 0
+toughness = 5
 alias = "Goblinspeerträger"
 description = "Spitz wie eh und je."
 portrait = ExtResource( 2 )
