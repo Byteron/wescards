@@ -30,12 +30,16 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB"):
 		print("ACTION")
 		if hovered_tile and not current_unit:
-			if hovered_tile.unit:
+			if hovered_tile.unit and hovered_tile.unit.team == current_player.team:
 				current_unit = hovered_tile.unit
-		elif current_unit:
+		elif current_unit and current_unit.actions > 0:
 			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and not hovered_tile.unit:
 				_move_unit(current_unit, hovered_tile, ANIMATION_TIME)
 				current_unit = null
+			elif hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and hovered_tile.unit:
+				if current_unit.team != hovered_tile.unit.team:
+					combat(current_unit, hovered_tile.unit)
+					current_unit = null
 	elif event.is_action_pressed("RMB"):
 		current_unit = null
 
@@ -46,22 +50,38 @@ func _ready() -> void:
 		tile.connect("mouse_entered", self, "_on_mouse_entered", [tile])
 		tile.connect("mouse_exited", self, "_on_mouse_exited", [tile])
 
-	_set_current_player(players.get_child(0))
+	_set_current_player(players.get_child(0), true)
+
+func combat(attacker, defender):
+	attacker.actions -= 1
+	if attacker.ranged.value:
+		var defender_damage = defender.ranged.value
+		defender.hurt(attacker.ranged.value)
+		attacker.hurt(defender_damage)
+	else:
+		var defender_damage = defender.melee.value
+		defender.hurt(attacker.melee.value)
+		attacker.hurt(defender_damage)
 
 func draw_card():
-	if not current_player:
-		return
-
 	current_player.draw_card()
+	current_player.actions -= 1
+
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 func place_card(card, tile, pos):
 	current_player.hand.erase(card.data)
+	current_player.gold -= card.cost.value
+	current_player.actions -= 1
+
+	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 	var unit = Unit.instance()
 	unit.data = card.data
 	unit.team_color = card.team_color
+	unit.team = current_player.get_index()
 
+	current_player.add_unit(unit)
 	units.add_child(unit)
 
 	unit.rect_global_position = pos
@@ -74,12 +94,15 @@ func place_card(card, tile, pos):
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
 	_set_current_player(players.get_child(index))
+	current_unit = null
 
 func can_place_card():
 	return hovered_tile and current_player and current_player.castle_tiles.has(hovered_tile.cell)
 
 func _move_unit(unit, tile, time):
+	unit.actions -= 1
 
+	print(unit, ": ", unit.actions)
 	if not time:
 		unit.rect_global_position = tile.rect_global_position
 		if unit.tile:
@@ -103,7 +126,6 @@ func _move_unit(unit, tile, time):
 
 	tween.start()
 
-
 func _move_card(card, target_position, time):
 
 	if not time:
@@ -114,17 +136,19 @@ func _move_card(card, target_position, time):
 	tween.interpolate_property(card, "rect_global_position", card.rect_global_position, target_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 
-func _set_current_player(new_player):
+func _set_current_player(new_player, first_turn = false):
 
-	if current_player:
-		current_player.cleanup()
+	for player in players.get_children():
+		player.cleanup()
 
 	current_player = new_player
 
 	if not current_player:
 		return
 
-	current_player.upkeep()
+	if not first_turn:
+		current_player.upkeep()
+
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 func _on_mouse_entered(tile):

@@ -4,9 +4,16 @@ class_name Unit
 static func instance():
 	return load("res://source/unit/Unit.tscn").instance()
 
+signal died(unit)
+
+var actions := 0 setget _set_actions
+
 var data = null
 var tile = null
+
+var team = 0
 var team_color = Color("FFFFFF")
+
 
 onready var portrait := $MarginContainer/MarginContainer/VBoxContainer/Portrait
 onready var back := $MarginContainer/Background
@@ -35,3 +42,27 @@ func update_display():
 
 func initialize(card_data):
 	data = card_data
+
+func hurt(damage):
+	if not damage:
+		return
+
+	toughness.value = max(toughness.value - damage, 0)
+
+	var popup = PopupLabel.instance()
+	popup.value = damage
+	popup.color = Color("FF0000")
+	popup.rect_global_position = rect_global_position + rect_pivot_offset
+	get_tree().current_scene.add_child(popup)
+
+	if toughness.value == 0:
+		tile.unit = null
+		emit_signal("died", self)
+		queue_free()
+
+func restore():
+	actions = 1
+	toughness.value = data.toughness
+
+func _set_actions(value):
+	actions = max(0, value)

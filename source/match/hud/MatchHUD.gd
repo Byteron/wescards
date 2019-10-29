@@ -6,11 +6,11 @@ const ANIMATION_TIME = 0.2
 onready var tween = $Tween
 onready var hand = $Hand
 onready var deck = $Deck
+onready var gold_label := $Gold/Label
 
 onready var active_position = $ActivePosition.rect_global_position
 
 var player = null
-
 var prev_index = 0
 
 var active_card = null
@@ -18,6 +18,10 @@ var hovered_card = null
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB") and not active_card and hovered_card:
+
+		if player.gold < hovered_card.cost.value or player.actions == 0:
+			return
+
 		active_card = hovered_card
 		active_card.locked = true
 		_move_card(active_card, active_position, ANIMATION_TIME)
@@ -38,6 +42,7 @@ func update_player(new_player):
 	player = new_player
 
 	deck.card_number = player.deck.size()
+	gold_label.text = "%d" % player.gold
 
 	for card_data in player.hand:
 		var card = Card.instance()
@@ -109,7 +114,7 @@ func _move_card(card, target_position, time):
 
 func _on_Deck_pressed() -> void:
 
-	if hand.get_child_count() >= 3:
+	if hand.get_child_count() >= 3 or player.actions == 0:
 		return
 
 	get_tree().call_group("Match", "draw_card")

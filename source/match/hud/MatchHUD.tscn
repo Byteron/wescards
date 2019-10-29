@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/match/hud/MatchHUD.gd" type="Script" id=1]
 [ext_resource path="res://source/match/hud/Deck.tscn" type="PackedScene" id=2]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/interface/circle-white.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -50,6 +51,21 @@ margin_bottom = -200.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Gold" type="TextureRect" parent="."]
+self_modulate = Color( 0.615686, 0.52549, 0.101961, 1 )
+margin_right = 250.0
+margin_bottom = 250.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="Gold"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "5"
+align = 1
+valign = 1
 
 [node name="Deck" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.0
