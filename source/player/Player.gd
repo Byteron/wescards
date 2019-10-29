@@ -11,6 +11,8 @@ export var base_income := 2
 
 export var team_color := Color("FF0000")
 
+export(Array, Vector2) var castle_tiles := []
+
 func _ready() -> void:
 	load_deck()
 	shuffle_deck()

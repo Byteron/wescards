@@ -24,7 +24,7 @@ func _input(event: InputEvent) -> void:
 
 	elif event.is_action_pressed("LMB") and active_card:
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
-		if the_game.hovered_tile:
+		if the_game.can_place_card():
 			play_card(active_card, the_game.hovered_tile)
 
 	elif event.is_action_pressed("RMB") and active_card:

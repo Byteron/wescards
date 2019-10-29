@@ -4,27 +4,45 @@ const ANIMATION_TIME = 0.2
 
 var hovered_tile = null
 var current_player setget _set_current_player
+var current_unit = null
 
 onready var tween = $Tween
 
 onready var tiles = {
-	Vector2(0, 0): $Board/Row1/T1,
-	Vector2(1, 0): $Board/Row1/T2,
-	Vector2(2, 0): $Board/Row1/T3,
-	Vector2(0, 1): $Board/Row2/T1,
-	Vector2(1, 1): $Board/Row2/T2,
-	Vector2(2, 1): $Board/Row2/T3,
-	Vector2(0, 2): $Board/Row3/T1,
-	Vector2(1, 2): $Board/Row3/T2,
-	Vector2(2, 2): $Board/Row3/T3
+	Vector2(1, 0): $Board/Row0/T1,
+	Vector2(0, 1): $Board/Row1/T1,
+	Vector2(1, 1): $Board/Row1/T2,
+	Vector2(2, 1): $Board/Row1/T3,
+	Vector2(0, 2): $Board/Row2/T1,
+	Vector2(1, 2): $Board/Row2/T2,
+	Vector2(2, 2): $Board/Row2/T3,
+	Vector2(0, 3): $Board/Row3/T1,
+	Vector2(1, 3): $Board/Row3/T2,
+	Vector2(2, 3): $Board/Row3/T3,
+	Vector2(1, 4): $Board/Row4/T1
 }
 
 onready var players = $Players
 
 onready var units = $Units
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("LMB"):
+		print("ACTION")
+		if hovered_tile and not current_unit:
+			if hovered_tile.unit:
+				current_unit = hovered_tile.unit
+		elif current_unit:
+			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and not hovered_tile.unit:
+				_move_unit(current_unit, hovered_tile, ANIMATION_TIME)
+				current_unit = null
+	elif event.is_action_pressed("RMB"):
+		current_unit = null
+
 func _ready() -> void:
-	for tile in tiles.values():
+	for cell in tiles.keys():
+		var tile = tiles[cell]
+		tile.cell = cell
 		tile.connect("mouse_entered", self, "_on_mouse_entered", [tile])
 		tile.connect("mouse_exited", self, "_on_mouse_exited", [tile])
 
@@ -39,20 +57,52 @@ func draw_card():
 
 func place_card(card, tile, pos):
 	current_player.hand.erase(card.data)
-	units.add_child(card)
 
-	card.rect_global_position = pos
-	card.make_unit()
+	var unit = Unit.instance()
+	unit.data = card.data
+	unit.team_color = card.team_color
 
-	tween.interpolate_property(card, "rect_size", card.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.interpolate_property(card, "rect_pivot_offset", card.rect_pivot_offset, tile.rect_pivot_offset, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.interpolate_property(card, "rect_scale", card.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	units.add_child(unit)
 
-	_move_card(card, tile.rect_global_position, ANIMATION_TIME)
+	unit.rect_global_position = pos
+	unit.rect_size = card.rect_size
+
+	card.queue_free()
+
+	_move_unit(unit, tile, ANIMATION_TIME)
 
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
 	_set_current_player(players.get_child(index))
+
+func can_place_card():
+	return hovered_tile and current_player and current_player.castle_tiles.has(hovered_tile.cell)
+
+func _move_unit(unit, tile, time):
+
+	if not time:
+		unit.rect_global_position = tile.rect_global_position
+		if unit.tile:
+			unit.tile.unit = null
+		tile.unit = unit
+		unit.tile = tile
+		return
+
+	if unit.tile:
+		unit.tile.unit = null
+	tile.unit = unit
+	unit.tile = tile
+
+	tween.stop(unit, "rect_size")
+	tween.stop(unit, "rect_pivot_offset")
+	tween.stop(unit, "rect_scale")
+	tween.stop(unit, "rect_global_position")
+	tween.interpolate_property(unit, "rect_size", unit.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(unit, "rect_scale", unit.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(unit, "rect_global_position", unit.rect_global_position, tile.rect_global_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+
+	tween.start()
+
 
 func _move_card(card, target_position, time):
 
@@ -90,6 +140,6 @@ func _draw() -> void:
 	for cell in tiles.keys():
 		var tile = tiles[cell]
 		for n_cell in tile.neighbors:
-			var n_tile = tiles[n_cell]
+			var n_tile = tiles[cell + n_cell]
 			draw_line(tile.rect_global_position + Vector2(100, 100), n_tile.rect_global_position + Vector2(100, 100), Color("FF0000"), 3)
 

@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://source/match/hud/card/Card.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=2]
-[ext_resource path="res://graphics/images/portraits/shaman.png" type="Texture" id=3]
 [ext_resource path="res://source/match/hud/card/Banner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=5]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/portraits/shaman.png" type="Texture" id=8]
 [ext_resource path="res://graphics/images/interface/beige-paper.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -17,6 +17,11 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 11
+use_filter = true
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 11
@@ -102,7 +107,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Titel/Name"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Elfenschamanin"
 align = 1
@@ -167,19 +172,15 @@ margin_right = 240.0
 rect_min_size = Vector2( 32, 25 )
 color = Color( 0.615686, 0.52549, 0.101961, 1 )
 
-[node name="Triangle" parent="MarginContainer/VBoxContainer/Titel/Cost" index="2"]
-scale = Vector2( 2, 1 )
-polygon = PoolVector2Array( 0, 0, 8, 37, 16, 0 )
-
 [node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 240.0
 margin_bottom = 276.0
 mouse_filter = 2
 size_flags_vertical = 3
-texture = ExtResource( 3 )
+texture = ExtResource( 8 )
 expand = true
-stretch_mode = 6
+stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }

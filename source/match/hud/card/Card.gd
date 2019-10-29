@@ -33,6 +33,10 @@ func initialize(card_data):
 	data = card_data
 
 func update_display():
+
+	if not data:
+		return
+
 	alias.text = data.alias
 	description.text = data.description
 	portrait.texture = data.portrait
@@ -45,6 +49,7 @@ func update_display():
 	border.self_modulate = team_color
 
 func make_unit():
+	mouse_filter = MOUSE_FILTER_IGNORE
 	$MarginContainer/VBoxContainer/Description.hide()
 	$MarginContainer/VBoxContainer/Legals.hide()
 	cost.hide()

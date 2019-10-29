@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://graphics/images/interface/vignette-text-white.png" type="Texture" id=1]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://source/match/hud/card/Banner.gd" type="Script" id=3]
-
+[ext_resource path="res://graphics/images/interface/triangle.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -47,6 +47,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Triangle" type="Polygon2D" parent="."]
-position = Vector2( 0, 30 )
-polygon = PoolVector2Array( 0, 0, 8, 19, 16, 0 )
+[node name="Triangle" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
