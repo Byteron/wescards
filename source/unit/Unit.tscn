@@ -83,6 +83,7 @@ margin_bottom = 173.0
 custom_constants/separation = 0
 
 [node name="Name" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
 margin_right = 150.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
@@ -116,7 +117,6 @@ __meta__ = {
 }
 
 [node name="Portrait" type="TextureRect" parent="MarginContainer/MarginContainer/VBoxContainer"]
-margin_top = 25.0
 margin_right = 150.0
 margin_bottom = 168.0
 mouse_filter = 2
