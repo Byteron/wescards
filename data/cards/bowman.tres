@@ -1,15 +1,16 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/match/hud/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/bowman.png" type="Texture" id=2]
-
 
 [resource]
 script = ExtResource( 1 )
-cost = 5
-melee = 2
+is_hero = false
+cost = 7
+melee = 3
 ranged = 5
-toughness = 6
+toughness = 11
+id = "Bowman"
 alias = "Bogenschütze"
 description = "Trifft auch betrunken nicht."
 portrait = ExtResource( 2 )

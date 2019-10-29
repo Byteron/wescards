@@ -28,9 +28,8 @@ onready var units = $Units
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB"):
-		print("ACTION")
 		if hovered_tile and not current_unit:
-			if hovered_tile.unit and hovered_tile.unit.team == current_player.team:
+			if hovered_tile.unit and hovered_tile.unit.team == current_player.team and hovered_tile.unit.actions > 0:
 				_set_current_unit(hovered_tile.unit)
 		elif current_unit and current_unit.actions > 0:
 			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and not hovered_tile.unit:
@@ -50,24 +49,60 @@ func _ready() -> void:
 		tile.connect("mouse_entered", self, "_on_mouse_entered", [tile])
 		tile.connect("mouse_exited", self, "_on_mouse_exited", [tile])
 
+	for player in players.get_children():
+		place_hero(player)
+
 	_set_current_player(players.get_child(0), true)
 
 func combat(attacker, defender):
 	attacker.actions -= 1
-	if attacker.ranged.value:
+	var ranged_attack = attacker.ranged.value > 0
+
+	if ranged_attack:
 		var defender_damage = defender.ranged.value
 		defender.hurt(attacker.ranged.value)
-		attacker.hurt(defender_damage)
 	else:
 		var defender_damage = defender.melee.value
 		defender.hurt(attacker.melee.value)
 		attacker.hurt(defender_damage)
+
+	if attacker.is_dead:
+		attacker.kill()
+
+	if defender.is_dead:
+		defender.kill()
+
+	if defender.is_dead and not attacker.is_dead and not ranged_attack:
+		var defender_tile = defender.tile
+		_move_unit(attacker, defender_tile, ANIMATION_TIME)
+
+func show_reachable(tile):
+	for n_cell in tile.neighbors:
+		var n_tile = tiles[tile.cell + n_cell]
+		n_tile.focus()
+
+func clear_reachable():
+	for tile in tiles.values():
+		tile.unfocus()
 
 func draw_card():
 	current_player.draw_card()
 	current_player.actions -= 1
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
+
+func place_hero(player):
+	var hero = Unit.instance()
+	hero.data = player.hero_data
+	hero.team_color = player.team_color
+	hero.team = player.get_index()
+
+	player.add_hero(hero)
+	units.add_child(hero)
+
+	var tile = tiles[player.start_position]
+
+	_move_unit(hero, tile, 0)
 
 func place_card(card, tile, pos):
 	current_player.hand.erase(card.data)
@@ -102,29 +137,25 @@ func can_place_card():
 func _move_unit(unit, tile, time):
 	unit.actions -= 1
 
-	print(unit, ": ", unit.actions)
 	if not time:
 		unit.rect_global_position = tile.rect_global_position
-		if unit.tile:
-			unit.tile.unit = null
-		tile.unit = unit
-		unit.tile = tile
-		return
+		unit.rect_size = tile.rect_size
+		unit.rect_scale = tile.rect_scale
+	else:
+		tween.interpolate_property(unit, "rect_size", unit.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.interpolate_property(unit, "rect_scale", unit.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.interpolate_property(unit, "rect_global_position", unit.rect_global_position, tile.rect_global_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		tween.start()
 
 	if unit.tile:
 		unit.tile.unit = null
 	tile.unit = unit
 	unit.tile = tile
 
-	tween.stop(unit, "rect_size")
-	tween.stop(unit, "rect_pivot_offset")
-	tween.stop(unit, "rect_scale")
-	tween.stop(unit, "rect_global_position")
-	tween.interpolate_property(unit, "rect_size", unit.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.interpolate_property(unit, "rect_scale", unit.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.interpolate_property(unit, "rect_global_position", unit.rect_global_position, tile.rect_global_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	if tile.is_village:
+		current_player.add_village(tile)
 
-	tween.start()
+	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 func _move_card(card, target_position, time):
 
@@ -153,12 +184,14 @@ func _set_current_player(new_player, first_turn = false):
 
 func _set_current_unit(value):
 	if current_unit:
+		clear_reachable()
 		current_unit.deselect()
 
 	current_unit = value
 
 	if current_unit:
 		current_unit.select()
+		show_reachable(current_unit.tile)
 
 func _on_mouse_entered(tile):
 	hovered_tile = tile

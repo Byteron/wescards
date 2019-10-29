@@ -1,15 +1,16 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/match/hud/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/pillager.png" type="Texture" id=2]
-
 
 [resource]
 script = ExtResource( 1 )
-cost = 5
-melee = 4
+is_hero = false
+cost = 6
+melee = 3
 ranged = 0
-toughness = 7
+toughness = 12
+id = "Goblin Pillager"
 alias = "Wolfsreiter"
 description = "Trägt seine Mahlzeit auf dem Rücken."
 portrait = ExtResource( 2 )

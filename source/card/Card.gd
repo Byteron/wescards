@@ -23,7 +23,7 @@ onready var body := $MarginContainer
 onready var border := $Border
 
 static func instance():
-	return load("res://source/match/hud/card/Card.tscn").instance()
+	return load("res://source/card/Card.tscn").instance()
 
 func _ready() -> void:
 	body.propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])

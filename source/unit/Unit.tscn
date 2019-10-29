@@ -1,15 +1,15 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://source/match/hud/card/Banner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/card/Banner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/unit/Unit.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=3]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://graphics/images/interface/beige-paper.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/interface/vignette-white.png" type="Texture" id=7]
 [ext_resource path="res://graphics/images/portraits/shaman.png" type="Texture" id=8]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 size = 11
 use_filter = true
 font_data = ExtResource( 4 )
@@ -107,7 +107,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/Name"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Elfenschamanin"
 align = 1
@@ -142,6 +142,7 @@ __meta__ = {
 }
 
 [node name="Vignette" type="TextureRect" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait"]
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -164,36 +165,40 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer"]
-margin_right = 34.0
+margin_right = 61.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 34, 0 )
 custom_constants/separation = 0
 
 [node name="Ranged" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 30.0
 size_flags_horizontal = 3
 color = Color( 0.0784314, 0.152941, 0.560784, 1 )
+show_triangle = false
 
 [node name="Separator" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer"]
-margin_left = 16.0
-margin_right = 17.0
+margin_left = 30.0
+margin_right = 31.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Melee" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 17.0
-margin_right = 34.0
+margin_left = 31.0
+margin_right = 61.0
 size_flags_horizontal = 3
 color = Color( 0.619608, 0.101961, 0.101961, 1 )
+show_triangle = false
 
 [node name="Spacer" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer"]
-margin_left = 34.0
-margin_right = 116.0
+margin_left = 61.0
+margin_right = 120.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="Toughness" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 116.0
+margin_left = 120.0
 margin_right = 150.0
-rect_min_size = Vector2( 34, 25 )
 color = Color( 0.0666667, 0.513726, 0.113725, 1 )
+colorize = true
+show_triangle = false

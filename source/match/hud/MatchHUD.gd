@@ -42,7 +42,7 @@ func update_player(new_player):
 	player = new_player
 
 	deck.card_number = player.deck.size()
-	gold_label.text = "%d" % player.gold
+	gold_label.text = "%d (+%d)" % [player.gold, player.income]
 
 	for card_data in player.hand:
 		var card = Card.instance()

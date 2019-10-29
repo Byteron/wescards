@@ -1,6 +1,8 @@
 extends Control
 class_name Unit
 
+const COLOR_GOLD = Color("ebca15")
+
 static func instance():
 	return load("res://source/unit/Unit.tscn").instance()
 
@@ -14,6 +16,8 @@ var tile = null
 var team = 0
 var team_color = Color("FFFFFF")
 
+var is_hero = false
+var is_dead = false
 
 onready var portrait := $MarginContainer/MarginContainer/VBoxContainer/Portrait
 onready var back := $MarginContainer/Background
@@ -32,13 +36,20 @@ func update_display():
 	if not data:
 		return
 
+	is_hero = data.is_hero
 	portrait.texture = data.portrait
 	back.color = data.background
-
+	melee.base = data.melee
 	melee.value = data.melee
+	ranged.base = data.melee
 	ranged.value = data.ranged
+	toughness.base = data.toughness
 	toughness.value = data.toughness
 	border.self_modulate = team_color
+
+	if data.is_hero:
+		portrait.get_node("Overlay").self_modulate = COLOR_GOLD
+		portrait.get_node("Vignette").self_modulate = COLOR_GOLD
 
 func initialize(card_data):
 	data = card_data
@@ -56,9 +67,12 @@ func hurt(damage):
 	get_tree().current_scene.add_child(popup)
 
 	if toughness.value == 0:
-		tile.unit = null
-		emit_signal("died", self)
-		queue_free()
+		is_dead = true
+
+func kill():
+	tile.unit = null
+	emit_signal("died", self)
+	queue_free()
 
 func select():
 	rect_scale = Vector2(1.2, 1.2)
@@ -67,8 +81,13 @@ func deselect():
 	rect_scale = Vector2(1, 1)
 
 func restore():
+	if actions:
+		toughness.value = clamp(toughness.value + 1, 0, data.toughness)
+
 	actions = 1
-	toughness.value = data.toughness
+	back.color = data.background
 
 func _set_actions(value):
 	actions = max(0, value)
+	if not actions:
+		back.color = Color("666666")
