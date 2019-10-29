@@ -60,6 +60,12 @@ func hurt(damage):
 		emit_signal("died", self)
 		queue_free()
 
+func select():
+	rect_scale = Vector2(1.2, 1.2)
+
+func deselect():
+	rect_scale = Vector2(1, 1)
+
 func restore():
 	actions = 1
 	toughness.value = data.toughness

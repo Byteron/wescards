@@ -3,8 +3,8 @@ extends Node2D
 const ANIMATION_TIME = 0.2
 
 var hovered_tile = null
-var current_player setget _set_current_player
-var current_unit = null
+var current_player = null setget _set_current_player
+var current_unit = null setget _set_current_unit
 
 onready var tween = $Tween
 
@@ -31,17 +31,17 @@ func _input(event: InputEvent) -> void:
 		print("ACTION")
 		if hovered_tile and not current_unit:
 			if hovered_tile.unit and hovered_tile.unit.team == current_player.team:
-				current_unit = hovered_tile.unit
+				_set_current_unit(hovered_tile.unit)
 		elif current_unit and current_unit.actions > 0:
 			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and not hovered_tile.unit:
 				_move_unit(current_unit, hovered_tile, ANIMATION_TIME)
-				current_unit = null
+				_set_current_unit(null)
 			elif hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and hovered_tile.unit:
 				if current_unit.team != hovered_tile.unit.team:
 					combat(current_unit, hovered_tile.unit)
-					current_unit = null
+					_set_current_unit(null)
 	elif event.is_action_pressed("RMB"):
-		current_unit = null
+		_set_current_unit(null)
 
 func _ready() -> void:
 	for cell in tiles.keys():
@@ -94,7 +94,7 @@ func place_card(card, tile, pos):
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
 	_set_current_player(players.get_child(index))
-	current_unit = null
+	_set_current_unit(null)
 
 func can_place_card():
 	return hovered_tile and current_player and current_player.castle_tiles.has(hovered_tile.cell)
@@ -150,6 +150,15 @@ func _set_current_player(new_player, first_turn = false):
 		current_player.upkeep()
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
+
+func _set_current_unit(value):
+	if current_unit:
+		current_unit.deselect()
+
+	current_unit = value
+
+	if current_unit:
+		current_unit.select()
 
 func _on_mouse_entered(tile):
 	hovered_tile = tile
