@@ -1,8 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/undead/ghost.png" type="Texture" id=2]
-
 
 [resource]
 script = ExtResource( 1 )
@@ -10,7 +9,8 @@ is_hero = false
 cost = 9
 melee = 4
 ranged = 4
-toughness = 14
+defense = 2
+health = 3
 id = "Ghost"
 alias = "Geist"
 description = "Nachts ist es kälter als draußen."

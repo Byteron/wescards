@@ -15,11 +15,6 @@ _global_script_classes=[ {
 "path": "res://source/card/Card.gd"
 }, {
 "base": "Resource",
-"class": "CardData",
-"language": "GDScript",
-"path": "res://source/card/CardData.gd"
-}, {
-"base": "Resource",
 "class": "DeckData",
 "language": "GDScript",
 "path": "res://source/DeckData.gd"
@@ -38,14 +33,19 @@ _global_script_classes=[ {
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/unit/Unit.gd"
+}, {
+"base": "Resource",
+"class": "UnitData",
+"language": "GDScript",
+"path": "res://source/unit/UnitData.gd"
 } ]
 _global_script_class_icons={
 "Card": "",
-"CardData": "",
 "DeckData": "",
 "Map": "",
 "PopupLabel": "",
-"Unit": ""
+"Unit": "",
+"UnitData": ""
 }
 
 [application]

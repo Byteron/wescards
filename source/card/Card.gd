@@ -14,13 +14,17 @@ onready var description = $MarginContainer/VBoxContainer/Description/Label
 onready var alias = $MarginContainer/VBoxContainer/Titel/Name/Label
 onready var back = $Background
 
-onready var cost := $MarginContainer/VBoxContainer/Titel/Cost
-onready var melee := $MarginContainer/VBoxContainer/Titel/Melee
-onready var ranged := $MarginContainer/VBoxContainer/Titel/Ranged
-onready var toughness := $MarginContainer/VBoxContainer/Titel/Toughness
+onready var cost := $MarginContainer/VBoxContainer/Stats/Cost
+onready var melee := $MarginContainer/VBoxContainer/Stats/Melee
+onready var ranged := $MarginContainer/VBoxContainer/Stats/Ranged
+onready var defense := $MarginContainer/VBoxContainer/Stats/Defense
+onready var health := $MarginContainer/VBoxContainer/Stats/Health
 
 onready var body := $MarginContainer
 onready var border := $Border
+
+onready var ranged_separator = $MarginContainer/VBoxContainer/Stats/Separator1
+onready var defense_separator = $MarginContainer/VBoxContainer/Stats/Separator3
 
 static func instance():
 	return load("res://source/card/Card.tscn").instance()
@@ -45,7 +49,10 @@ func update_display():
 	cost.value = data.cost
 	melee.value = data.melee
 	ranged.value = data.ranged
-	toughness.value = data.toughness
+	ranged_separator.visible = ranged.visible
+	defense.value = data.defense
+	defense_separator.visible = defense.visible
+	health.value = data.health
 	border.self_modulate = team_color
 
 func make_unit():

@@ -1,8 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/card/CardData.gd" type="Script" id=1]
+[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/undead/skeleton.png" type="Texture" id=2]
-
 
 [resource]
 script = ExtResource( 1 )
@@ -10,7 +9,8 @@ is_hero = false
 cost = 5
 melee = 7
 ranged = 0
-toughness = 6
+defense = 1
+health = 3
 id = "Skeleton"
 alias = "Skelett"
 description = "Man hört es von weitem."

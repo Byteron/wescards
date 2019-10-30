@@ -25,7 +25,8 @@ onready var border := $MarginContainer/Border
 
 onready var melee := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer/Melee
 onready var ranged := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer/Ranged
-onready var toughness := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Toughness
+onready var defense := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Defense
+onready var health := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Health
 
 func _ready() -> void:
 	propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
@@ -43,8 +44,10 @@ func update_display():
 	melee.value = data.melee
 	ranged.base = data.melee
 	ranged.value = data.ranged
-	toughness.base = data.toughness
-	toughness.value = data.toughness
+	defense.base = data.defense
+	defense.value = data.defense
+	health.base = data.health
+	health.value = data.health
 	border.self_modulate = team_color
 
 	if data.is_hero:
@@ -58,7 +61,7 @@ func hurt(damage):
 	if not damage:
 		return
 
-	toughness.value = max(toughness.value - damage, 0)
+	health.value = max(health.value - damage, 0)
 
 	var popup = PopupLabel.instance()
 	popup.value = damage
@@ -66,7 +69,7 @@ func hurt(damage):
 	popup.rect_global_position = rect_global_position + rect_pivot_offset
 	get_tree().current_scene.add_child(popup)
 
-	if toughness.value == 0:
+	if health.value == 0:
 		is_dead = true
 
 func kill():
@@ -82,7 +85,7 @@ func deselect():
 
 func restore():
 	if actions:
-		toughness.value = clamp(toughness.value + 1, 0, data.toughness)
+		health.value = clamp(health.value + 1, 0, data.health)
 
 	actions = 1
 	back.color = data.background

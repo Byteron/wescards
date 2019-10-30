@@ -1,12 +1,13 @@
 extends Resource
-class_name CardData
+class_name UnitData
 
 export var is_hero := false
 
 export var cost := 3
 export var melee := 3
 export var ranged := 3
-export var toughness := 3
+export var defense := 0
+export var health := 3
 
 export var id := ""
 export var alias := ""

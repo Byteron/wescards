@@ -8,6 +8,7 @@ var current_unit = null setget _set_current_unit
 
 onready var tween = $Tween
 
+# Move to separate Board class
 onready var tiles = {
 	Vector2(1, 0): $Board/Row0/T1,
 	Vector2(0, 1): $Board/Row1/T1,
@@ -54,17 +55,18 @@ func _ready() -> void:
 
 	_set_current_player(players.get_child(0), true)
 
+# TODO: Move to separate Combat Class
 func combat(attacker, defender):
 	attacker.actions -= 1
 	var ranged_attack = attacker.ranged.value > 0
 
 	if ranged_attack:
-		var defender_damage = defender.ranged.value
-		defender.hurt(attacker.ranged.value)
+		var defender_damage = defender.ranged.value - attacker.defense.value
+		defender.hurt(attacker.ranged.value - defender.defense.value)
 	else:
 		var defender_damage = defender.melee.value
-		defender.hurt(attacker.melee.value)
-		attacker.hurt(defender_damage)
+		defender.hurt(attacker.melee.value - defender.defense.value)
+		attacker.hurt(defender_damage - attacker.defense.value)
 
 	if attacker.is_dead:
 		attacker.kill()
@@ -76,15 +78,18 @@ func combat(attacker, defender):
 		var defender_tile = defender.tile
 		_move_unit(attacker, defender_tile, ANIMATION_TIME)
 
+# TODO move to MatchHUD
 func show_reachable(tile):
 	for n_cell in tile.neighbors:
 		var n_tile = tiles[tile.cell + n_cell]
 		n_tile.focus()
 
+# TODO move to MatchHUD
 func clear_reachable():
 	for tile in tiles.values():
 		tile.unfocus()
 
+# TODO move to Player
 func draw_card():
 	current_player.draw_card()
 	current_player.actions -= 1
@@ -134,6 +139,7 @@ func next_player():
 func can_place_card():
 	return hovered_tile and current_player and current_player.castle_tiles.has(hovered_tile.cell)
 
+# Move to separate Board class
 func _move_unit(unit, tile, time):
 	unit.actions -= 1
 
@@ -157,6 +163,7 @@ func _move_unit(unit, tile, time):
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
+# Move to separate Board class
 func _move_card(card, target_position, time):
 
 	if not time:

@@ -32,6 +32,7 @@ func _input(event: InputEvent) -> void:
 			play_card(active_card, the_game.hovered_tile)
 
 	elif event.is_action_pressed("RMB") and active_card:
+		# BUG Lock cards movement on cancel
 		active_card.locked = false
 		hovered_card = active_card
 		active_card = null

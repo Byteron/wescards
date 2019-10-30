@@ -9,8 +9,6 @@
 [ext_resource path="res://graphics/images/portraits/elves/shaman.png" type="Texture" id=8]
 [ext_resource path="res://graphics/images/interface/beige-paper.png" type="Texture" id=9]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 12
 use_filter = true
@@ -20,17 +18,17 @@ font_data = ExtResource( 6 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 11
-use_filter = true
-font_data = ExtResource( 6 )
-
 [sub_resource type="DynamicFont" id=3]
 size = 11
 use_filter = true
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 11
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 6
 use_filter = true
 font_data = ExtResource( 6 )
@@ -85,7 +83,7 @@ __meta__ = {
 }
 
 [node name="Name" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_right = 156.0
+margin_right = 240.0
 margin_bottom = 30.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -109,7 +107,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Titel/Name"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Elfenschamanin"
 align = 1
@@ -118,64 +116,101 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 156.0
-margin_right = 157.0
+[node name="Stats" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 240.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 30 )
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
+margin_right = 14.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
+size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ranged" parent="MarginContainer/VBoxContainer/Titel" instance=ExtResource( 4 )]
-margin_left = 157.0
-margin_right = 173.0
+[node name="Ranged" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
+margin_left = 14.0
+margin_right = 44.0
 color = Color( 0.0784314, 0.152941, 0.560784, 1 )
 
-[node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 173.0
-margin_right = 174.0
+[node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
+margin_left = 44.0
+margin_right = 58.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
+size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
-[node name="Melee" parent="MarginContainer/VBoxContainer/Titel" instance=ExtResource( 4 )]
-margin_left = 174.0
-margin_right = 190.0
+[node name="Melee" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
+margin_left = 58.0
+margin_right = 88.0
 color = Color( 0.619608, 0.101961, 0.101961, 1 )
 
-[node name="Separator3" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 190.0
-margin_right = 191.0
+[node name="Separator3" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
+margin_left = 88.0
+margin_right = 102.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
+size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
-[node name="Toughness" parent="MarginContainer/VBoxContainer/Titel" instance=ExtResource( 4 )]
-margin_left = 191.0
-margin_right = 207.0
+[node name="Defense" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
+margin_left = 102.0
+margin_right = 132.0
+color = Color( 0.34902, 0.603922, 0.603922, 1 )
+
+[node name="Separator4" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
+margin_left = 132.0
+margin_right = 146.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 1, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 1 )
+
+[node name="Health" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
+margin_left = 146.0
+margin_right = 176.0
 color = Color( 0.0666667, 0.513726, 0.113725, 1 )
 
-[node name="Separator4" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_left = 207.0
-margin_right = 208.0
+[node name="Separator5" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
+margin_left = 176.0
+margin_right = 190.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
+size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
-[node name="Cost" parent="MarginContainer/VBoxContainer/Titel" instance=ExtResource( 4 )]
-margin_left = 208.0
-margin_right = 240.0
+[node name="Cost" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
+margin_left = 190.0
+margin_right = 222.0
 rect_min_size = Vector2( 32, 25 )
 color = Color( 0.615686, 0.52549, 0.101961, 1 )
 
+[node name="Separator6" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
+margin_left = 222.0
+margin_right = 240.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 1, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 1 )
+
 [node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 30.0
+margin_top = 60.0
 margin_right = 240.0
 margin_bottom = 276.0
 mouse_filter = 2
@@ -237,7 +272,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Description"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Der Wald ist schön."
 align = 1
@@ -259,7 +294,7 @@ color = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 12 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Copyright: Max Musterman"
 align = 1
 valign = 1
@@ -281,5 +316,3 @@ patch_margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[editable path="MarginContainer/VBoxContainer/Titel/Cost"]
