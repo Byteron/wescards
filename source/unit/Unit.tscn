@@ -7,7 +7,8 @@
 [ext_resource path="res://graphics/images/interface/beige-paper.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=6]
 [ext_resource path="res://graphics/images/interface/vignette-white.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/portraits/shaman.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/portraits/elves/shaman.png" type="Texture" id=8]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 11
