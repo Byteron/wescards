@@ -73,13 +73,13 @@ func shuffle_deck():
 
 func upkeep():
 	gold += calculate_income()
-	for unit in units:
-		unit.restore()
 	actions = 1
+	for unit in units:
+		unit.rest()
 
 func cleanup():
 	for unit in units:
-		unit.rest()
+		unit.restore()
 
 func calculate_income():
 	var income = base_income

@@ -8,6 +8,8 @@ onready var hand = $Hand
 onready var deck = $Deck
 onready var gold_label := $Gold/Label
 
+onready var reachable := $Reachable
+
 onready var active_position = $ActivePosition.rect_global_position
 
 var player = null
@@ -37,6 +39,16 @@ func _input(event: InputEvent) -> void:
 		hovered_card = active_card
 		active_card = null
 		_on_Card_mouse_exited(hovered_card)
+
+func update_reachable(tiles, tile):
+	for n_cell in tile.neighbors:
+		var n_tile = tiles[tile.cell + n_cell]
+		_focus_tile(n_tile)
+
+func clear_reachable():
+	for child in reachable.get_children():
+		reachable.remove_child(child)
+		child.queue_free()
 
 func update_player(new_player):
 	clear()
@@ -84,6 +96,18 @@ func _resize_hand():
 		card.save_position()
 
 		x += card.rect_size.x + CARD_DISTANCE
+
+func _focus_tile(tile):
+	var highlighter = TileHighlighter.instance()
+	highlighter.rect_global_position = tile.rect_global_position
+
+	if tile.unit and tile.unit.team == player.team:
+		return
+
+	if tile.unit and tile.unit.team != player.team:
+		highlighter.modulate = Color("FF0000")
+
+	reachable.add_child(highlighter)
 
 func _on_Card_mouse_entered(card):
 

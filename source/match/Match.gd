@@ -78,17 +78,6 @@ func combat(attacker, defender):
 		var defender_tile = defender.tile
 		_move_unit(attacker, defender_tile, ANIMATION_TIME)
 
-# TODO move to MatchHUD
-func show_reachable(tile):
-	for n_cell in tile.neighbors:
-		var n_tile = tiles[tile.cell + n_cell]
-		n_tile.focus()
-
-# TODO move to MatchHUD
-func clear_reachable():
-	for tile in tiles.values():
-		tile.unfocus()
-
 # TODO move to Player
 func draw_card():
 	current_player.draw_card()
@@ -191,14 +180,14 @@ func _set_current_player(new_player, first_turn = false):
 
 func _set_current_unit(value):
 	if current_unit:
-		clear_reachable()
+		get_tree().call_group("MatchHUD", "clear_reachable")
 		current_unit.deselect()
 
 	current_unit = value
 
 	if current_unit:
 		current_unit.select()
-		show_reachable(current_unit.tile)
+		get_tree().call_group("MatchHUD", "update_reachable", tiles, current_unit.tile)
 
 func _on_mouse_entered(tile):
 	hovered_tile = tile

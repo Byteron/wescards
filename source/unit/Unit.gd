@@ -86,12 +86,25 @@ func deselect():
 	rect_scale = Vector2(1, 1)
 
 func rest():
-	if actions:
-		health.value = clamp(health.value + 1, 0, data.health)
+	if actions and is_damaged():
+		var diff = clamp(health.value + 2, 0, data.health) - health.value
+		health.value = clamp(health.value + 2, 0, data.health)
+
+		if not diff:
+			return
+
+		var popup = PopupLabel.instance()
+		popup.value = diff
+		popup.color = Color("00FF00")
+		popup.rect_global_position = rect_global_position + rect_pivot_offset
+		get_tree().current_scene.add_child(popup)
 
 func restore():
 	actions = 1
 	greyscale.visible = false
+
+func is_damaged():
+	return health.value < health.base
 
 func _set_actions(value):
 	actions = max(0, value)

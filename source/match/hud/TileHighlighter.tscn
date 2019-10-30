@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://graphics/images/interface/circle-white.png" type="Texture" id=1]
+[ext_resource path="res://source/match/hud/TileHighlighter.gd" type="Script" id=2]
+
+[node name="TileHighlighter" type="MarginContainer"]
+margin_right = 180.0
+margin_bottom = 180.0
+mouse_filter = 2
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Focus" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.470588 )
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 170.0
+margin_bottom = 170.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

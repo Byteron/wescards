@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/map/Tile.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/interface/circle-white.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/interface/triangle.png" type="Texture" id=3]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://graphics/images/interface/bright-squares.png" type="Texture" id=5]
@@ -45,33 +44,6 @@ mouse_filter = 2
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Focus" type="TextureRect" parent="MarginContainer"]
-self_modulate = Color( 1, 1, 1, 0.470588 )
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 170.0
-margin_bottom = 170.0
-mouse_filter = 2
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
