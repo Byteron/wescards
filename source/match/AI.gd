@@ -68,7 +68,15 @@ func _get_combat_tile(unit, game):
 
 	# pick random tile
 	if combat_tiles:
-		tile = combat_tiles[randi() % combat_tiles.size()]
+		tile = combat_tiles[0]
+		# pick the weakest or the leader
+		for c_tile in combat_tiles:
+			# return hero
+			if c_tile.unit.is_hero:
+				return c_tile
+			# set to tile if weaker then previous tile
+			if c_tile.unit.health.value < tile.unit.health.value:
+				tile = c_tile
 
 	return tile
 
