@@ -51,7 +51,12 @@ func clear_reachable():
 		child.queue_free()
 
 func update_player(new_player):
+
+	if new_player.controller == Player.CONTROLLER.AI:
+		return
+
 	clear()
+
 	player = new_player
 
 	deck.card_number = player.deck.size()
@@ -69,6 +74,7 @@ func update_player(new_player):
 	_resize_hand()
 
 func clear():
+
 	for card in hand.get_children():
 		hand.remove_child(card)
 		card.queue_free()
