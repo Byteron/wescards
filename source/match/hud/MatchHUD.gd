@@ -47,7 +47,7 @@ func update_player(new_player):
 
 	for card_data in player.hand:
 		var card = Card.instance()
-		card.initialize(card_data, player.gold < card_data.cost)
+		card.initialize(card_data, card_data.cost <= player.gold)
 		hand.add_child(card)
 		card.team_color = player.team_color
 		card.connect("mouse_entered", self, "_on_Card_mouse_entered", [ card ])

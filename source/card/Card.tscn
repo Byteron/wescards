@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://source/card/Card.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/interface/greyed.png" type="Texture" id=3]
 [ext_resource path="res://source/card/Banner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=5]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=6]
@@ -72,7 +73,7 @@ margin_bottom = 395.0
 mouse_filter = 2
 custom_constants/separation = 0
 
-[node name="Titel" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Title" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
@@ -82,8 +83,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="ColorRect" parent="MarginContainer/VBoxContainer/Titel"]
-margin_right = 240.0
+[node name="Name" type="ColorRect" parent="MarginContainer/VBoxContainer/Title"]
+margin_right = 206.0
 margin_bottom = 30.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -93,7 +94,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pattern" type="TextureRect" parent="MarginContainer/VBoxContainer/Titel/Name"]
+[node name="Pattern" type="TextureRect" parent="MarginContainer/VBoxContainer/Title/Name"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -104,7 +105,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Titel/Name"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Title/Name"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 3 )
@@ -115,6 +116,20 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Title"]
+margin_left = 206.0
+margin_right = 208.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 2, 0 )
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="Cost" parent="MarginContainer/VBoxContainer/Title" instance=ExtResource( 4 )]
+margin_left = 208.0
+margin_right = 240.0
+rect_min_size = Vector2( 32, 25 )
+color = Color( 0.615686, 0.52549, 0.101961, 1 )
 
 [node name="Stats" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 30.0
@@ -128,7 +143,7 @@ __meta__ = {
 }
 
 [node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_right = 14.0
+margin_right = 24.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
@@ -139,13 +154,13 @@ __meta__ = {
 }
 
 [node name="Ranged" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 14.0
-margin_right = 44.0
+margin_left = 24.0
+margin_right = 54.0
 color = Color( 0.0784314, 0.152941, 0.560784, 1 )
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 44.0
-margin_right = 58.0
+margin_left = 54.0
+margin_right = 78.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
@@ -153,13 +168,13 @@ size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="Melee" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 58.0
-margin_right = 88.0
+margin_left = 78.0
+margin_right = 108.0
 color = Color( 0.619608, 0.101961, 0.101961, 1 )
 
 [node name="Separator3" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 88.0
-margin_right = 102.0
+margin_left = 108.0
+margin_right = 132.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
@@ -167,13 +182,13 @@ size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="Defense" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 102.0
-margin_right = 132.0
+margin_left = 132.0
+margin_right = 162.0
 color = Color( 0.34902, 0.603922, 0.603922, 1 )
 
 [node name="Separator4" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 132.0
-margin_right = 146.0
+margin_left = 162.0
+margin_right = 186.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 mouse_filter = 2
@@ -181,27 +196,12 @@ size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="Health" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 146.0
-margin_right = 176.0
+margin_left = 186.0
+margin_right = 216.0
 color = Color( 0.0666667, 0.513726, 0.113725, 1 )
 
 [node name="Separator5" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 176.0
-margin_right = 190.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 1, 0 )
-mouse_filter = 2
-size_flags_horizontal = 3
-color = Color( 0, 0, 0, 1 )
-
-[node name="Cost" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 190.0
-margin_right = 222.0
-rect_min_size = Vector2( 32, 25 )
-color = Color( 0.615686, 0.52549, 0.101961, 1 )
-
-[node name="Separator6" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 222.0
+margin_left = 216.0
 margin_right = 240.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
@@ -313,6 +313,17 @@ patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Greyscale" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
