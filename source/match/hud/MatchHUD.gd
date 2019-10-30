@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-const CARD_DISTANCE = 160
-const ANIMATION_TIME = 0.2
+const CARD_DISTANCE = 10
+const ANIMATION_TIME = 0.25
 
 onready var tween = $Tween
 onready var hand = $Hand
@@ -47,7 +47,7 @@ func update_player(new_player):
 
 	for card_data in player.hand:
 		var card = Card.instance()
-		card.initialize(card_data)
+		card.initialize(card_data, player.gold < card_data.cost)
 		hand.add_child(card)
 		card.team_color = player.team_color
 		card.connect("mouse_entered", self, "_on_Card_mouse_entered", [ card ])
@@ -79,10 +79,10 @@ func play_card(card, tile):
 func _resize_hand():
 	var x = 0
 	for card in hand.get_children():
-		card.rect_position.x = x
+		card.rect_position.x = x + CARD_DISTANCE
 		card.save_position()
 
-		x += card.rect_size.x
+		x += card.rect_size.x + CARD_DISTANCE
 
 func _on_Card_mouse_entered(card):
 

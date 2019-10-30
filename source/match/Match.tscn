@@ -62,14 +62,17 @@ position = Vector2( 0, -230 )
 [node name="T1" parent="Board/Row1" instance=ExtResource( 1 )]
 margin_left = -210.0
 margin_right = -30.0
+color = Color( 0.0823529, 0.0745098, 0.164706, 1 )
 neighbors = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, -1 ), Vector2( 1, 1 ) ]
 
 [node name="T2" parent="Board/Row1" instance=ExtResource( 1 )]
+color = Color( 0.0705882, 0.152941, 0.0588235, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ) ]
 
 [node name="T3" parent="Board/Row1" instance=ExtResource( 1 )]
 margin_left = 210.0
 margin_right = 390.0
+color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="Row2" type="Node2D" parent="Board"]
@@ -77,11 +80,13 @@ neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1,
 [node name="T1" parent="Board/Row2" instance=ExtResource( 1 )]
 margin_left = -280.0
 margin_right = -100.0
+color = Color( 0.0823529, 0.0745098, 0.164706, 1 )
 is_village = true
 income = 1
 neighbors = [ Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 1, 0 ) ]
 
 [node name="T2" parent="Board/Row2" instance=ExtResource( 1 )]
+color = Color( 0.0705882, 0.152941, 0.0588235, 1 )
 is_village = true
 income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( 1, -1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
@@ -89,6 +94,7 @@ neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1
 [node name="T3" parent="Board/Row2" instance=ExtResource( 1 )]
 margin_left = 280.0
 margin_right = 460.0
+color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
 income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ) ]
@@ -99,14 +105,17 @@ position = Vector2( 0, 230 )
 [node name="T1" parent="Board/Row3" instance=ExtResource( 1 )]
 margin_left = -210.0
 margin_right = -30.0
+color = Color( 0.0823529, 0.0745098, 0.164706, 1 )
 neighbors = [ Vector2( 0, -1 ), Vector2( 1, 0 ), Vector2( 1, 1 ), Vector2( 1, -1 ) ]
 
 [node name="T2" parent="Board/Row3" instance=ExtResource( 1 )]
+color = Color( 0.0705882, 0.152941, 0.0588235, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, -1 ), Vector2( 0, 1 ) ]
 
 [node name="T3" parent="Board/Row3" instance=ExtResource( 1 )]
 margin_left = 210.0
 margin_right = 390.0
+color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( -1, -1 ) ]
 
 [node name="Row4" type="Node2D" parent="Board"]

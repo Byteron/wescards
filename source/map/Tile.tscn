@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/map/Tile.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/circle-white.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/interface/triangle.png" type="Texture" id=3]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://graphics/images/interface/bright-squares.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -14,8 +16,35 @@ font_data = ExtResource( 4 )
 [node name="Tile" type="ColorRect"]
 margin_right = 180.0
 margin_bottom = 180.0
-color = Color( 0.552941, 0.552941, 0.552941, 1 )
+color = Color( 0.219608, 0.184314, 0.0980392, 1 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="NinePatchRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+texture = ExtResource( 6 )
+draw_center = false
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
