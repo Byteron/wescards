@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource( 1 )
 is_hero = false
-cost = 7
-melee = 6
+cost = 6
+melee = 3
 ranged = 0
 defense = 0
 health = 15

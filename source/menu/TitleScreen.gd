@@ -11,7 +11,6 @@ func _ready() -> void:
 		idx += 1
 	pass
 
-
 func _on_Play_pressed() -> void:
 	var deck1 = you_option.get_item_text(you_option.get_selected_id())
 	var deck2 = enemy_option.get_item_text(enemy_option.get_selected_id())
