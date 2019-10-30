@@ -3,16 +3,14 @@
 [ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/humans/mage+female.png" type="Texture" id=2]
 
-
-
-
 [resource]
 script = ExtResource( 1 )
 is_hero = false
 cost = 8
 melee = 1
 ranged = 7
-toughness = 8
+defense = 0
+health = 8
 id = "Mage"
 alias = "Magier"
 description = "Zauberhaft."

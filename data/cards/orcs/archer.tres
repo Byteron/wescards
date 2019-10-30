@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/portraits/orcs/grunt.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/portraits/orcs/archer.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 is_hero = false
 cost = 4
-melee = 4
-ranged = 0
+melee = 2
+ranged = 4
 defense = 0
-health = 12
-id = "Orcish Grunt"
-alias = "Grunzer"
-description = "Grunz."
+health = 8
+id = "Orcish Archer"
+alias = "Orkschütze"
+description = "Schießt nicht weit."
 portrait = ExtResource( 2 )
 background = Color( 0.364706, 0.172549, 0.0784314, 1 )

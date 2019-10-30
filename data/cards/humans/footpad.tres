@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/portraits/humans/cavalryman.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/portraits/humans/footpad.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 is_hero = false
-cost = 6
-melee = 5
-ranged = 0
+cost = 3
+melee = 3
+ranged = 3
 defense = 1
-health = 12
-id = "Cavalryman"
-alias = "Kavallerist"
-description = "Wird regelmäßig abgeworfen"
+health = 6
+id = "Footpad"
+alias = "Wegelagerer"
+description = "Nervt gern."
 portrait = ExtResource( 2 )
 background = Color( 0.270588, 0.219608, 0.219608, 1 )

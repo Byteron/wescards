@@ -5,7 +5,7 @@
 [ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=3]
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://graphics/images/interface/beige-paper.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=6]
 [ext_resource path="res://graphics/images/interface/vignette-white.png" type="Texture" id=7]
 [ext_resource path="res://graphics/images/portraits/elves/shaman.png" type="Texture" id=8]
 
@@ -54,10 +54,10 @@ margin_right = 170.0
 margin_bottom = 179.0
 texture = ExtResource( 6 )
 draw_center = false
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -67,19 +67,19 @@ margin_left = 10.0
 margin_top = 1.0
 margin_right = 170.0
 margin_bottom = 179.0
-custom_constants/margin_right = 4
-custom_constants/margin_top = 4
-custom_constants/margin_left = 4
-custom_constants/margin_bottom = 4
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 156.0
-margin_bottom = 174.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 154.0
+margin_bottom = 172.0
 custom_constants/separation = 0
 
 [node name="Name" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer"]
@@ -117,8 +117,8 @@ __meta__ = {
 }
 
 [node name="Portrait" type="TextureRect" parent="MarginContainer/MarginContainer/VBoxContainer"]
-margin_right = 152.0
-margin_bottom = 170.0
+margin_right = 148.0
+margin_bottom = 166.0
 mouse_filter = 2
 size_flags_vertical = 3
 texture = ExtResource( 8 )
@@ -192,27 +192,27 @@ show_triangle = false
 
 [node name="Spacer" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer"]
 margin_left = 61.0
-margin_right = 91.0
+margin_right = 87.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="Defense" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 91.0
-margin_right = 121.0
+margin_left = 87.0
+margin_right = 117.0
 color = Color( 0.34902, 0.603922, 0.603922, 1 )
 colorize = true
 show_triangle = false
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer"]
-margin_left = 121.0
-margin_right = 122.0
+margin_left = 117.0
+margin_right = 118.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 1, 0 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Health" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 122.0
-margin_right = 152.0
+margin_left = 118.0
+margin_right = 148.0
 color = Color( 0.0666667, 0.513726, 0.113725, 1 )
 colorize = true
 show_triangle = false

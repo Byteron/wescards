@@ -3,16 +3,14 @@
 [ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/humans/general.png" type="Texture" id=2]
 
-
-
-
 [resource]
 script = ExtResource( 1 )
 is_hero = true
 cost = 10
 melee = 5
 ranged = 0
-toughness = 20
+defense = 2
+health = 20
 id = "General"
 alias = "General"
 description = "Man hört es von weitem."

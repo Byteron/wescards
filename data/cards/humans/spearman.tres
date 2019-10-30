@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/portraits/orcs/grunt.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/portraits/humans/spearman.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 is_hero = false
 cost = 4
-melee = 4
+melee = 5
 ranged = 0
 defense = 0
 health = 12
-id = "Orcish Grunt"
-alias = "Grunzer"
-description = "Grunz."
+id = "Spearman"
+alias = "Speerträger"
+description = "Piekst auch manchmal seine Freunde."
 portrait = ExtResource( 2 )
-background = Color( 0.364706, 0.172549, 0.0784314, 1 )
+background = Color( 0.270588, 0.219608, 0.219608, 1 )
