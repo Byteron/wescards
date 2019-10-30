@@ -7,6 +7,7 @@ var current_player = null setget _set_current_player
 var current_unit = null setget _set_current_unit
 
 onready var tween = $Tween
+onready var AI = $AI
 
 # Move to separate Board class
 onready var tiles = {
@@ -34,7 +35,7 @@ func _input(event: InputEvent) -> void:
 				_set_current_unit(hovered_tile.unit)
 		elif current_unit and current_unit.actions > 0:
 			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and not hovered_tile.unit:
-				_move_unit(current_unit, hovered_tile, ANIMATION_TIME)
+				move_unit(current_unit, hovered_tile, ANIMATION_TIME)
 				_set_current_unit(null)
 			elif hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and hovered_tile.unit:
 				if current_unit.team != hovered_tile.unit.team:
@@ -76,7 +77,7 @@ func combat(attacker, defender):
 
 	if defender.is_dead and not attacker.is_dead and not ranged_attack:
 		var defender_tile = defender.tile
-		_move_unit(attacker, defender_tile, ANIMATION_TIME)
+		move_unit(attacker, defender_tile, ANIMATION_TIME)
 
 # TODO move to Player
 func draw_card():
@@ -96,29 +97,27 @@ func place_hero(player):
 
 	var tile = tiles[player.start_position]
 
-	_move_unit(hero, tile, 0)
+	move_unit(hero, tile, 0)
 
-func place_card(card, tile, pos):
-	current_player.hand.erase(card.data)
-	current_player.gold -= card.cost.value
+func place_unit(card_data, tile, pos):
+	current_player.hand.erase(card_data)
+	current_player.gold -= card_data.cost
 	current_player.actions -= 1
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 	var unit = Unit.instance()
-	unit.data = card.data
-	unit.team_color = card.team_color
+	unit.data = card_data
+	unit.team_color = current_player.team_color
 	unit.team = current_player.get_index()
 
 	current_player.add_unit(unit)
 	units.add_child(unit)
 
 	unit.rect_global_position = pos
-	unit.rect_size = card.rect_size
+	unit.rect_size = Vector2(280, 400)
 
-	card.queue_free()
-
-	_move_unit(unit, tile, ANIMATION_TIME)
+	move_unit(unit, tile, ANIMATION_TIME)
 
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
@@ -129,7 +128,7 @@ func can_place_card():
 	return hovered_tile and current_player and current_player.castle_tiles.has(hovered_tile.cell)
 
 # Move to separate Board class
-func _move_unit(unit, tile, time):
+func move_unit(unit, tile, time = ANIMATION_TIME):
 	unit.actions -= 1
 
 	if not time:
@@ -153,7 +152,7 @@ func _move_unit(unit, tile, time):
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 # Move to separate Board class
-func _move_card(card, target_position, time):
+func move_card(card, target_position, time = ANIMATION_TIME):
 
 	if not time:
 		card.rect_global_position = target_position
@@ -176,7 +175,12 @@ func _set_current_player(new_player, first_turn = false):
 	if not first_turn:
 		current_player.upkeep()
 
-	get_tree().call_group("MatchHUD", "update_player", current_player)
+	if current_player.controller == Player.CONTROLLER.AI:
+		AI.make_turn(self, current_player)
+		yield(AI, "turn_finished")
+		next_player()
+	else:
+		get_tree().call_group("MatchHUD", "update_player", current_player)
 
 func _set_current_unit(value):
 	if current_unit:

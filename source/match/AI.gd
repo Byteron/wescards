@@ -1,0 +1,93 @@
+extends Node
+class_name AI
+
+signal turn_finished
+signal combatting_units_finished
+signal moving_units_finished
+
+func make_turn(game, player):
+
+	_combat_units(game, player)
+	yield(self, "combatting_units_finished")
+	_move_units(game, player)
+	yield(self, "moving_units_finished")
+	_play_cards(game, player)
+	_draw_card(player)
+
+	yield(get_tree().create_timer(0.2), "timeout")
+	print("AI MOVE")
+	emit_signal("turn_finished")
+
+func _combat_units(game, player):
+	for unit in player.units:
+		var tile = _get_combat_tile(unit, game)
+		if tile:
+			game.combat(unit, tile.unit)
+			yield(get_tree().create_timer(0.25), "timeout")
+	call_deferred("emit_signal", "combatting_units_finished")
+
+func _move_units(game, player):
+	for unit in player.units:
+
+		if not unit.actions:
+			continue
+
+		var tile = _get_move_tile(unit, game)
+		if tile:
+			game.move_unit(unit, tile)
+			yield(game.tween, "tween_completed")
+	call_deferred("emit_signal", "moving_units_finished")
+
+func _play_cards(game, player):
+	for card in player.hand:
+		if card.cost <= player.gold and player.actions > 0:
+			var tile = _get_free_castle_tile(player, game)
+			if tile:
+				game.place_unit(card, tile, tile.rect_global_position)
+
+func _draw_card(player):
+	if player.actions > 0:
+		player.draw_card()
+
+func _get_combat_tile(unit, game):
+	var tiles = []
+	var combat_tiles = []
+	var tile = null
+
+	# get all tiles with enemy units
+	for n_cell in unit.tile.neighbors:
+		var n_tile = game.tiles[unit.tile.cell + n_cell]
+		if n_tile.unit and n_tile.unit.team != unit.team:
+			tiles.append(n_tile)
+
+	# filter for units that won't kill the attacker
+	for tile in tiles:
+		if tile.unit.melee.value < unit.health.value:
+			combat_tiles.append(tile)
+
+	# pick random tile
+	if combat_tiles:
+		tile = combat_tiles[randi() % combat_tiles.size()]
+
+	return tile
+
+func _get_move_tile(unit, game):
+	var tile = null
+	var tiles = []
+
+	for n_cell in unit.tile.neighbors:
+		var n_tile = game.tiles[unit.tile.cell + n_cell]
+		if not n_tile.unit:
+			tiles.append(n_tile)
+
+	if tiles:
+		tile = tiles[randi() % tiles.size()]
+
+	return tile
+
+func _get_free_castle_tile(player, game):
+	for cell in player.castle_tiles:
+		var tile = game.tiles[cell]
+		if tile.unit == null:
+			return tile
+	return null

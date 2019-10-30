@@ -83,7 +83,7 @@ func play_card(card, tile):
 
 	card.locked = false
 
-	get_tree().call_group("Match", "place_card", card, tile, pos)
+	get_tree().call_group("Match", "place_unit", card.data, tile, pos)
 
 	active_card = null
 	hovered_card = null

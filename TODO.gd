@@ -5,8 +5,8 @@
 # TODO Terrain
 	- Water, Forest, Hills
 
-# TODO Armor
-	- Integer subtracted from damage
+# TODO Advancements
+	- when a Unit get's experience, it shall advance to a better version
 
 # TODO Magical & Physical Attacks
 	- Magical Attacks ignore Armor

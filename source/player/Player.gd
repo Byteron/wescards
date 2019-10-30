@@ -1,4 +1,7 @@
 extends Node
+class_name Player
+
+enum CONTROLLER { PLAYER, AI }
 
 var gold := 0
 var actions := 0
@@ -12,6 +15,8 @@ var hero = null
 var hero_data = null
 
 var income = 0 setget ,calculate_income
+
+export(CONTROLLER) var controller = CONTROLLER.PLAYER
 
 export var deck_id := "Test Deck"
 
