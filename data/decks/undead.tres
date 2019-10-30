@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/DeckData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "undead"
+alias = "Undead"
+hero = "Draug"
+cards = [ "Skeleton", "Skeleton", "Skeleton", "Skeleton", "Ghost", "Ghost", "Ghost", "Ghost", "Skeleton Archer", "Skeleton Archer", "Skeleton Archer", "Skeleton Archer", "Ghoul", "Ghoul", "Ghoul", "Ghoul", "Walking Corpse", "Walking Corpse", "Walking Corpse", "Walking Corpse" ]

@@ -45,6 +45,11 @@ func _input(event: InputEvent) -> void:
 		_set_current_unit(null)
 
 func _ready() -> void:
+	players.get_children()[0].deck_id = Global.deck1
+	players.get_children()[1].deck_id = Global.deck2
+
+	_setup_players()
+
 	for cell in tiles.keys():
 		var tile = tiles[cell]
 		tile.cell = cell
@@ -161,6 +166,10 @@ func move_card(card, target_position, time = ANIMATION_TIME):
 	tween.stop(card, "rect_position")
 	tween.interpolate_property(card, "rect_global_position", card.rect_global_position, target_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
+
+func _setup_players():
+	for player in players.get_children():
+		player.initialize()
 
 func _set_current_player(new_player, first_turn = false):
 

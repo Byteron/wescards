@@ -1,5 +1,8 @@
 extends Node
 
+var deck1 = "Humans"
+var deck2 = "Orcs"
+
 var cards := {}
 var decks := {}
 

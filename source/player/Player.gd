@@ -31,6 +31,9 @@ export(Array, Vector2) var castle_tiles := []
 onready var team = get_index()
 
 func _ready() -> void:
+	pass
+
+func initialize():
 	gold = starting_gold
 	actions = 1
 	load_deck()
