@@ -75,13 +75,20 @@ func _get_combat_tile(unit, game):
 func _get_move_tile(unit, game):
 	var tile = null
 	var tiles = []
+	var villages = []
 
 	for n_cell in unit.tile.neighbors:
 		var n_tile = game.tiles[unit.tile.cell + n_cell]
 		if not n_tile.unit:
 			tiles.append(n_tile)
 
-	if tiles:
+	for n_tile in tiles:
+		if n_tile.is_village:
+			villages.append(n_tile)
+
+	if villages:
+		tile = villages[randi() % villages.size()]
+	elif tiles:
 		tile = tiles[randi() % tiles.size()]
 
 	return tile
