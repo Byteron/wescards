@@ -28,6 +28,8 @@ onready var ranged := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HB
 onready var defense := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Defense
 onready var health := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Health
 
+onready var greyscale := $MarginContainer/Greyscale
+
 func _ready() -> void:
 	propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
 	update_display()
@@ -83,14 +85,15 @@ func select():
 func deselect():
 	rect_scale = Vector2(1, 1)
 
-func restore():
+func rest():
 	if actions:
 		health.value = clamp(health.value + 1, 0, data.health)
 
+func restore():
 	actions = 1
-	back.color = data.background
+	greyscale.visible = false
 
 func _set_actions(value):
 	actions = max(0, value)
 	if not actions:
-		back.color = Color("666666")
+		greyscale.visible = true

@@ -44,10 +44,11 @@ func update_player(new_player):
 
 	deck.card_number = player.deck.size()
 	gold_label.text = "%d (+%d)" % [player.gold, player.income]
+	deck.greyed = player.actions == 0 or player.hand.size() == 3
 
 	for card_data in player.hand:
 		var card = Card.instance()
-		card.initialize(card_data, card_data.cost <= player.gold)
+		card.initialize(card_data, card_data.cost <= player.gold and player.actions > 0)
 		hand.add_child(card)
 		card.team_color = player.team_color
 		card.connect("mouse_entered", self, "_on_Card_mouse_entered", [ card ])
@@ -119,6 +120,7 @@ func _on_Deck_pressed() -> void:
 		return
 
 	get_tree().call_group("Match", "draw_card")
+	update_player(player)
 
 func _on_EndTurn_pressed() -> void:
 	get_tree().call_group("Match", "next_player")

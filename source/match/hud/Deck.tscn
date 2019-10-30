@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=3]
 [ext_resource path="res://source/match/hud/Deck.gd" type="Script" id=4]
+[ext_resource path="res://graphics/images/interface/greyed.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -66,3 +67,11 @@ custom_fonts/font = SubResource( 1 )
 text = "15"
 align = 1
 valign = 1
+
+[node name="Greyscale" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+stretch_mode = 2
