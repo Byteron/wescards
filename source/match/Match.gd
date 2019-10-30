@@ -195,13 +195,12 @@ func _on_mouse_entered(tile):
 func _on_mouse_exited(tile):
 	hovered_tile = null
 
-func _draw() -> void:
-	if not tiles:
-		return
-
-	for cell in tiles.keys():
-		var tile = tiles[cell]
-		for n_cell in tile.neighbors:
-			var n_tile = tiles[cell + n_cell]
-			draw_line(tile.rect_global_position + Vector2(100, 100), n_tile.rect_global_position + Vector2(100, 100), Color("FF0000"), 3)
-
+#func _draw() -> void:
+#	if not tiles:
+#		return
+#
+#	for cell in tiles.keys():
+#		var tile = tiles[cell]
+#		for n_cell in tile.neighbors:
+#			var n_tile = tiles[cell + n_cell]
+#			draw_line(tile.rect_global_position + Vector2(100, 100), n_tile.rect_global_position + Vector2(100, 100), Color("FF0000"), 3)
