@@ -20,6 +20,7 @@ export(CONTROLLER) var controller = CONTROLLER.PLAYER
 
 export var deck_id := "Test Deck"
 
+export var max_actions := 1
 export var start_position := Vector2(0, 0)
 export var starting_gold := 5
 export var base_income := 2
@@ -35,7 +36,7 @@ func _ready() -> void:
 
 func initialize():
 	gold = starting_gold
-	actions = 1
+	actions = max_actions
 	load_deck()
 	shuffle_deck()
 	draw_hand()
@@ -81,7 +82,7 @@ func shuffle_deck():
 
 func upkeep():
 	gold += calculate_income()
-	actions = 1
+	actions = max_actions
 	for unit in units:
 		unit.rest()
 
