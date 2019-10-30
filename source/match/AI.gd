@@ -7,7 +7,7 @@ signal moving_units_finished
 signal played_card
 
 func make_turn(game, player):
-
+	randomize()
 	_combat_units(game, player)
 	yield(self, "combatting_units_finished")
 	_move_units(game, player)
@@ -63,7 +63,7 @@ func _get_combat_tile(unit, game):
 
 	# filter for units that won't kill the attacker
 	for tile in tiles:
-		if tile.unit.melee.value < unit.health.value:
+		if _shall_attack(unit, tile.unit):
 			combat_tiles.append(tile)
 
 	# pick random tile
@@ -79,6 +79,15 @@ func _get_combat_tile(unit, game):
 				tile = c_tile
 
 	return tile
+
+func _shall_attack(unit1, unit2):
+	if unit1.ranged.value > 0:
+		return true
+
+	var shall_attack = true
+	shall_attack = shall_attack and unit2.melee.value - unit1.defense.value < unit1.health.value
+	shall_attack = shall_attack and unit2.melee.value - unit1.defense.value <= unit1.melee.value - unit2.defense.value
+	return shall_attack
 
 func _get_move_tile(unit, game):
 	var tile = null

@@ -59,6 +59,10 @@ func add_village(tile):
 	tile.capture(get_index(), team_color)
 
 func load_deck():
+	if deck_id == "Random":
+		randomize()
+		deck_id = Global.decks.keys()[randi() % Global.decks.size()]
+
 	var deck_data = Global.decks[deck_id]
 	hero_data = Global.cards[deck_data.hero]
 	for unit_id in deck_data.cards:
@@ -105,4 +109,7 @@ func _on_Hero_died(hero):
 func _on_Village_captured(team, cell):
 	if team == get_index():
 		return
+
+	var tile = villages[cell]
+	tile.disconnect("captured", self, "_on_Village_captured")
 	villages.erase(cell)

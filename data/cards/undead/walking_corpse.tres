@@ -7,10 +7,10 @@
 script = ExtResource( 1 )
 is_hero = false
 cost = 2
-melee = 2
-ranged = 3
+melee = 3
+ranged = 0
 defense = 0
-health = 4
+health = 6
 id = "Walking Corpse"
 alias = "Wandelnde Leiche"
 description = "Tot. Oder?"
