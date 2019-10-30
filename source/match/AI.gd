@@ -4,6 +4,7 @@ class_name AI
 signal turn_finished
 signal combatting_units_finished
 signal moving_units_finished
+signal played_card
 
 func make_turn(game, player):
 
@@ -12,18 +13,16 @@ func make_turn(game, player):
 	_move_units(game, player)
 	yield(self, "moving_units_finished")
 	_play_cards(game, player)
+	yield(self, "played_card")
 	_draw_card(player)
-
-	yield(get_tree().create_timer(0.2), "timeout")
-	print("AI MOVE")
-	emit_signal("turn_finished")
+	call_deferred("emit_signal", "turn_finished")
 
 func _combat_units(game, player):
 	for unit in player.units:
 		var tile = _get_combat_tile(unit, game)
 		if tile:
 			game.combat(unit, tile.unit)
-			yield(get_tree().create_timer(0.25), "timeout")
+			yield(get_tree().create_timer(game.ANIMATION_TIME), "timeout")
 	call_deferred("emit_signal", "combatting_units_finished")
 
 func _move_units(game, player):
@@ -44,6 +43,8 @@ func _play_cards(game, player):
 			var tile = _get_free_castle_tile(player, game)
 			if tile:
 				game.place_unit(card, tile, tile.rect_global_position)
+				yield(get_tree().create_timer(game.ANIMATION_TIME), "timeout")
+	call_deferred("emit_signal", "played_card")
 
 func _draw_card(player):
 	if player.actions > 0:
