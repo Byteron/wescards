@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
+[ext_resource path="res://source/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/humans/spearman.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-is_hero = false
 cost = 4
+id = "Spearman"
+alias = "Speerträger"
+description = "Piekst auch manchmal seine Freunde."
+image = ExtResource( 2 )
+tint = Color( 0.505882, 0.0509804, 0.0509804, 1 )
+is_hero = false
 melee = 5
 ranged = 0
 defense = 0
 health = 12
-id = "Spearman"
-alias = "Speerträger"
-description = "Piekst auch manchmal seine Freunde."
-portrait = ExtResource( 2 )
-background = Color( 0.270588, 0.219608, 0.219608, 1 )

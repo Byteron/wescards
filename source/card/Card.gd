@@ -49,8 +49,8 @@ func update_display():
 
 	alias.text = data.alias
 	description.text = data.description
-	portrait.texture = data.portrait
-	back.color = data.background
+	portrait.texture = data.image
+	back.color = data.tint
 
 	cost.value = data.cost
 	melee.value = data.melee

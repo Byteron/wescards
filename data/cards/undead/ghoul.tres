@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
+[ext_resource path="res://source/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/undead/ghoul.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-is_hero = false
 cost = 6
+id = "Ghoul"
+alias = "Ghul"
+description = "Nachts ist es kälter als draußen."
+image = ExtResource( 2 )
+tint = Color( 0.262745, 0.411765, 0.403922, 1 )
+is_hero = false
 melee = 3
 ranged = 0
 defense = 0
 health = 15
-id = "Ghoul"
-alias = "Ghul"
-description = "Nachts ist es kälter als draußen."
-portrait = ExtResource( 2 )
-background = Color( 0.211765, 0.294118, 0.388235, 1 )

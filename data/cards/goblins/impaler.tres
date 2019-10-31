@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
+[ext_resource path="res://source/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/goblins/impaler.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-is_hero = false
 cost = 3
+id = "Goblin Impaler"
+alias = "Goblinspeerträger"
+description = "Spitz wie eh und je."
+image = ExtResource( 2 )
+tint = Color( 0.258824, 0.176471, 0.176471, 1 )
+is_hero = false
 melee = 5
 ranged = 0
 defense = 0
 health = 8
-id = "Goblin Impaler"
-alias = "Goblinspeerträger"
-description = "Spitz wie eh und je."
-portrait = ExtResource( 2 )
-background = Color( 0.309804, 0.180392, 0.180392, 1 )

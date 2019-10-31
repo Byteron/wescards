@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
+[ext_resource path="res://source/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/undead/skeleton.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-is_hero = false
 cost = 5
+id = "Skeleton"
+alias = "Skelett"
+description = "Man hört es von weitem."
+image = ExtResource( 2 )
+tint = Color( 0.262745, 0.411765, 0.403922, 1 )
+is_hero = false
 melee = 7
 ranged = 0
 defense = 2
 health = 7
-id = "Skeleton"
-alias = "Skelett"
-description = "Man hört es von weitem."
-portrait = ExtResource( 2 )
-background = Color( 0.211765, 0.294118, 0.388235, 1 )

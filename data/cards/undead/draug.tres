@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=1]
+[ext_resource path="res://source/UnitData.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/portraits/undead/draug.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-is_hero = true
 cost = 10
+id = "Draug"
+alias = "Draug"
+description = "Gruselig."
+image = ExtResource( 2 )
+tint = Color( 0.262745, 0.411765, 0.403922, 1 )
+is_hero = true
 melee = 5
 ranged = 0
 defense = 3
 health = 14
-id = "Draug"
-alias = "Draug"
-description = "Gruselig."
-portrait = ExtResource( 2 )
-background = Color( 0.211765, 0.294118, 0.388235, 1 )

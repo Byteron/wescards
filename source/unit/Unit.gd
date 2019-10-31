@@ -40,8 +40,8 @@ func update_display():
 		return
 
 	is_hero = data.is_hero
-	portrait.texture = data.portrait
-	back.color = data.background
+	portrait.texture = data.image
+	back.color = data.tint
 	melee.base = data.melee
 	melee.value = data.melee
 	ranged.base = data.melee

@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://graphics/images/portraits/orcs/sovereign.png" type="Texture" id=1]
-[ext_resource path="res://source/unit/UnitData.gd" type="Script" id=2]
+[ext_resource path="res://source/UnitData.gd" type="Script" id=2]
 
 [resource]
 script = ExtResource( 2 )
-is_hero = true
 cost = 10
+id = "Orcish Sovereign"
+alias = "Orkkriegshäuptling"
+description = "Führt gerne Krieg."
+image = ExtResource( 1 )
+tint = Color( 0.341176, 0.211765, 0.0470588, 1 )
+is_hero = true
 melee = 7
 ranged = 0
 defense = 2
 health = 16
-id = "Orcish Sovereign"
-alias = "Orkkriegshäuptling"
-description = "Führt gerne Krieg."
-portrait = ExtResource( 1 )
-background = Color( 0.364706, 0.172549, 0.0784314, 1 )
