@@ -9,11 +9,6 @@
 [ext_resource path="res://graphics/images/interface/vignette-white.png" type="Texture" id=7]
 [ext_resource path="res://graphics/images/portraits/elves/shaman.png" type="Texture" id=8]
 
-
-
-
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 11
 use_filter = true
@@ -230,3 +225,12 @@ margin_right = 150.0
 margin_bottom = 150.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.588235 )
+
+[node name="Highlight" type="ColorRect" parent="MarginContainer"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 150.0
+margin_bottom = 150.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0.313726 )

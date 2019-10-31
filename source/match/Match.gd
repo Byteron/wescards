@@ -1,6 +1,8 @@
 extends Node2D
 
-const ANIMATION_TIME = 0.4
+signal combat_finished
+
+const ANIMATION_TIME = 0.35
 
 var hovered_tile = null
 var current_player = null setget _set_current_player
@@ -53,10 +55,15 @@ func combat(attacker, defender):
 
 	if ranged_attack:
 		var defender_damage = defender.ranged.value - attacker.defense.value
+		yield(get_tree().create_timer(ANIMATION_TIME), "timeout")
 		defender.hurt(attacker.ranged.value - defender.defense.value)
 	else:
 		var defender_damage = defender.melee.value
+		play_attack_tween(attacker, defender)
+		yield(tween, "tween_all_completed")
 		defender.hurt(attacker.melee.value - defender.defense.value)
+		play_attack_tween(defender, attacker)
+		yield(tween, "tween_all_completed")
 		attacker.hurt(defender_damage - attacker.defense.value)
 
 	if attacker.is_dead:
@@ -68,6 +75,8 @@ func combat(attacker, defender):
 	if defender.is_dead and not attacker.is_dead and not ranged_attack:
 		var defender_tile = defender.tile
 		move_unit(attacker, defender_tile, ANIMATION_TIME)
+		yield(tween, "tween_all_completed")
+	emit_signal("combat_finished")
 
 # TODO move to Player
 func draw_card():
@@ -127,9 +136,9 @@ func move_unit(unit, tile, time = ANIMATION_TIME):
 		unit.rect_size = tile.rect_size
 		unit.rect_scale = tile.rect_scale
 	else:
-		tween.interpolate_property(unit, "rect_size", unit.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		tween.interpolate_property(unit, "rect_scale", unit.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		tween.interpolate_property(unit, "rect_global_position", unit.rect_global_position, tile.rect_global_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		tween.interpolate_property(unit, "rect_size", unit.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+		tween.interpolate_property(unit, "rect_scale", unit.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+		tween.interpolate_property(unit, "rect_global_position", unit.rect_global_position, tile.rect_global_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
 		tween.start()
 
 	if unit.tile:
@@ -149,8 +158,15 @@ func move_card(card, target_position, time = ANIMATION_TIME):
 		card.rect_global_position = target_position
 		return
 
-	tween.stop(card, "rect_position")
+	tween.stop(card, "rect_global_position")
 	tween.interpolate_property(card, "rect_global_position", card.rect_global_position, target_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.start()
+
+func play_attack_tween(unit1, unit2):
+	var start_position = unit1.rect_global_position
+	var target_position = (unit1.rect_global_position + unit2.rect_global_position) / 2
+	tween.interpolate_property(unit1, "rect_global_position", start_position, target_position, ANIMATION_TIME, Tween.TRANS_BACK, Tween.EASE_IN)
+	tween.interpolate_property(unit1, "rect_global_position", target_position, start_position, ANIMATION_TIME / 2, Tween.TRANS_CUBIC, Tween.EASE_OUT, ANIMATION_TIME)
 	tween.start()
 
 func _setup_players():

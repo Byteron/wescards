@@ -29,6 +29,7 @@ onready var defense := $MarginContainer/MarginContainer/VBoxContainer/Portrait/H
 onready var health := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Health
 
 onready var greyscale := $MarginContainer/Greyscale
+onready var highlight := $MarginContainer/Highlight
 
 func _ready() -> void:
 	propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
@@ -80,10 +81,10 @@ func kill():
 	queue_free()
 
 func select():
-	rect_scale = Vector2(1.2, 1.2)
+	highlight.show()
 
 func deselect():
-	rect_scale = Vector2(1, 1)
+	highlight.hide()
 
 func rest():
 	if actions and is_damaged():
