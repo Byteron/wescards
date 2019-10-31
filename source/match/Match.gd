@@ -1,6 +1,6 @@
 extends Node2D
 
-const ANIMATION_TIME = 0.2
+const ANIMATION_TIME = 0.4
 
 var hovered_tile = null
 var current_player = null setget _set_current_player
