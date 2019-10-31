@@ -62,6 +62,7 @@ mouse_filter = 2
 [node name="T0" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
+income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
@@ -87,6 +88,7 @@ margin_left = 656.0
 margin_right = 816.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
+income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="Row2" type="HBoxContainer" parent="CenterContainer/Tiles"]
@@ -97,14 +99,12 @@ mouse_filter = 2
 
 [node name="T0" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
-income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
 margin_left = 164.0
 margin_right = 324.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
-income = 1
 neighbors = [ Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 1, 0 ), Vector2( 1, -1 ), Vector2( 1, 1 ) ]
 
 [node name="T2" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
@@ -119,14 +119,12 @@ neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1
 margin_left = 492.0
 margin_right = 652.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
-income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T4" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
 margin_left = 656.0
 margin_right = 816.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
-income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="Row3" type="HBoxContainer" parent="CenterContainer/Tiles"]
@@ -138,6 +136,7 @@ mouse_filter = 2
 [node name="T0" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
+income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( -1, -1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
@@ -163,6 +162,7 @@ margin_left = 656.0
 margin_right = 816.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
+income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( -1, -1 ) ]
 
 [node name="Row4" type="HBoxContainer" parent="CenterContainer/Tiles"]

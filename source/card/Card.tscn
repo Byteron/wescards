@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/card/Card.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=2]
-[ext_resource path="res://graphics/images/interface/greyed.png" type="Texture" id=3]
 [ext_resource path="res://source/card/Banner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=5]
 [ext_resource path="res://graphics/fonts/lato/lato-12.tres" type="DynamicFont" id=6]
@@ -276,14 +275,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Greyscale" type="TextureRect" parent="."]
+[node name="Greyscale" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color( 0, 0, 0, 0.588235 )
