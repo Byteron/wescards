@@ -202,6 +202,9 @@ func _set_current_unit(value):
 	if current_unit:
 		current_unit.select()
 		get_tree().call_group("MatchHUD", "update_reachable", tiles, current_unit.tile)
+		get_tree().call_group("MatchHUD", "set_process_input", false)
+	else:
+		get_tree().call_group("MatchHUD", "set_process_input", true)
 
 func _on_mouse_entered(tile):
 	hovered_tile = tile

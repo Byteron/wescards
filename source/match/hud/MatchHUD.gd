@@ -15,7 +15,7 @@ onready var active_position = $ActivePosition.rect_global_position
 var player = null
 var prev_index = 0
 
-var active_card = null
+var active_card = null setget _set_active_card
 var hovered_card = null
 
 func _input(event: InputEvent) -> void:
@@ -24,8 +24,9 @@ func _input(event: InputEvent) -> void:
 		if player.gold < hovered_card.cost.value or player.actions == 0:
 			return
 
-		active_card = hovered_card
+		_set_active_card(hovered_card)
 		active_card.locked = true
+
 		_move_card(active_card, active_position, ANIMATION_TIME)
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
 		update_castle(player, the_game.tiles)
@@ -39,7 +40,7 @@ func _input(event: InputEvent) -> void:
 		# BUG Lock cards movement on cancel
 		active_card.locked = false
 		hovered_card = active_card
-		active_card = null
+		_set_active_card(null)
 		_on_Card_mouse_exited(hovered_card)
 		clear_castle()
 
@@ -104,9 +105,16 @@ func play_card(card, tile):
 
 	get_tree().call_group("Match", "place_unit", card.data, tile, pos)
 
-	active_card = null
+	_set_active_card(null)
 	hovered_card = null
 	_resize_hand()
+
+func _set_active_card(card):
+	active_card = card
+	if active_card:
+		get_tree().call_group("Match", "set_process_input", false)
+	else:
+		get_tree().call_group("Match", "set_process_input", true)
 
 func _resize_hand():
 	var x = 0
