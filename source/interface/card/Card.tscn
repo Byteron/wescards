@@ -1,20 +1,20 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/interface/card/cards/unit/Banner.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/interface/card/cards/unit/UnitCard.gd" type="Script" id=2]
+[ext_resource path="res://source/interface/card/Card.gd" type="Script" id=2]
 [ext_resource path="res://graphics/fonts/lato/lato-12.tres" type="DynamicFont" id=3]
 [ext_resource path="res://graphics/fonts/lato/lato-18.tres" type="DynamicFont" id=4]
 [ext_resource path="res://graphics/fonts/lato/lato-8.tres" type="DynamicFont" id=5]
-[ext_resource path="res://graphics/images/portraits/elves/shaman.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=6]
 [ext_resource path="res://graphics/images/interface/beige-paper.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/interface/card-border-white.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=9]
-[ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=10]
+[ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=9]
+[ext_resource path="res://graphics/images/portraits/elves/shaman.png" type="Texture" id=10]
 
-[node name="UnitCard" type="Control"]
+[node name="Card" type="Control"]
 margin_right = 220.0
 margin_bottom = 380.0
-rect_pivot_offset = Vector2( 125, 200 )
+rect_pivot_offset = Vector2( 110, 190 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -108,72 +108,13 @@ rect_min_size = Vector2( 32, 25 )
 color = Color( 0.615686, 0.52549, 0.101961, 1 )
 show_triangle = false
 
-[node name="Stats" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 210.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 30 )
-mouse_filter = 2
-custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Ranged" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 1 )]
-margin_right = 32.0
-rect_min_size = Vector2( 32, 30 )
-color = Color( 0.0784314, 0.152941, 0.560784, 1 )
-
-[node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 32.0
-margin_right = 34.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 2, 0 )
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-
-[node name="Melee" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 1 )]
-margin_left = 34.0
-margin_right = 66.0
-rect_min_size = Vector2( 32, 30 )
-color = Color( 0.619608, 0.101961, 0.101961, 1 )
-
-[node name="Separator3" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 66.0
-margin_right = 144.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 2, 0 )
-mouse_filter = 2
-size_flags_horizontal = 3
-color = Color( 0, 0, 0, 1 )
-
-[node name="Defense" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 1 )]
-margin_left = 144.0
-margin_right = 176.0
-rect_min_size = Vector2( 32, 30 )
-color = Color( 0.34902, 0.603922, 0.603922, 1 )
-
-[node name="Separator4" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 176.0
-margin_right = 178.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 2, 0 )
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-
-[node name="Health" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 1 )]
-margin_left = 178.0
-margin_right = 210.0
-rect_min_size = Vector2( 32, 30 )
-color = Color( 0.0666667, 0.513726, 0.113725, 1 )
-
 [node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 60.0
+margin_top = 30.0
 margin_right = 210.0
 margin_bottom = 256.0
 mouse_filter = 2
 size_flags_vertical = 3
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 expand = true
 stretch_mode = 7
 __meta__ = {
@@ -186,7 +127,7 @@ show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 1
 __meta__ = {
@@ -197,7 +138,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 expand = true
 stretch_mode = 1
 __meta__ = {
@@ -265,7 +206,7 @@ __meta__ = {
 self_modulate = Color( 0.337255, 0.290196, 0.0862745, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 draw_center = false
 patch_margin_left = 5
 patch_margin_top = 5
