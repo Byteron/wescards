@@ -14,9 +14,9 @@ func _ready() -> void:
 	label.text = "%d" % value
 	modulate = color
 
-	tween.interpolate_property(self, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.1, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
-	tween.interpolate_property(self, "rect_global_position:y", rect_global_position.y, rect_global_position.y - 100, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
-	tween.interpolate_property(self, "modulate:a", modulate.a, 0, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT, 0.3)
+	tween.interpolate_property(self, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.2, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	tween.interpolate_property(self, "rect_global_position:y", rect_global_position.y, rect_global_position.y - 100, 0.6, Tween.TRANS_SINE, Tween.EASE_OUT, 0.2)
+	tween.interpolate_property(self, "modulate:a", modulate.a, 0, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT, 0.4)
 	tween.start()
 
 func _on_Tween_tween_all_completed() -> void:

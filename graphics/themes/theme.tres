@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[ext_resource path="res://graphics/fonts/lato/lato-12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://graphics/fonts/lato/lato-18.tres" type="DynamicFont" id=2]
+
+[resource]
+default_font = ExtResource( 1 )
+ItemList/colors/font_color = Color( 0.63, 0.63, 0.63, 1 )
+ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 0.1 )
+ItemList/constants/hseparation = 4
+ItemList/constants/icon_margin = 4
+ItemList/constants/line_separation = 2
+ItemList/constants/vseparation = 2
+ItemList/fonts/font = ExtResource( 2 )
+ItemList/styles/bg = null
+ItemList/styles/bg_focus = null
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
+ItemList/styles/selected = null
+ItemList/styles/selected_focus = null

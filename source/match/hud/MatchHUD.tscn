@@ -1,18 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/match/hud/MatchHUD.gd" type="Script" id=1]
 [ext_resource path="res://source/match/hud/Deck.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/fonts/fraktur/DreiFraktur.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://graphics/fonts/lato/lato-64.tres" type="DynamicFont" id=3]
 [ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/circle-white.png" type="Texture" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 48
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 72
-font_data = ExtResource( 3 )
+[ext_resource path="res://graphics/fonts/lato/lato-48.tres" type="DynamicFont" id=6]
 
 [node name="MatchHUD" type="CanvasLayer" groups=[
 "MatchHUD",
@@ -81,7 +74,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Gold"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 6 )
 text = "5"
 align = 1
 valign = 1
@@ -107,7 +100,7 @@ anchor_bottom = 1.0
 margin_left = -408.0
 margin_top = -130.0
 focus_mode = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "End Turn"
 __meta__ = {

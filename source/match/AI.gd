@@ -22,7 +22,7 @@ func _combat_units(game, player):
 		var tile = _get_combat_tile(unit, game)
 		if tile:
 			game.combat(unit, tile.unit)
-			yield(get_tree().create_timer(game.ANIMATION_TIME), "timeout")
+			yield(get_tree().create_timer(0.5), "timeout")
 	call_deferred("emit_signal", "combatting_units_finished")
 
 func _move_units(game, player):
