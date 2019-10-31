@@ -21,7 +21,7 @@ var hovered_card = null
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB") and not active_card and hovered_card:
 
-		if player.gold < hovered_card.cost.value or player.actions == 0:
+		if player.gold < hovered_card.cost.value:
 			return
 
 		_set_active_card(hovered_card)
@@ -73,11 +73,10 @@ func update_player(new_player):
 
 	deck.card_number = player.deck.size()
 	gold_label.text = "%d (+%d)" % [player.gold, player.income]
-	deck.greyed = player.actions == 0 or player.hand.size() == 3
 
 	for card_data in player.hand:
 		var card = UnitCard.instance()
-		card.initialize(card_data, card_data.cost <= player.gold and player.actions > 0)
+		card.initialize(card_data, card_data.cost <= player.gold)
 		hand.add_child(card)
 		card.team_color = player.team_color
 		card.connect("mouse_entered", self, "_on_Card_mouse_entered", [ card ])
@@ -171,14 +170,6 @@ func _move_card(card, target_position, time):
 	tween.stop(card, "rect_position")
 	tween.interpolate_property(card, "rect_global_position", card.rect_global_position, target_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
-
-func _on_Deck_pressed() -> void:
-
-	if hand.get_child_count() >= 3 or player.actions == 0:
-		return
-
-	get_tree().call_group("Match", "draw_card")
-	update_player(player)
 
 func _on_EndTurn_pressed() -> void:
 	var the_game = get_tree().get_nodes_in_group("Match")[0]

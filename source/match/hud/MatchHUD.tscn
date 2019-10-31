@@ -83,14 +83,6 @@ __meta__ = {
 }
 
 [node name="Deck" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-margin_left = 0.0
-margin_top = -240.0
-margin_right = 220.0
-margin_bottom = 140.0
 
 [node name="EndTurn" type="Button" parent="."]
 anchor_left = 1.0
@@ -106,5 +98,4 @@ text = "End Turn"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Deck" to="." method="_on_Deck_pressed"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_EndTurn_pressed"]

@@ -14,7 +14,6 @@ func make_turn(game, player):
 	yield(self, "moving_units_finished")
 	_play_cards(game, player)
 	yield(self, "played_card")
-	_draw_card(player)
 	call_deferred("emit_signal", "turn_finished")
 
 func _combat_units(game, player):
@@ -40,16 +39,12 @@ func _move_units(game, player):
 
 func _play_cards(game, player):
 	for card in player.hand:
-		if card.cost <= player.gold and player.actions > 0:
+		if card.cost <= player.gold:
 			var tile = _get_free_castle_tile(player, game)
 			if tile:
 				game.place_unit(card, tile, tile.rect_global_position)
 				yield(get_tree().create_timer(game.ANIMATION_TIME), "timeout")
 	call_deferred("emit_signal", "played_card")
-
-func _draw_card(player):
-	if player.actions > 0:
-		player.draw_card()
 
 func _get_combat_tile(unit, game):
 	var tiles = []

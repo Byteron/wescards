@@ -102,7 +102,6 @@ func place_hero(player):
 func place_unit(card_data, tile, pos):
 	current_player.hand.erase(card_data)
 	current_player.gold -= card_data.cost
-	current_player.actions -= 1
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 

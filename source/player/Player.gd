@@ -4,7 +4,6 @@ class_name Player
 enum CONTROLLER { PLAYER, AI }
 
 var gold := 0
-var actions := 0
 
 var deck := []
 var hand := []
@@ -34,7 +33,6 @@ func _ready() -> void:
 
 func initialize():
 	gold = starting_gold
-	actions = max_actions
 	load_deck()
 	shuffle_deck()
 	draw_hand()
@@ -67,7 +65,7 @@ func load_deck():
 		deck.append(Global.cards[unit_id])
 
 func draw_hand():
-	for i in 3:
+	for i in 3 - hand.size():
 		draw_card()
 
 func draw_card():
@@ -83,9 +81,10 @@ func shuffle_deck():
 
 func get_castle_tiles():
 	return hero.tile.neighbors
+
 func upkeep():
 	gold += calculate_income()
-	actions = max_actions
+	draw_hand()
 	for unit in units:
 		unit.rest()
 		unit.restore()
