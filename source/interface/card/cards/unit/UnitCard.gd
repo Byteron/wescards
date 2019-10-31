@@ -1,5 +1,5 @@
 extends Control
-class_name Card
+class_name UnitCard
 
 var origin_position = Vector2()
 
@@ -30,7 +30,7 @@ onready var defense_separator = $MarginContainer/VBoxContainer/Stats/Separator3
 onready var greyscale := $Greyscale
 
 static func instance():
-	return load("res://source/card/Card.tscn").instance()
+	return load("res://source/interface/card/cards/unit/UnitCard.tscn").instance()
 
 func _ready() -> void:
 	body.propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])

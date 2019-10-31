@@ -76,7 +76,7 @@ func update_player(new_player):
 	deck.greyed = player.actions == 0 or player.hand.size() == 3
 
 	for card_data in player.hand:
-		var card = Card.instance()
+		var card = UnitCard.instance()
 		card.initialize(card_data, card_data.cost <= player.gold and player.actions > 0)
 		hand.add_child(card)
 		card.team_color = player.team_color
