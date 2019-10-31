@@ -181,4 +181,7 @@ func _on_Deck_pressed() -> void:
 	update_player(player)
 
 func _on_EndTurn_pressed() -> void:
-	get_tree().call_group("Match", "next_player")
+	var the_game = get_tree().get_nodes_in_group("Match")[0]
+	if the_game.current_player.controller == Player.CONTROLLER.AI:
+		return
+	the_game.next_player()
