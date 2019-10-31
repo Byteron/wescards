@@ -43,14 +43,12 @@ stretch_mode = 2
 deck_id = "Orcs"
 start_position = Vector2( 2, 4 )
 team_color = Color( 0.384314, 0, 0, 1 )
-castle_tiles = [ Vector2( 1, 4 ), Vector2( 2, 4 ), Vector2( 3, 4 ) ]
 
 [node name="2" parent="Players" instance=ExtResource( 4 )]
 controller = 1
 deck_id = "Humans"
 start_position = Vector2( 2, 0 )
 team_color = Color( 0.00392157, 0, 0.286275, 1 )
-castle_tiles = [ Vector2( 1, 0 ), Vector2( 2, 0 ), Vector2( 3, 0 ) ]
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
 

@@ -27,8 +27,6 @@ export var base_income := 2
 
 export var team_color := Color("FF0000")
 
-export(Array, Vector2) var castle_tiles := []
-
 onready var team = get_index()
 
 func _ready() -> void:
