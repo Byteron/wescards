@@ -89,10 +89,11 @@ func upkeep():
 	actions = max_actions
 	for unit in units:
 		unit.rest()
+		unit.restore()
 
 func cleanup():
 	for unit in units:
-		unit.restore()
+		unit.cleanup()
 
 func calculate_income():
 	var income = base_income

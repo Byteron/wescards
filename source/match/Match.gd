@@ -103,6 +103,7 @@ func place_hero(player):
 	var tile = tiles[player.start_position]
 
 	move_unit(hero, tile, 0)
+	hero.restore()
 
 func place_unit(card_data, tile, pos):
 	current_player.hand.erase(card_data)

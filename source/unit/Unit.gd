@@ -101,6 +101,8 @@ func rest():
 
 func restore():
 	actions = 1
+
+func cleanup():
 	greyscale.visible = false
 
 func is_damaged():
