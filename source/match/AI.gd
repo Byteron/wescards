@@ -109,8 +109,7 @@ func _get_move_tile(unit, game):
 	return tile
 
 func _get_free_castle_tile(player, game):
-	for cell in player.castle_tiles:
-		var tile = game.board.tiles[cell]
+	for tile in player.get_castle_tiles():
 		if tile.unit == null:
 			return tile
 	return null

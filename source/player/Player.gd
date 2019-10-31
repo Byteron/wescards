@@ -83,6 +83,8 @@ func shuffle_deck():
 	randomize()
 	deck.shuffle()
 
+func get_castle_tiles():
+	return hero.tile.neighbors
 func upkeep():
 	gold += calculate_income()
 	actions = max_actions

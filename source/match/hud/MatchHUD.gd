@@ -45,9 +45,8 @@ func _input(event: InputEvent) -> void:
 		clear_castle()
 
 func update_castle(player, tiles):
-	for c_cell in player.castle_tiles:
-		var tile = tiles[c_cell]
-		_focus_castle(tile)
+	for c_tile in player.get_castle_tiles():
+		_focus_castle(c_tile)
 
 func clear_castle():
 	for child in castles.get_children():
