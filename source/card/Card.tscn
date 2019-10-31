@@ -130,6 +130,7 @@ margin_left = 208.0
 margin_right = 240.0
 rect_min_size = Vector2( 32, 25 )
 color = Color( 0.615686, 0.52549, 0.101961, 1 )
+show_triangle = false
 
 [node name="Stats" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 30.0
@@ -142,72 +143,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_right = 24.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 1, 0 )
-mouse_filter = 2
-size_flags_horizontal = 3
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Ranged" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 24.0
-margin_right = 54.0
+margin_right = 32.0
+rect_min_size = Vector2( 32, 30 )
 color = Color( 0.0784314, 0.152941, 0.560784, 1 )
 
 [node name="Separator2" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 54.0
-margin_right = 78.0
+margin_left = 32.0
+margin_right = 34.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 1, 0 )
+rect_min_size = Vector2( 2, 0 )
 mouse_filter = 2
-size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="Melee" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 78.0
-margin_right = 108.0
+margin_left = 34.0
+margin_right = 66.0
+rect_min_size = Vector2( 32, 30 )
 color = Color( 0.619608, 0.101961, 0.101961, 1 )
 
 [node name="Separator3" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 108.0
-margin_right = 132.0
+margin_left = 66.0
+margin_right = 174.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 1, 0 )
+rect_min_size = Vector2( 2, 0 )
 mouse_filter = 2
 size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="Defense" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 132.0
-margin_right = 162.0
+margin_left = 174.0
+margin_right = 206.0
+rect_min_size = Vector2( 32, 30 )
 color = Color( 0.34902, 0.603922, 0.603922, 1 )
 
 [node name="Separator4" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 162.0
-margin_right = 186.0
+margin_left = 206.0
+margin_right = 208.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 1, 0 )
+rect_min_size = Vector2( 2, 0 )
 mouse_filter = 2
-size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="Health" parent="MarginContainer/VBoxContainer/Stats" instance=ExtResource( 4 )]
-margin_left = 186.0
-margin_right = 216.0
-color = Color( 0.0666667, 0.513726, 0.113725, 1 )
-
-[node name="Separator5" type="ColorRect" parent="MarginContainer/VBoxContainer/Stats"]
-margin_left = 216.0
+margin_left = 208.0
 margin_right = 240.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 1, 0 )
-mouse_filter = 2
-size_flags_horizontal = 3
-color = Color( 0, 0, 0, 1 )
+rect_min_size = Vector2( 32, 30 )
+color = Color( 0.0666667, 0.513726, 0.113725, 1 )
 
 [node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 60.0
@@ -318,6 +300,7 @@ __meta__ = {
 }
 
 [node name="Greyscale" type="TextureRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

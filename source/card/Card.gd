@@ -24,7 +24,7 @@ onready var health := $MarginContainer/VBoxContainer/Stats/Health
 onready var body := $MarginContainer
 onready var border := $Border
 
-onready var ranged_separator = $MarginContainer/VBoxContainer/Stats/Separator1
+onready var ranged_separator = $MarginContainer/VBoxContainer/Stats/Separator2
 onready var defense_separator = $MarginContainer/VBoxContainer/Stats/Separator3
 
 onready var greyscale := $Greyscale
@@ -57,7 +57,7 @@ func update_display():
 	ranged.value = data.ranged
 	ranged_separator.visible = ranged.visible
 	defense.value = data.defense
-	defense_separator.visible = defense.visible
+	# defense_separator.visible = defense.visible
 	health.value = data.health
 	border.self_modulate = team_color
 
