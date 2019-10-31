@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/PopupLabel.gd"
 }, {
+"base": "ColorRect",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://source/map/Tile.gd"
+}, {
 "base": "MarginContainer",
 "class": "TileHighlighter",
 "language": "GDScript",
@@ -61,6 +66,7 @@ _global_script_class_icons={
 "Map": "",
 "Player": "",
 "PopupLabel": "",
+"Tile": "",
 "TileHighlighter": "",
 "Unit": "",
 "UnitData": ""

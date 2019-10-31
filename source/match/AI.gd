@@ -56,8 +56,7 @@ func _get_combat_tile(unit, game):
 	var tile = null
 
 	# get all tiles with enemy units
-	for n_cell in unit.tile.neighbors:
-		var n_tile = game.tiles[unit.tile.cell + n_cell]
+	for n_tile in unit.tile.neighbors:
 		if n_tile.unit and n_tile.unit.team != unit.team:
 			tiles.append(n_tile)
 
@@ -94,8 +93,7 @@ func _get_move_tile(unit, game):
 	var tiles = []
 	var villages = []
 
-	for n_cell in unit.tile.neighbors:
-		var n_tile = game.tiles[unit.tile.cell + n_cell]
+	for n_tile in unit.tile.neighbors:
 		if not n_tile.unit:
 			tiles.append(n_tile)
 
@@ -112,7 +110,7 @@ func _get_move_tile(unit, game):
 
 func _get_free_castle_tile(player, game):
 	for cell in player.castle_tiles:
-		var tile = game.tiles[cell]
+		var tile = game.board.tiles[cell]
 		if tile.unit == null:
 			return tile
 	return null

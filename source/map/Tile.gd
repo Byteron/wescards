@@ -1,4 +1,5 @@
 extends ColorRect
+class_name Tile
 
 signal captured(cell)
 

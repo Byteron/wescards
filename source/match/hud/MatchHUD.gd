@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 
 		_move_card(active_card, active_position, ANIMATION_TIME)
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
-		update_castle(player, the_game.tiles)
+		update_castle(player, the_game.board.tiles)
 
 	elif event.is_action_pressed("LMB") and active_card:
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
@@ -55,8 +55,7 @@ func clear_castle():
 		child.queue_free()
 
 func update_reachable(tiles, tile):
-	for n_cell in tile.neighbors:
-		var n_tile = tiles[tile.cell + n_cell]
+	for n_tile in tile.neighbors:
 		_focus_tile(n_tile)
 
 func clear_reachable():

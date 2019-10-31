@@ -9,23 +9,8 @@ var current_unit = null setget _set_current_unit
 onready var tween = $Tween
 onready var AI = $AI
 
-# Move to separate Board class
-onready var tiles = {
-	Vector2(1, 0): $Board/Row0/T1,
-	Vector2(0, 1): $Board/Row1/T1,
-	Vector2(1, 1): $Board/Row1/T2,
-	Vector2(2, 1): $Board/Row1/T3,
-	Vector2(0, 2): $Board/Row2/T1,
-	Vector2(1, 2): $Board/Row2/T2,
-	Vector2(2, 2): $Board/Row2/T3,
-	Vector2(0, 3): $Board/Row3/T1,
-	Vector2(1, 3): $Board/Row3/T2,
-	Vector2(2, 3): $Board/Row3/T3,
-	Vector2(1, 4): $Board/Row4/T1
-}
-
 onready var players = $Players
-
+onready var board = $Board
 onready var units = $Units
 
 func _input(event: InputEvent) -> void:
@@ -34,10 +19,10 @@ func _input(event: InputEvent) -> void:
 			if hovered_tile.unit and hovered_tile.unit.team == current_player.team and hovered_tile.unit.actions > 0:
 				_set_current_unit(hovered_tile.unit)
 		elif current_unit and current_unit.actions > 0:
-			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and not hovered_tile.unit:
+			if hovered_tile and current_unit.tile.neighbors.has(hovered_tile) and not hovered_tile.unit:
 				move_unit(current_unit, hovered_tile, ANIMATION_TIME)
 				_set_current_unit(null)
-			elif hovered_tile and current_unit.tile.neighbors.has(hovered_tile.cell - current_unit.tile.cell) and hovered_tile.unit:
+			elif hovered_tile and current_unit.tile.neighbors.has(hovered_tile) and hovered_tile.unit:
 				if current_unit.team != hovered_tile.unit.team:
 					combat(current_unit, hovered_tile.unit)
 					_set_current_unit(null)
@@ -50,8 +35,8 @@ func _ready() -> void:
 
 	_setup_players()
 
-	for cell in tiles.keys():
-		var tile = tiles[cell]
+	for cell in board.tiles.keys():
+		var tile = board.tiles[cell]
 		tile.cell = cell
 		tile.connect("mouse_entered", self, "_on_mouse_entered", [tile])
 		tile.connect("mouse_exited", self, "_on_mouse_exited", [tile])
@@ -100,7 +85,7 @@ func place_hero(player):
 	player.add_hero(hero)
 	units.add_child(hero)
 
-	var tile = tiles[player.start_position]
+	var tile = board.tiles[player.start_position]
 
 	move_unit(hero, tile, 0)
 	hero.restore()
@@ -201,7 +186,7 @@ func _set_current_unit(value):
 
 	if current_unit:
 		current_unit.select()
-		get_tree().call_group("MatchHUD", "update_reachable", tiles, current_unit.tile)
+		get_tree().call_group("MatchHUD", "update_reachable", board.tiles, current_unit.tile)
 		get_tree().call_group("MatchHUD", "set_process_input", false)
 	else:
 		get_tree().call_group("MatchHUD", "set_process_input", true)

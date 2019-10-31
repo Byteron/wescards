@@ -13,8 +13,9 @@ use_filter = true
 font_data = ExtResource( 4 )
 
 [node name="Tile" type="ColorRect"]
-margin_right = 180.0
-margin_bottom = 180.0
+margin_right = 160.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 160, 160 )
 color = Color( 0.219608, 0.184314, 0.0980392, 1 )
 script = ExtResource( 1 )
 __meta__ = {

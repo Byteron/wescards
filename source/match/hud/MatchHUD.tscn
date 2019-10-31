@@ -29,10 +29,10 @@ __meta__ = {
 [node name="ActivePosition" type="Control" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 260.0
-margin_top = -280.0
-margin_right = 510.0
-margin_bottom = 120.0
+margin_left = 240.0
+margin_top = -240.0
+margin_right = 460.0
+margin_bottom = 140.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -88,9 +88,9 @@ anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
 margin_left = 0.0
-margin_top = -280.0
-margin_right = 250.0
-margin_bottom = 120.0
+margin_top = -240.0
+margin_right = 220.0
+margin_bottom = 140.0
 
 [node name="EndTurn" type="Button" parent="."]
 anchor_left = 1.0
