@@ -71,7 +71,6 @@ func load_deck():
 func draw_hand():
 	for i in 3:
 		draw_card()
-		print(hand)
 
 func draw_card():
 	if not deck:
