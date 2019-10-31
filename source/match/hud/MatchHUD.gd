@@ -9,7 +9,7 @@ onready var deck = $Deck
 onready var gold_label := $Gold/Label
 
 onready var reachable := $Reachable
-
+onready var castles := $Castles
 onready var active_position = $ActivePosition.rect_global_position
 
 var player = null
@@ -27,18 +27,31 @@ func _input(event: InputEvent) -> void:
 		active_card = hovered_card
 		active_card.locked = true
 		_move_card(active_card, active_position, ANIMATION_TIME)
+		var the_game = get_tree().get_nodes_in_group("Match")[0]
+		update_castle(player, the_game.tiles)
 
 	elif event.is_action_pressed("LMB") and active_card:
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
 		if the_game.can_place_card():
 			play_card(active_card, the_game.hovered_tile)
-
+			clear_castle()
 	elif event.is_action_pressed("RMB") and active_card:
 		# BUG Lock cards movement on cancel
 		active_card.locked = false
 		hovered_card = active_card
 		active_card = null
 		_on_Card_mouse_exited(hovered_card)
+		clear_castle()
+
+func update_castle(player, tiles):
+	for c_cell in player.castle_tiles:
+		var tile = tiles[c_cell]
+		_focus_castle(tile)
+
+func clear_castle():
+	for child in castles.get_children():
+		castles.remove_child(child)
+		child.queue_free()
 
 func update_reachable(tiles, tile):
 	for n_cell in tile.neighbors:
@@ -102,6 +115,15 @@ func _resize_hand():
 		card.save_position()
 
 		x += card.rect_size.x + CARD_DISTANCE
+
+func _focus_castle(tile):
+	var highlighter = TileHighlighter.instance()
+	highlighter.rect_global_position = tile.rect_global_position
+
+	if tile.unit:
+		return
+
+	castles.add_child(highlighter)
 
 func _focus_tile(tile):
 	var highlighter = TileHighlighter.instance()
