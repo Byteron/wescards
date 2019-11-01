@@ -62,8 +62,8 @@ func combat(attacker, defender):
 		play_attack_tween(attacker, defender)
 		yield(tween, "tween_all_completed")
 		defender.hurt(attacker.melee.value - defender.defense.value)
-		play_attack_tween(defender, attacker)
-		yield(tween, "tween_all_completed")
+		# play_attack_tween(defender, attacker)
+		# yield(tween, "tween_all_completed")
 		attacker.hurt(defender_damage - attacker.defense.value)
 
 	if attacker.is_dead:
@@ -162,10 +162,15 @@ func move_card(card, target_position, time = ANIMATION_TIME):
 	tween.start()
 
 func play_attack_tween(unit1, unit2):
-	var start_position = unit1.rect_global_position
-	var target_position = (unit1.rect_global_position + unit2.rect_global_position) / 2
-	tween.interpolate_property(unit1, "rect_global_position", start_position, target_position, ANIMATION_TIME, Tween.TRANS_BACK, Tween.EASE_IN)
-	tween.interpolate_property(unit1, "rect_global_position", target_position, start_position, ANIMATION_TIME / 2, Tween.TRANS_CUBIC, Tween.EASE_OUT, ANIMATION_TIME)
+	var start_position1 = unit1.rect_global_position
+	var start_position2 = unit2.rect_global_position
+	var center_position = (unit1.rect_global_position + unit2.rect_global_position) / 2
+	var target_position1 = (center_position + unit1.rect_global_position) / 2
+	var target_position2 = (center_position + unit2.rect_global_position) / 2
+	tween.interpolate_property(unit1, "rect_global_position", start_position1, target_position1, ANIMATION_TIME, Tween.TRANS_BACK, Tween.EASE_IN)
+	tween.interpolate_property(unit2, "rect_global_position", start_position2, target_position2, ANIMATION_TIME, Tween.TRANS_BACK, Tween.EASE_IN)
+	tween.interpolate_property(unit1, "rect_global_position", target_position1, start_position1, ANIMATION_TIME / 2, Tween.TRANS_CUBIC, Tween.EASE_OUT, ANIMATION_TIME)
+	tween.interpolate_property(unit2, "rect_global_position", target_position2, start_position2, ANIMATION_TIME / 2, Tween.TRANS_CUBIC, Tween.EASE_OUT, ANIMATION_TIME)
 	tween.start()
 
 func _setup_players():
