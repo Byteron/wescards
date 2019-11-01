@@ -40,9 +40,17 @@ func _move_units(game, player):
 func _play_cards(game, player):
 	for card in player.hand:
 		if card.cost <= player.gold:
-			var tile = _get_free_castle_tile(player, game)
+			var tile = null
+			if card is UnitData:
+				tile = _get_free_castle_tile(player)
+			elif card is LandData:
+				tile = _get_free_nonland_tile(player)
 			if tile:
-				game.place_unit(card, tile, tile.rect_global_position)
+				if card is UnitData:
+					game.place_unit(card, tile, tile.rect_global_position)
+				elif card is LandData:
+					game.place_land(card, tile, tile.rect_global_position)
+
 				yield(get_tree().create_timer(game.ANIMATION_TIME), "timeout")
 	call_deferred("emit_signal", "played_card")
 
@@ -104,8 +112,14 @@ func _get_move_tile(unit, game):
 
 	return tile
 
-func _get_free_castle_tile(player, game):
+func _get_free_nonland_tile(player):
 	for tile in player.get_castle_tiles():
-		if tile.unit == null:
+		if not tile.land:
+			return tile
+	return null
+
+func _get_free_castle_tile(player):
+	for tile in player.get_castle_tiles():
+		if not tile.unit:
 			return tile
 	return null

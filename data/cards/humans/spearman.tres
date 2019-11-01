@@ -7,12 +7,13 @@
 script = ExtResource( 1 )
 cost = 4
 id = "Spearman"
-alias = "Speerträger"
-description = "Piekst auch manchmal seine Freunde."
+alias = "Spearman"
+description = "Pokes their friends too."
 image = ExtResource( 2 )
 tint = Color( 0.505882, 0.0509804, 0.0509804, 1 )
 is_hero = false
 melee = 5
 ranged = 0
 defense = 0
-health = 12
+health = 14
+actions = 1

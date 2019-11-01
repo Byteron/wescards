@@ -45,6 +45,7 @@ func add_hero(unit):
 
 func add_land(land):
 	lands.append(land)
+	land.connect("destroyed", self, "_on_Land_destroyed")
 
 func add_unit(unit):
 	units.append(unit)
@@ -86,9 +87,20 @@ func shuffle_deck():
 func get_castle_tiles():
 	return hero.tile.neighbors
 
+func get_nonland_tiles():
+	var tiles = []
+	for tile in hero.tile.neighbors:
+		if not tile.land:
+			tiles.append(tile)
+	return tiles
+
 func upkeep():
 	gold += calculate_income()
 	draw_hand()
+
+	for land in lands:
+		land.apply_effect()
+
 	for unit in units:
 		unit.rest()
 		unit.restore()
@@ -108,6 +120,9 @@ func _on_Unit_died(unit):
 
 func _on_Hero_died(hero):
 	get_tree().reload_current_scene()
+
+func _on_Land_destroyed(land):
+	lands.erase(land)
 
 func _on_Village_captured(team, cell):
 	if team == get_index():

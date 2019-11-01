@@ -5,14 +5,15 @@
 
 [resource]
 script = ExtResource( 1 )
-cost = 8
+cost = 7
 id = "Mage"
-alias = "Magier"
-description = "Zauberhaft."
+alias = "Mage"
+description = "Magical."
 image = ExtResource( 2 )
 tint = Color( 0.505882, 0.0509804, 0.0509804, 1 )
 is_hero = false
 melee = 1
-ranged = 7
+ranged = 6
 defense = 0
-health = 8
+health = 10
+actions = 1

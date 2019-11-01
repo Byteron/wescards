@@ -7,12 +7,13 @@
 script = ExtResource( 1 )
 cost = 6
 id = "Goblin Pillager"
-alias = "Wolfsreiter"
-description = "Trägt seine Mahlzeit auf dem Rücken."
+alias = "Goblin Pillager"
+description = "Carries their meal on their back."
 image = ExtResource( 2 )
 tint = Color( 0.258824, 0.176471, 0.176471, 1 )
 is_hero = false
 melee = 3
 ranged = 0
 defense = 1
-health = 10
+health = 14
+actions = 2

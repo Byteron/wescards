@@ -58,15 +58,15 @@ func combat(attacker, defender):
 	if ranged_attack:
 		var defender_damage = defender.ranged.value - attacker.defense.value
 		yield(get_tree().create_timer(ANIMATION_TIME), "timeout")
-		defender.hurt(attacker.ranged.value - defender.defense.value)
+		defender.harm(attacker.ranged.value - defender.defense.value)
 	else:
 		var defender_damage = defender.melee.value
 		play_attack_tween(attacker, defender)
 		yield(tween, "tween_all_completed")
-		defender.hurt(attacker.melee.value - defender.defense.value)
+		defender.harm(attacker.melee.value - defender.defense.value)
 		# play_attack_tween(defender, attacker)
 		# yield(tween, "tween_all_completed")
-		attacker.hurt(defender_damage - attacker.defense.value)
+		attacker.harm(defender_damage - attacker.defense.value)
 
 	if attacker.is_dead:
 		attacker.kill()
@@ -101,19 +101,25 @@ func place_hero(player):
 	move_unit(hero, tile, 0)
 	hero.restore()
 
-func place_land(card_data, tile, pos):
-	current_player.hand.erase(card_data)
-	current_player.gold -= card_data.cost
+func place_land(land_data, tile, pos):
+	current_player.hand.erase(land_data)
+	current_player.gold -= land_data.cost
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 	var land = Land.instance()
-	land.data = card_data
+	land.data = land_data
 	land.team_color = current_player.team_color
 	land.team = current_player.get_index()
 
 	current_player.add_land(land)
 	lands.add_child(land)
+
+	if tile.land:
+		tile.land.destroy()
+
+	tile.land = land
+	land.tile = tile
 
 	land.rect_global_position = pos
 	land.rect_size = Vector2(280, 400)
@@ -173,6 +179,10 @@ func move_unit(unit, tile, time = ANIMATION_TIME):
 
 	if tile.is_village:
 		current_player.add_village(tile)
+
+	if tile.land and tile.land.team != current_player.get_index():
+		tile.land.destroy()
+		tile.land = null
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 

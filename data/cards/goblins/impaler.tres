@@ -5,14 +5,15 @@
 
 [resource]
 script = ExtResource( 1 )
-cost = 3
+cost = 2
 id = "Goblin Impaler"
-alias = "Goblinspeerträger"
-description = "Spitz wie eh und je."
+alias = "Goblin Impaler"
+description = "Spiky."
 image = ExtResource( 2 )
 tint = Color( 0.258824, 0.176471, 0.176471, 1 )
 is_hero = false
-melee = 5
+melee = 3
 ranged = 0
 defense = 0
-health = 8
+health = 10
+actions = 1

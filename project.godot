@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/DeckData.gd"
 }, {
-"base": "Reference",
-"class": "Effect",
-"language": "GDScript",
-"path": "res://source/effect/Effect.gd"
-}, {
 "base": "Resource",
 "class": "EffectData",
 "language": "GDScript",
@@ -99,7 +94,6 @@ _global_script_class_icons={
 "Card": "",
 "CardData": "",
 "DeckData": "",
-"Effect": "",
 "EffectData": "",
 "Land": "",
 "LandCard": "",
@@ -124,6 +118,7 @@ config/icon="res://icon.png"
 
 Loader="*res://source/global/Loader.gd"
 Global="*res://source/global/Global.gd"
+Effects="*res://source/global/Effects.gd"
 
 [display]
 

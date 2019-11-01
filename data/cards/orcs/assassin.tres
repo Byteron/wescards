@@ -7,12 +7,13 @@
 script = ExtResource( 1 )
 cost = 4
 id = "Orcish Assassin"
-alias = "Orkassassine"
-description = "Trifft auch betrunken."
+alias = "Orcish Assassin"
+description = "They hit drunk."
 image = ExtResource( 2 )
 tint = Color( 0.341176, 0.211765, 0.0470588, 1 )
 is_hero = false
 melee = 3
 ranged = 3
 defense = 2
-health = 8
+health = 10
+actions = 2

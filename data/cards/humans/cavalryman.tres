@@ -5,14 +5,15 @@
 
 [resource]
 script = ExtResource( 1 )
-cost = 6
+cost = 7
 id = "Cavalryman"
-alias = "Kavallerist"
-description = "Wird regelmäßig abgeworfen"
+alias = "Cavalryman"
+description = "Falls off their horses on a regular basis."
 image = ExtResource( 2 )
 tint = Color( 0.505882, 0.0509804, 0.0509804, 1 )
 is_hero = false
-melee = 5
+melee = 4
 ranged = 0
 defense = 1
-health = 12
+health = 16
+actions = 2

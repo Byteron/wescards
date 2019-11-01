@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource( 1 )
-cost = 9
+cost = 8
 id = "Ghost"
-alias = "Geist"
-description = "Nachts ist es kälter als draußen."
+alias = "Ghost"
+description = "Spooky."
 image = ExtResource( 2 )
 tint = Color( 0.262745, 0.411765, 0.403922, 1 )
 is_hero = false
@@ -16,3 +16,4 @@ melee = 4
 ranged = 4
 defense = 3
 health = 8
+actions = 2

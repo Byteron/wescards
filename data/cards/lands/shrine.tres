@@ -5,16 +5,18 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-target = 2
-property = "unit:healing"
-operation = "+"
-value = 2
+method = "heal"
+args = {
+"value": 4
+}
 
 [resource]
 script = ExtResource( 1 )
-cost = 8
+cost = 1
 id = "Shrine"
 alias = "Shrine"
-description = "Only works if you believe in God."
+description = "Heals +4 in the beginning of your turn.
+
+Only works if you believe in God."
 tint = Color( 0.4, 0.4, 0.4, 1 )
 effect = SubResource( 1 )

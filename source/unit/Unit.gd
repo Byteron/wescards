@@ -8,6 +8,7 @@ static func instance():
 
 signal died(unit)
 
+var max_actions := 0
 var actions := 0 setget _set_actions
 
 var data = null
@@ -16,7 +17,6 @@ var tile = null
 var team = 0
 var team_color = Color("FFFFFF")
 
-var heal := 0
 var rest := 2
 
 var is_hero = false
@@ -44,6 +44,7 @@ func update_display():
 		return
 
 	is_hero = data.is_hero
+	max_actions = data.actions
 	portrait.texture = data.image
 	back.color = data.tint
 	melee.base = data.melee
@@ -63,7 +64,7 @@ func update_display():
 func initialize(card_data):
 	data = card_data
 
-func hurt(damage):
+func harm(damage):
 	if not damage:
 		return
 
@@ -104,10 +105,10 @@ func deselect():
 
 func rest():
 	if actions and is_damaged():
-		heal(rest + heal)
+		heal(rest)
 
 func restore():
-	actions = 1
+	actions = max_actions
 
 func cleanup():
 	greyscale.visible = false

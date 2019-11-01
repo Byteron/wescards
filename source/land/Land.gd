@@ -1,14 +1,14 @@
 extends Control
 class_name Land
 
+signal destroyed(land)
+
 static func instance():
 	return load("res://source/land/Land.tscn").instance()
 
 var data = null
 
 var tile = null
-
-var effect = null
 
 var team := 0
 var team_color := Color("666666")
@@ -25,11 +25,14 @@ func _ready() -> void:
 func initialize(land_data):
 	data = land_data
 
-	if not data.effect:
-		print("no effect data")
-		return
+func destroy():
+	emit_signal("destroyed", self)
+	queue_free()
 
-	effect = Effect.new(data.effect.property, data.effect.operation, data.effect.value)
+func apply_effect():
+	if tile.unit and data.effect:
+		print("apply effect")
+		Effects.call(data.effect.method, tile.unit, data.effect.args)
 
 func update_display():
 	name_label.text = data.alias

@@ -7,12 +7,13 @@
 script = ExtResource( 1 )
 cost = 4
 id = "Orcish Archer"
-alias = "Orkschütze"
-description = "Schießt nicht weit."
+alias = "Orish Archer"
+description = "Does not shoot far."
 image = ExtResource( 2 )
 tint = Color( 0.341176, 0.211765, 0.0470588, 1 )
 is_hero = false
 melee = 2
 ranged = 4
 defense = 0
-health = 8
+health = 10
+actions = 1

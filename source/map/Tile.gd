@@ -4,7 +4,7 @@ class_name Tile
 signal captured(cell)
 
 var unit = null
-var land = null setget _set_land
+var land = null
 
 var cell = null
 
@@ -27,8 +27,3 @@ func capture(team, team_color):
 
 	flag.self_modulate = team_color
 	emit_signal("captured", team, cell)
-
-func _set_land(new_land):
-	if land:
-		land.queue_free()
-	land = new_land

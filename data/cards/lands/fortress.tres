@@ -5,14 +5,17 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-target = 2
-property = "unit:defense:value"
-operation = "+"
-value = 1
+method = "modify"
+args = {
+"operation": "+",
+"path": "MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Defense",
+"property": "value",
+"value": 1
+}
 
 [resource]
 script = ExtResource( 1 )
-cost = 6
+cost = 1
 id = "Fortress"
 alias = "Fortress"
 description = "Doesn't move."
