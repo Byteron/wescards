@@ -11,6 +11,7 @@ var greyed = false
 var team_color := Color("FFFFFF") setget _set_team_color
 
 onready var portrait = $MarginContainer/VBoxContainer/Portrait
+onready var type := $MarginContainer/VBoxContainer/Type/Label
 onready var description = $MarginContainer/VBoxContainer/Description/Label
 onready var alias = $MarginContainer/VBoxContainer/Title/Name/Label
 onready var back = $Background
@@ -27,7 +28,6 @@ static func instance():
 
 func _ready() -> void:
 	body.propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
-	update_display()
 
 func initialize(card_data, payable = true):
 	greyed = !payable
@@ -47,12 +47,6 @@ func update_display():
 
 	cost.value = data.cost
 	border.self_modulate = team_color
-
-func make_unit():
-	mouse_filter = MOUSE_FILTER_IGNORE
-	$MarginContainer/VBoxContainer/Description.hide()
-	$MarginContainer/VBoxContainer/Legals.hide()
-	cost.hide()
 
 func save_position():
 	origin_position = rect_global_position

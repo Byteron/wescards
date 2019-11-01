@@ -4,8 +4,8 @@ onready var you_option := $CenterContainer/VBoxContainer/Player1/OptionButton
 onready var enemy_option := $CenterContainer/VBoxContainer/Player2/OptionButton
 
 func _ready() -> void:
-	you_option.add_item("Random", 0)
-	enemy_option.add_item("Random", 0)
+	you_option.add_item("Humans", 0)
+	enemy_option.add_item("Orcs", 0)
 
 	var idx = 1
 	for deck in Global.decks.keys():

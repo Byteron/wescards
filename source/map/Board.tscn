@@ -16,16 +16,18 @@ __meta__ = {
 }
 
 [node name="Tiles" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 552.0
-margin_top = 132.0
-margin_right = 1368.0
-margin_bottom = 948.0
+margin_left = 520.0
+margin_top = 100.0
+margin_right = 1400.0
+margin_bottom = 980.0
 mouse_filter = 2
+custom_constants/separation = 20
 
 [node name="Row0" type="HBoxContainer" parent="CenterContainer/Tiles"]
-margin_right = 816.0
+margin_right = 880.0
 margin_bottom = 160.0
 mouse_filter = 2
+custom_constants/separation = 20
 
 [node name="Filler" type="Control" parent="CenterContainer/Tiles/Row0"]
 margin_right = 160.0
@@ -33,31 +35,32 @@ margin_bottom = 160.0
 rect_min_size = Vector2( 160, 160 )
 
 [node name="T0" parent="CenterContainer/Tiles/Row0" instance=ExtResource( 2 )]
-margin_left = 164.0
-margin_right = 324.0
+margin_left = 180.0
+margin_right = 340.0
 neighbors = [ Vector2( 0, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row0" instance=ExtResource( 2 )]
-margin_left = 328.0
-margin_right = 488.0
+margin_left = 360.0
+margin_right = 520.0
 neighbors = [ Vector2( 0, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 
 [node name="T2" parent="CenterContainer/Tiles/Row0" instance=ExtResource( 2 )]
-margin_left = 492.0
-margin_right = 652.0
+margin_left = 540.0
+margin_right = 700.0
 neighbors = [ Vector2( 0, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 
 [node name="Filler2" type="Control" parent="CenterContainer/Tiles/Row0"]
-margin_left = 656.0
-margin_right = 816.0
+margin_left = 720.0
+margin_right = 880.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 160, 160 )
 
 [node name="Row1" type="HBoxContainer" parent="CenterContainer/Tiles"]
-margin_top = 164.0
-margin_right = 816.0
-margin_bottom = 324.0
+margin_top = 180.0
+margin_right = 880.0
+margin_bottom = 340.0
 mouse_filter = 2
+custom_constants/separation = 20
 
 [node name="T0" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
@@ -66,72 +69,74 @@ income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
-margin_left = 164.0
-margin_right = 324.0
+margin_left = 180.0
+margin_right = 340.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, -1 ), Vector2( 1, 1 ) ]
 
 [node name="T2" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
-margin_left = 328.0
-margin_right = 488.0
+margin_left = 360.0
+margin_right = 520.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 
 [node name="T3" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
-margin_left = 492.0
-margin_right = 652.0
+margin_left = 540.0
+margin_right = 700.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T4" parent="CenterContainer/Tiles/Row1" instance=ExtResource( 2 )]
-margin_left = 656.0
-margin_right = 816.0
+margin_left = 720.0
+margin_right = 880.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
 income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="Row2" type="HBoxContainer" parent="CenterContainer/Tiles"]
-margin_top = 328.0
-margin_right = 816.0
-margin_bottom = 488.0
+margin_top = 360.0
+margin_right = 880.0
+margin_bottom = 520.0
 mouse_filter = 2
+custom_constants/separation = 20
 
 [node name="T0" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
-margin_left = 164.0
-margin_right = 324.0
+margin_left = 180.0
+margin_right = 340.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 1, 0 ), Vector2( 1, -1 ), Vector2( 1, 1 ) ]
 
 [node name="T2" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
-margin_left = 328.0
-margin_right = 488.0
+margin_left = 360.0
+margin_right = 520.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
 income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( 1, -1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 
 [node name="T3" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
-margin_left = 492.0
-margin_right = 652.0
+margin_left = 540.0
+margin_right = 700.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="T4" parent="CenterContainer/Tiles/Row2" instance=ExtResource( 2 )]
-margin_left = 656.0
-margin_right = 816.0
+margin_left = 720.0
+margin_right = 880.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
 
 [node name="Row3" type="HBoxContainer" parent="CenterContainer/Tiles"]
-margin_top = 492.0
-margin_right = 816.0
-margin_bottom = 652.0
+margin_top = 540.0
+margin_right = 880.0
+margin_bottom = 700.0
 mouse_filter = 2
+custom_constants/separation = 20
 
 [node name="T0" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
@@ -140,36 +145,37 @@ income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( -1, -1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
-margin_left = 164.0
-margin_right = 324.0
+margin_left = 180.0
+margin_right = 340.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( 0, -1 ), Vector2( 1, 0 ), Vector2( 1, 1 ), Vector2( 1, -1 ) ]
 
 [node name="T2" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
-margin_left = 328.0
-margin_right = 488.0
+margin_left = 360.0
+margin_right = 520.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 1, -1 ), Vector2( -1, -1 ) ]
 
 [node name="T3" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
-margin_left = 492.0
-margin_right = 652.0
+margin_left = 540.0
+margin_right = 700.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( -1, -1 ) ]
 
 [node name="T4" parent="CenterContainer/Tiles/Row3" instance=ExtResource( 2 )]
-margin_left = 656.0
-margin_right = 816.0
+margin_left = 720.0
+margin_right = 880.0
 color = Color( 0.109804, 0.101961, 0.0901961, 1 )
 is_village = true
 income = 1
 neighbors = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( -1, 1 ), Vector2( -1, -1 ) ]
 
 [node name="Row4" type="HBoxContainer" parent="CenterContainer/Tiles"]
-margin_top = 656.0
-margin_right = 816.0
-margin_bottom = 816.0
+margin_top = 720.0
+margin_right = 880.0
+margin_bottom = 880.0
 mouse_filter = 2
+custom_constants/separation = 20
 
 [node name="Filler1" type="Control" parent="CenterContainer/Tiles/Row4"]
 margin_right = 160.0
@@ -177,22 +183,22 @@ margin_bottom = 160.0
 rect_min_size = Vector2( 160, 160 )
 
 [node name="T0" parent="CenterContainer/Tiles/Row4" instance=ExtResource( 2 )]
-margin_left = 164.0
-margin_right = 324.0
+margin_left = 180.0
+margin_right = 340.0
 neighbors = [ Vector2( 0, -1 ), Vector2( 1, -1 ), Vector2( -1, -1 ) ]
 
 [node name="T1" parent="CenterContainer/Tiles/Row4" instance=ExtResource( 2 )]
-margin_left = 328.0
-margin_right = 488.0
+margin_left = 360.0
+margin_right = 520.0
 neighbors = [ Vector2( 0, -1 ), Vector2( 1, -1 ), Vector2( -1, -1 ) ]
 
 [node name="T2" parent="CenterContainer/Tiles/Row4" instance=ExtResource( 2 )]
-margin_left = 492.0
-margin_right = 652.0
+margin_left = 540.0
+margin_right = 700.0
 neighbors = [ Vector2( 0, -1 ), Vector2( 1, -1 ), Vector2( -1, -1 ) ]
 
 [node name="Filler2" type="Control" parent="CenterContainer/Tiles/Row4"]
-margin_left = 656.0
-margin_right = 816.0
+margin_left = 720.0
+margin_right = 880.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 160, 160 )

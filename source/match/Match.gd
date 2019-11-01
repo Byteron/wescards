@@ -8,12 +8,14 @@ var hovered_tile = null
 var current_player = null setget _set_current_player
 var current_unit = null setget _set_current_unit
 
-onready var tween = $Tween
+onready var tween := $Tween
 onready var AI = $AI
 
-onready var players = $Players
+onready var players := $Players
 onready var board = $Board
-onready var units = $Units
+
+onready var lands := $Lands
+onready var units := $Units
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB"):
@@ -98,6 +100,30 @@ func place_hero(player):
 
 	move_unit(hero, tile, 0)
 	hero.restore()
+
+func place_land(card_data, tile, pos):
+	current_player.hand.erase(card_data)
+	current_player.gold -= card_data.cost
+
+	get_tree().call_group("MatchHUD", "update_player", current_player)
+
+	var land = Land.instance()
+	land.data = card_data
+	land.team_color = current_player.team_color
+	land.team = current_player.get_index()
+
+	current_player.add_land(land)
+	lands.add_child(land)
+
+	land.rect_global_position = pos
+	land.rect_size = Vector2(280, 400)
+
+	tween.interpolate_property(land, "rect_size", land.rect_size, tile.rect_size, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(land, "rect_scale", land.rect_scale, tile.rect_scale, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(land, "rect_global_position", land.rect_global_position, tile.rect_global_position, ANIMATION_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.start()
+
+	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 func place_unit(card_data, tile, pos):
 	current_player.hand.erase(card_data)

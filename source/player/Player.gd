@@ -7,6 +7,7 @@ var gold := 0
 
 var deck := []
 var hand := []
+var lands := []
 var units := []
 var villages := {}
 
@@ -41,6 +42,9 @@ func add_hero(unit):
 	hero = unit
 	units.append(hero)
 	hero.connect("died", self, "_on_Hero_died")
+
+func add_land(land):
+	lands.append(land)
 
 func add_unit(unit):
 	units.append(unit)

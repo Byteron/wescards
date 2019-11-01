@@ -16,6 +16,9 @@ var tile = null
 var team = 0
 var team_color = Color("FFFFFF")
 
+var heal := 0
+var rest := 2
+
 var is_hero = false
 var is_dead = false
 
@@ -75,6 +78,19 @@ func hurt(damage):
 	if health.value == 0:
 		is_dead = true
 
+func heal(value):
+	var diff = clamp(health.value + value, 0, data.health) - health.value
+	health.value = clamp(health.value + value, 0, data.health)
+
+	if not diff:
+		return
+
+	var popup = PopupLabel.instance()
+	popup.value = diff
+	popup.color = Color("00FF00")
+	popup.rect_global_position = rect_global_position + rect_pivot_offset
+	get_tree().current_scene.add_child(popup)
+
 func kill():
 	tile.unit = null
 	emit_signal("died", self)
@@ -88,17 +104,7 @@ func deselect():
 
 func rest():
 	if actions and is_damaged():
-		var diff = clamp(health.value + 2, 0, data.health) - health.value
-		health.value = clamp(health.value + 2, 0, data.health)
-
-		if not diff:
-			return
-
-		var popup = PopupLabel.instance()
-		popup.value = diff
-		popup.color = Color("00FF00")
-		popup.rect_global_position = rect_global_position + rect_pivot_offset
-		get_tree().current_scene.add_child(popup)
+		heal(rest + heal)
 
 func restore():
 	actions = 1

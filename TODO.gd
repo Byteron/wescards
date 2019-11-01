@@ -1,19 +1,27 @@
 """
 
-# TODO In-Game Deckbuilder
+In-Game Deckbuilder
 
-# TODO Terrain
-	- Water, Forest, Hills
+Projectiles
 
-# TODO Advancements
+Land Cards!
+	- Cards than can be played onto a tile
+		- Fortress +1 Armor
+		- Shrine + 2 Heal
+
+Advancements
 	- when a Unit get's experience, it shall advance to a better version
 
-# TODO Magical & Physical Attacks
+Magical & Physical Attacks
 	- Magical Attacks ignore Armor
 
-# TODO Unit Abilities
+Unit Abilities
 	- Heal, Poison, etc
 
-# TODO Spells?
+Spells!
+	- Deal X Damage
+	- Heal X Health
+	- Firststrike
+	- Swap
 
 """

@@ -75,9 +75,10 @@ func update_player(new_player):
 	gold_label.text = "%d (+%d)" % [player.gold, player.income]
 
 	for card_data in player.hand:
-		var card = UnitCard.instance()
+		var card = _get_card_instance(card_data)
 		card.initialize(card_data, card_data.cost <= player.gold)
 		hand.add_child(card)
+		card.update_display()
 		card.team_color = player.team_color
 		card.connect("mouse_entered", self, "_on_Card_mouse_entered", [ card ])
 		card.connect("mouse_exited", self, "_on_Card_mouse_exited", [ card ])
@@ -91,6 +92,7 @@ func clear():
 		card.queue_free()
 
 func play_card(card, tile):
+
 	var pos = card.rect_global_position
 
 	hand.remove_child(card)
@@ -100,11 +102,21 @@ func play_card(card, tile):
 
 	card.locked = false
 
-	get_tree().call_group("Match", "place_unit", card.data, tile, pos)
+	if card is UnitCard:
+		get_tree().call_group("Match", "place_unit", card.data, tile, pos)
+	elif card is LandCard:
+		get_tree().call_group("Match", "place_land", card.data, tile, pos)
 
 	_set_active_card(null)
 	hovered_card = null
 	_resize_hand()
+
+func _get_card_instance(card_data):
+	if card_data is UnitData:
+		return UnitCard.instance()
+	elif card_data is LandData:
+		return LandCard.instance()
+	return Card.instance()
 
 func _set_active_card(card):
 	active_card = card
