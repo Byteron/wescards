@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://source/land/Land.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/brushed-alum.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/interface/vignette.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=6]
 
 [node name="Land" type="Control"]
@@ -14,13 +16,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+mouse_filter = 2
+
+[node name="Overlay" type="TextureRect" parent="Portrait"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Vignette" type="TextureRect" parent="Portrait"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -17.0
 texture = ExtResource( 6 )
 draw_center = false
 patch_margin_left = 10
-patch_margin_top = 10
+patch_margin_top = 27
 patch_margin_right = 10
 patch_margin_bottom = 10
 __meta__ = {
@@ -29,16 +72,25 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="."]
 anchor_right = 1.0
+margin_left = 2.0
 margin_top = -15.0
+margin_right = -2.0
+margin_bottom = 9.0
 text = "Shrine"
 align = 1
 valign = 1
 
-[node name="ColorRect" type="ColorRect" parent="Name"]
-show_behind_parent = true
+[node name="Nicities" type="NinePatchRect" parent="."]
+self_modulate = Color( 0.662745, 0.458824, 0.172549, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+margin_top = -17.0
+texture = ExtResource( 6 )
+draw_center = false
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
