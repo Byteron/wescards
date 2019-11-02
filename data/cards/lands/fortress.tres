@@ -15,7 +15,7 @@ args = {
 
 [resource]
 script = ExtResource( 1 )
-cost = 1
+cost = 6
 id = "Fortress"
 alias = "Fortress"
 description = "Doesn't move."

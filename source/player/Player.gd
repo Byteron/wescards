@@ -84,8 +84,10 @@ func shuffle_deck():
 	randomize()
 	deck.shuffle()
 
-func get_castle_tiles():
-	return hero.tile.neighbors
+func get_summon_tiles():
+	var summon_tiles = hero.tile.neighbors.duplicate()
+	summon_tiles.append(hero.tile)
+	return summon_tiles
 
 func get_nonland_tiles():
 	var tiles = []

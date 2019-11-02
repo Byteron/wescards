@@ -12,7 +12,7 @@ args = {
 
 [resource]
 script = ExtResource( 1 )
-cost = 1
+cost = 6
 id = "Shrine"
 alias = "Shrine"
 description = "Heals +4 in the beginning of your turn.

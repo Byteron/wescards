@@ -113,13 +113,13 @@ func _get_move_tile(unit, game):
 	return tile
 
 func _get_free_nonland_tile(player):
-	for tile in player.get_castle_tiles():
+	for tile in player.get_summon_tiles():
 		if not tile.land:
 			return tile
 	return null
 
 func _get_free_castle_tile(player):
-	for tile in player.get_castle_tiles():
+	for tile in player.get_summon_tiles():
 		if not tile.unit:
 			return tile
 	return null

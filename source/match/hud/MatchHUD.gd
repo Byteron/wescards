@@ -29,13 +29,17 @@ func _input(event: InputEvent) -> void:
 
 		_move_card(active_card, active_position, ANIMATION_TIME)
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
-		update_castle(player, the_game.board.tiles)
+		if active_card is LandCard:
+			update_land(player)
+		elif active_card is UnitCard:
+			update_castle(player)
 
 	elif event.is_action_pressed("LMB") and active_card:
-		var the_game = get_tree().get_nodes_in_group("Match")[0]
-		if the_game.can_place_card():
-			play_card(active_card, the_game.hovered_tile)
+		var game = get_tree().get_nodes_in_group("Match")[0]
+		if game.can_place_card(active_card):
+			play_card(active_card, game.hovered_tile)
 			clear_castle()
+
 	elif event.is_action_pressed("RMB") and active_card:
 		# BUG Lock cards movement on cancel
 		active_card.locked = false
@@ -44,8 +48,12 @@ func _input(event: InputEvent) -> void:
 		_on_Card_mouse_exited(hovered_card)
 		clear_castle()
 
-func update_castle(player, tiles):
-	for c_tile in player.get_castle_tiles():
+func update_land(player):
+	for c_tile in player.get_summon_tiles():
+		_focus_land(c_tile)
+
+func update_castle(player):
+	for c_tile in player.get_summon_tiles():
 		_focus_castle(c_tile)
 
 func clear_castle():
@@ -132,6 +140,15 @@ func _resize_hand():
 		card.save_position()
 
 		x += card.rect_size.x + CARD_DISTANCE
+
+func _focus_land(tile):
+	var highlighter = TileHighlighter.instance()
+	highlighter.rect_global_position = tile.rect_global_position
+
+	if tile.land:
+		return
+
+	castles.add_child(highlighter)
 
 func _focus_castle(tile):
 	var highlighter = TileHighlighter.instance()

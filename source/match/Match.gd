@@ -155,8 +155,12 @@ func next_player():
 	_set_current_player(players.get_child(index))
 	_set_current_unit(null)
 
-func can_place_card():
-	return hovered_tile and current_player and current_player.get_castle_tiles().has(hovered_tile) and not hovered_tile.unit
+func can_place_card(card):
+	if card is UnitCard:
+		return hovered_tile and current_player.get_summon_tiles().has(hovered_tile) and not hovered_tile.unit
+	elif card is LandCard:
+		return hovered_tile and current_player.get_summon_tiles().has(hovered_tile) and not hovered_tile.land
+	return false
 
 # Move to separate Board class
 func move_unit(unit, tile, time = ANIMATION_TIME):

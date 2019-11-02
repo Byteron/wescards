@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-cost = 7
+cost = 8
 id = "Cavalryman"
 alias = "Cavalryman"
 description = "Falls off their horses on a regular basis."
