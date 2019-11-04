@@ -5,19 +5,20 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-method = "heal"
+method = "modify"
 args = {
-"value": 2
+"stat": "Ranged",
+"value": 4
 }
 
 [resource]
 script = ExtResource( 1 )
-cost = 8
-id = "Shrine"
-alias = "Shrine"
-description = "Heals +2 Health in the beginning of your turn.
+cost = 10
+id = "Archery"
+alias = "Archery"
+description = "Ranged Damage +4
 
-Only works if you believe in God."
+There is nothing an arrow can't handle."
 tint = Color( 0.4, 0.4, 0.4, 1 )
-type = 1
+type = 0
 effect = SubResource( 1 )

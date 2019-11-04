@@ -5,19 +5,20 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-method = "heal"
+method = "modify"
 args = {
+"stat": "Melee",
 "value": 2
 }
 
 [resource]
 script = ExtResource( 1 )
-cost = 8
-id = "Shrine"
-alias = "Shrine"
-description = "Heals +2 Health in the beginning of your turn.
+cost = 6
+id = "Weaponry"
+alias = "Weaponry"
+description = "Melee Damage +2
 
-Only works if you believe in God."
+To the weapons!"
 tint = Color( 0.4, 0.4, 0.4, 1 )
-type = 1
+type = 0
 effect = SubResource( 1 )

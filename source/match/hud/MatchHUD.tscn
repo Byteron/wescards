@@ -55,8 +55,8 @@ patch_margin_bottom = 2
 [node name="Hand" type="Control" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -200.0
-margin_bottom = -200.0
+margin_top = -190.0
+margin_bottom = -190.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

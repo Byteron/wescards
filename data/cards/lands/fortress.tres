@@ -16,7 +16,9 @@ script = ExtResource( 1 )
 cost = 6
 id = "Fortress"
 alias = "Fortress"
-description = "Doesn't move."
+description = "Armor +1
+
+Doesn't move."
 tint = Color( 0.4, 0.4, 0.4, 1 )
 type = 0
 effect = SubResource( 1 )

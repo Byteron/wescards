@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 id = "undead"
 alias = "Undead"
 hero = "Draug"
-cards = [ "Skeleton", "Skeleton", "Skeleton", "Skeleton", "Ghost", "Ghost", "Ghost", "Ghost", "Skeleton Archer", "Skeleton Archer", "Skeleton Archer", "Skeleton Archer", "Ghoul", "Ghoul", "Ghoul", "Ghoul", "Walking Corpse", "Walking Corpse", "Walking Corpse", "Walking Corpse", "Shrine", "Shrine", "Road", "Road", "Fortress", "Fortress" ]
+cards = [ "Skeleton", "Skeleton", "Skeleton", "Skeleton", "Ghost", "Ghost", "Ghost", "Ghost", "Skeleton Archer", "Skeleton Archer", "Skeleton Archer", "Skeleton Archer", "Ghoul", "Ghoul", "Ghoul", "Ghoul", "Walking Corpse", "Walking Corpse", "Walking Corpse", "Walking Corpse", "Shrine", "Shrine", "Road", "Road", "Fortress", "Fortress", "Archery", "Archery", "Weaponry", "Weaponry" ]

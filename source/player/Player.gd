@@ -20,6 +20,7 @@ export(CONTROLLER) var controller = CONTROLLER.PLAYER
 
 export var deck_id := "Test Deck"
 
+export var hand_size := 4
 export var max_actions := 1
 export var start_position := Vector2(0, 0)
 export var starting_gold := 5
@@ -70,7 +71,7 @@ func load_deck():
 		deck.append(Global.cards[unit_id])
 
 func draw_hand():
-	for i in 3 - hand.size():
+	for i in hand_size - hand.size():
 		draw_card()
 
 func draw_card():

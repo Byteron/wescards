@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const CARD_DISTANCE = 10
+const CARD_DISTANCE = -62
 const ANIMATION_TIME = 0.25
 
 onready var tween = $Tween
@@ -136,7 +136,7 @@ func _set_active_card(card):
 func _resize_hand():
 	var x = 0
 	for card in hand.get_children():
-		card.rect_position.x = x + CARD_DISTANCE
+		card.rect_position.x = x
 		card.save_position()
 
 		x += card.rect_size.x + CARD_DISTANCE

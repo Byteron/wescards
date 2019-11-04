@@ -59,8 +59,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Cost" parent="MarginContainer/VBoxContainer/Title" instance=ExtResource( 1 )]
+margin_right = 32.0
+rect_min_size = Vector2( 32, 25 )
+color = Color( 0.615686, 0.52549, 0.101961, 1 )
+show_triangle = false
+
+[node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Title"]
+margin_left = 32.0
+margin_right = 34.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 2, 0 )
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
 [node name="Name" type="ColorRect" parent="MarginContainer/VBoxContainer/Title"]
-margin_right = 176.0
+margin_left = 34.0
+margin_right = 210.0
 margin_bottom = 30.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -92,21 +107,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Separator1" type="ColorRect" parent="MarginContainer/VBoxContainer/Title"]
-margin_left = 176.0
-margin_right = 178.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 2, 0 )
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-
-[node name="Cost" parent="MarginContainer/VBoxContainer/Title" instance=ExtResource( 1 )]
-margin_left = 178.0
-margin_right = 210.0
-rect_min_size = Vector2( 32, 25 )
-color = Color( 0.615686, 0.52549, 0.101961, 1 )
-show_triangle = false
 
 [node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 30.0
