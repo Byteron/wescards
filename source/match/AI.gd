@@ -88,18 +88,28 @@ func _evaluate_combat(unit, actions):
 func _evaluate_move(unit, actions):
 	var move_tiles := []
 	var village_tiles := []
+	var danger_tiles := []
 
 	for n_tile in unit.tile.neighbors:
-		if not n_tile.unit and n_tile.get_danger_level(unit.team):
+		if not n_tile.unit:
 			move_tiles.append(n_tile)
 
 	for m_tile in move_tiles:
-		if m_tile.is_village:
+		if m_tile.is_village and m_tile.team != unit.team:
 			village_tiles.append(m_tile)
+
+	for m_tile in move_tiles:
+		if m_tile.get_danger_level(unit.team):
+			danger_tiles.append(m_tile)
 
 	if village_tiles:
 		actions["move"].value = 9
 		actions["move"].tile = village_tiles[randi() % village_tiles.size()]
+		return
+
+	if danger_tiles:
+		actions["move"].value = 6
+		actions["move"].tile = danger_tiles[randi() % danger_tiles.size()]
 		return
 
 	if move_tiles:

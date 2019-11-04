@@ -8,6 +8,8 @@ var land = null
 
 var cell = null
 
+var team := -1
+
 export var is_village = false
 export var income = 0
 
@@ -20,9 +22,12 @@ func _ready() -> void:
 	if is_village:
 		flag_label.text = "+%d" % income
 		flag.show()
+
 func capture(team, team_color):
 	if not is_village:
 		return
+
+	self.team = team
 
 	flag.self_modulate = team_color
 	emit_signal("captured", team, cell)
