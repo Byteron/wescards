@@ -123,6 +123,9 @@ func place_land(land_data, tile, pos):
 	tile.land = land
 	land.tile = tile
 
+	if tile.unit and land.data.type == LandData.TYPE.PERSISTENT:
+		land.apply_effect()
+
 	land.rect_global_position = pos
 	land.rect_size = Vector2(280, 400)
 

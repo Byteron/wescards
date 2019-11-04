@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 id = "Orcs"
 alias = "Orcs"
 hero = "Orcish Sovereign"
-cards = [ "Orcish Grunt", "Orcish Grunt", "Orcish Grunt", "Orcish Grunt", "Orcish Archer", "Orcish Archer", "Orcish Archer", "Orcish Archer", "Orcish Assassin", "Orcish Assassin", "Orcish Assassin", "Orcish Assassin", "Goblin Impaler", "Goblin Impaler", "Goblin Impaler", "Goblin Impaler", "Goblin Pillager", "Goblin Pillager", "Goblin Pillager", "Goblin Pillager", "Shrine", "Shrine", "Shrine", "Shrine" ]
+cards = [ "Orcish Grunt", "Orcish Grunt", "Orcish Grunt", "Orcish Grunt", "Orcish Archer", "Orcish Archer", "Orcish Archer", "Orcish Archer", "Orcish Assassin", "Orcish Assassin", "Orcish Assassin", "Orcish Assassin", "Goblin Impaler", "Goblin Impaler", "Goblin Impaler", "Goblin Impaler", "Goblin Pillager", "Goblin Pillager", "Goblin Pillager", "Goblin Pillager", "Shrine", "Shrine", "Road", "Road", "Fortress", "Fortress" ]

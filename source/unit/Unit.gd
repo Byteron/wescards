@@ -61,6 +61,11 @@ func initialize(unit_data):
 	armor.maximum = unit_data.armor
 	health.maximum = unit_data.health
 
+	melee_banner.maximum = melee.maximum
+	ranged_banner.maximum = ranged.maximum
+	armor_banner.maximum = armor.maximum
+	health_banner.maximum = health.maximum
+
 	portrait.texture = unit_data.image
 	back.color = unit_data.tint
 
@@ -78,13 +83,9 @@ func update_display():
 	else:
 		greyscale.visible = true
 
-	melee_banner.maximum = melee.maximum
 	melee_banner.value = melee.value
-	ranged_banner.maximum = ranged.maximum
 	ranged_banner.value = ranged.value
-	armor_banner.maximum = armor.maximum
 	armor_banner.value = armor.value
-	health_banner.maximum = health.maximum
 	health_banner.value = health.value
 
 	border.self_modulate = team_color

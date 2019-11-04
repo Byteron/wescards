@@ -7,15 +7,15 @@
 script = ExtResource( 2 )
 method = "modify"
 args = {
-"stat": "Armor",
+"stat": "Actions",
 "value": 1
 }
 
 [resource]
 script = ExtResource( 1 )
-cost = 6
-id = "Fortress"
-alias = "Fortress"
+cost = 4
+id = "Road"
+alias = "Road"
 description = "Doesn't move."
 tint = Color( 0.4, 0.4, 0.4, 1 )
 type = 0
