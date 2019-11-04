@@ -212,6 +212,7 @@ custom_constants/separation = 0
 margin_right = 30.0
 size_flags_horizontal = 3
 color = Color( 0.0784314, 0.152941, 0.560784, 1 )
+colorize = true
 show_triangle = false
 
 [node name="Separator" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer"]
@@ -226,6 +227,7 @@ margin_left = 31.0
 margin_right = 61.0
 size_flags_horizontal = 3
 color = Color( 0.619608, 0.101961, 0.101961, 1 )
+colorize = true
 show_triangle = false
 
 [node name="Spacer" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer"]
