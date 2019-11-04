@@ -14,6 +14,6 @@ tint = Color( 0.505882, 0.0509804, 0.0509804, 1 )
 is_hero = false
 melee = 5
 ranged = 0
-defense = 0
+armor = 0
 health = 14
 actions = 1

@@ -8,8 +8,8 @@ static func instance():
 
 signal died(unit)
 
-var max_actions := 0
-var actions := 0 setget _set_actions
+# var max_actions := 0
+# var actions := 0 setget _set_actions
 
 var data = null
 var tile = null
@@ -22,6 +22,7 @@ var rest := 2
 var is_hero = false
 var is_dead = false
 
+
 onready var tween := $Tween
 
 onready var portrait := $MarginContainer/MarginContainer/VBoxContainer/Portrait/Image
@@ -29,50 +30,69 @@ onready var portrait_vignette := $MarginContainer/MarginContainer/VBoxContainer/
 onready var back := $MarginContainer/Background
 onready var border := $MarginContainer/Border
 
-onready var melee := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer/Melee
-onready var ranged := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer/Ranged
-onready var defense := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Defense
-onready var health := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Health
+onready var actions := $Stats/Actions as Stat setget _set_actions, _get_actions
+onready var ranged := $Stats/Ranged as Stat
+onready var melee := $Stats/Melee as Stat
+onready var armor := $Stats/Armor as Stat
+onready var health := $Stats/Health as Stat
+
+onready var melee_banner := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer/Melee
+onready var ranged_banner := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/HBoxContainer/Ranged
+onready var armor_banner := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Armor
+onready var health_banner := $MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Health
 
 onready var actions_container := $MarginContainer/MarginContainer/Actions/ActionsContainer
 
-onready var greyscale := $MarginContainer/Greyscale
+onready var greyscale := $MarginContainer/MarginContainer/VBoxContainer/Portrait/Greyscale
 
 func _ready() -> void:
 	propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
-	update_display()
+
+func initialize(unit_data):
+	is_hero = unit_data.is_hero
+
+	actions.maximum = unit_data.actions
+	melee.maximum = unit_data.health
+	ranged.maximum = unit_data.ranged
+	melee.maximum = unit_data.melee
+	armor.maximum = unit_data.armor
+	health.maximum = unit_data.health
+
+	portrait.texture = unit_data.image
+	back.color = unit_data.tint
+
+	if is_hero:
+		portrait.get_node("../Overlay").self_modulate = COLOR_GOLD
+		portrait_vignette.self_modulate = COLOR_GOLD
+	reset()
 
 func update_display():
 
-	if not data:
-		return
+	actions_container.value = actions.value
 
-	is_hero = data.is_hero
-	max_actions = data.actions
-	portrait.texture = data.image
-	back.color = data.tint
-	melee.base = data.melee
-	melee.value = data.melee
-	ranged.base = data.melee
-	ranged.value = data.ranged
-	defense.base = data.defense
-	defense.value = data.defense
-	health.base = data.health
-	health.value = data.health
+	if actions.value:
+		greyscale.visible = false
+	else:
+		greyscale.visible = true
+
+	melee_banner.maximum = melee.maximum
+	melee_banner.value = melee.value
+	ranged_banner.maximum = ranged.maximum
+	ranged_banner.value = ranged.value
+	armor_banner.maximum = armor.maximum
+	armor_banner.value = armor.value
+	health_banner.maximum = health.maximum
+	health_banner.value = health.value
+
 	border.self_modulate = team_color
-
-	if data.is_hero:
-		portrait.get_node("../Overlay").self_modulate = COLOR_GOLD
-		portrait_vignette.self_modulate = COLOR_GOLD
-
-func initialize(card_data):
-	data = card_data
 
 func harm(damage):
 	if not damage:
 		return
 
-	health.value = max(health.value - damage, 0)
+	health.value -= damage
+
+	update_display()
 
 	var popup = PopupLabel.instance()
 	popup.value = damage
@@ -80,12 +100,16 @@ func harm(damage):
 	popup.rect_global_position = rect_global_position + rect_pivot_offset
 	get_tree().current_scene.add_child(popup)
 
+
 	if health.value == 0:
 		is_dead = true
 
+
 func heal(value):
-	var diff = clamp(health.value + value, 0, data.health) - health.value
-	health.value = clamp(health.value + value, 0, data.health)
+	var diff = clamp(health.value + value, 0, health.maximum) - health.value
+	health.value = clamp(health.value + value, 0, health.maximum)
+
+	update_display()
 
 	if not diff:
 		return
@@ -109,7 +133,7 @@ func select():
 
 func deselect():
 	tween.stop_all()
-	if data.is_hero:
+	if is_hero:
 		tween.interpolate_property(portrait_vignette, "self_modulate", portrait_vignette.self_modulate, COLOR_GOLD, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	else:
 		tween.interpolate_property(portrait_vignette, "self_modulate", portrait_vignette.self_modulate, Color("FF000000"), 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -117,20 +141,26 @@ func deselect():
 	tween.start()
 
 func rest():
-	if actions and is_damaged():
+	if actions.value and is_damaged():
 		heal(rest)
 
+func reset():
+	for stat in [actions, ranged, melee, armor, health]:
+		stat.reset()
+
 func restore():
-	_set_actions(max_actions)
+	actions.restore()
+	update_display()
 
 func cleanup():
-	greyscale.visible = false
+	pass
 
 func is_damaged():
-	return health.value < health.base
+	return health_banner.value < health.maximum
 
 func _set_actions(value):
-	actions = max(0, value)
-	actions_container.value = actions
-	if not actions:
-		greyscale.visible = true
+	actions.value = value
+	update_display()
+
+func _get_actions():
+	return actions.value

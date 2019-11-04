@@ -21,3 +21,6 @@ func _on_Play_pressed() -> void:
 	Global.deck2 = deck2
 
 	get_tree().change_scene("res://source/match/Match.tscn")
+
+func _on_Quit_pressed() -> void:
+	get_tree().quit()

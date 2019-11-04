@@ -89,3 +89,4 @@ rect_min_size = Vector2( 250, 100 )
 custom_fonts/font = ExtResource( 3 )
 text = "Quit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

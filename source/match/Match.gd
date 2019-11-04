@@ -52,21 +52,21 @@ func _ready() -> void:
 
 # TODO: Move to separate Combat Class
 func combat(attacker, defender):
-	attacker.actions -= 1
+	attacker.actions -= attacker.actions
 	var ranged_attack = attacker.ranged.value > 0
 
 	if ranged_attack:
-		var defender_damage = defender.ranged.value - attacker.defense.value
+		var defender_damage = defender.ranged.value - attacker.armor.value
 		yield(get_tree().create_timer(ANIMATION_TIME), "timeout")
-		defender.harm(attacker.ranged.value - defender.defense.value)
+		defender.harm(attacker.ranged.value - defender.armor.value)
 	else:
 		var defender_damage = defender.melee.value
 		play_attack_tween(attacker, defender)
 		yield(tween, "tween_all_completed")
-		defender.harm(attacker.melee.value - defender.defense.value)
+		defender.harm(attacker.melee.value - defender.armor.value)
 		# play_attack_tween(defender, attacker)
 		# yield(tween, "tween_all_completed")
-		attacker.harm(defender_damage - attacker.defense.value)
+		attacker.harm(defender_damage - attacker.armor.value)
 
 	if attacker.is_dead:
 		attacker.kill()
@@ -89,12 +89,14 @@ func draw_card():
 
 func place_hero(player):
 	var hero = Unit.instance()
-	hero.data = player.hero_data
-	hero.team_color = player.team_color
-	hero.team = player.get_index()
 
 	player.add_hero(hero)
 	units.add_child(hero)
+
+	hero.initialize(player.hero_data)
+	hero.team_color = player.team_color
+	hero.team = player.get_index()
+	hero.update_display()
 
 	var tile = board.tiles[player.start_position]
 
@@ -138,17 +140,19 @@ func place_unit(card_data, tile, pos):
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
 	var unit = Unit.instance()
-	unit.data = card_data
-	unit.team_color = current_player.team_color
-	unit.team = current_player.get_index()
 
 	current_player.add_unit(unit)
 	units.add_child(unit)
 
+	unit.initialize(card_data)
+	unit.team_color = current_player.team_color
+	unit.team = current_player.get_index()
+	unit.update_display()
+
 	unit.rect_global_position = pos
 	unit.rect_size = Vector2(280, 400)
 
-	move_unit(unit, tile, ANIMATION_TIME)
+	move_unit(unit, tile, ANIMATION_TIME, true)
 
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
@@ -163,8 +167,12 @@ func can_place_card(card):
 	return false
 
 # Move to separate Board class
-func move_unit(unit, tile, time = ANIMATION_TIME):
-	unit.actions -= 1
+func move_unit(unit, tile, time = ANIMATION_TIME, use_all_actions := false):
+
+	if use_all_actions:
+		unit.actions -= unit.actions
+	else:
+		unit.actions -= 1
 
 	if not time:
 		unit.rect_global_position = tile.rect_global_position

@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/PopupLabel.gd"
 }, {
+"base": "Node",
+"class": "Stat",
+"language": "GDScript",
+"path": "res://source/unit/Stat.gd"
+}, {
 "base": "ColorRect",
 "class": "Tile",
 "language": "GDScript",
@@ -107,6 +112,7 @@ _global_script_class_icons={
 "Orb": "",
 "Player": "",
 "PopupLabel": "",
+"Stat": "",
 "Tile": "",
 "TileHighlighter": "",
 "Unit": "",

@@ -88,8 +88,8 @@ func _shall_attack(unit1, unit2):
 		return true
 
 	var shall_attack = true
-	shall_attack = shall_attack and unit2.melee.value - unit1.defense.value < unit1.health.value
-	shall_attack = shall_attack and unit2.melee.value - unit1.defense.value <= unit1.melee.value - unit2.defense.value
+	shall_attack = shall_attack and unit2.melee.value - unit1.armor.value < unit1.health.value
+	shall_attack = shall_attack and unit2.melee.value - unit1.armor.value <= unit1.melee.value - unit2.armor.value
 	return shall_attack
 
 func _get_move_tile(unit, game):

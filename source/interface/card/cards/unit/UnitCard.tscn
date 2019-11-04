@@ -4,7 +4,7 @@
 [ext_resource path="res://source/interface/card/cards/unit/UnitCard.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/card/Card.tscn" type="PackedScene" id=3]
 
-[node name="UnitCard" instance=ExtResource( 3 )]
+[node name="UnitCard" index="0" instance=ExtResource( 3 )]
 script = ExtResource( 2 )
 
 [node name="Stats" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="1"]
@@ -46,7 +46,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
-[node name="Defense" parent="MarginContainer/VBoxContainer/Stats" index="4" instance=ExtResource( 1 )]
+[node name="Armor" parent="MarginContainer/VBoxContainer/Stats" index="4" instance=ExtResource( 1 )]
 margin_left = 144.0
 margin_right = 176.0
 rect_min_size = Vector2( 32, 30 )

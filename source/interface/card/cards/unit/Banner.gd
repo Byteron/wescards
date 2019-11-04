@@ -3,7 +3,7 @@ extends ColorRect
 const buff_color = Color("00FF00")
 const debuff_color = Color("FF0000")
 
-var base := 0
+var maximum := 0
 
 var value := 0 setget _set_value
 var label_color = Color("FFFFFF") setget _set_label_color
@@ -32,9 +32,9 @@ func _set_value(new_value):
 	if not colorize:
 		return
 
-	if value > base:
+	if value > maximum:
 		label.modulate = buff_color
-	elif value < base:
+	elif value < maximum:
 		label.modulate = debuff_color
 	else:
 		label.modulate = Color("FFFFFF")
