@@ -48,6 +48,9 @@ onready var greyscale := $MarginContainer/MarginContainer/VBoxContainer/Portrait
 func _ready() -> void:
 	propagate_call("set_mouse_filter", [ Control.MOUSE_FILTER_IGNORE ])
 
+	for stat in $Stats.get_children():
+		stat.connect("stat_changed", self, "_on_Stat_stat_changed")
+
 func initialize(unit_data):
 	is_hero = unit_data.is_hero
 
@@ -92,14 +95,11 @@ func harm(damage):
 
 	health.value -= damage
 
-	update_display()
-
 	var popup = PopupLabel.instance()
 	popup.value = damage
 	popup.color = Color("FF0000")
 	popup.rect_global_position = rect_global_position + rect_pivot_offset
 	get_tree().current_scene.add_child(popup)
-
 
 	if health.value == 0:
 		is_dead = true
@@ -108,8 +108,6 @@ func harm(damage):
 func heal(value):
 	var diff = clamp(health.value + value, 0, health.maximum) - health.value
 	health.value = clamp(health.value + value, 0, health.maximum)
-
-	update_display()
 
 	if not diff:
 		return
@@ -150,7 +148,6 @@ func reset():
 
 func restore():
 	actions.restore()
-	update_display()
 
 func cleanup():
 	pass
@@ -160,7 +157,9 @@ func is_damaged():
 
 func _set_actions(value):
 	actions.value = value
-	update_display()
 
 func _get_actions():
 	return actions.value
+
+func _on_Stat_stat_changed():
+	update_display()

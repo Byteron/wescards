@@ -8,33 +8,21 @@ func harm(unit, args):
 	unit.harm(args.value)
 	print(unit, " harmed by ", args.value)
 
-func modify(object, args):
+func modify(object, args, remove := false):
 
-	var node = null
+	if not args.has("stat"):
+		print("no stat defined")
+		return
 
-	if args.has("path"):
-		node = object.get_node(args.path)
+	if not args.has("value"):
+		print("no value defined")
+		return
+
+	var stat = object.get_node("Stats/" + args.stat)
+
+	if not remove:
+		stat.add_bonus(args.value)
+		print(stat, " add ", args.value)
 	else:
-		node = object
-
-	if not node:
-		print(args.path, " does not exist")
-		return
-
-	if not node.get(args.property):
-		print(node, " does not have ", args.property)
-		return
-
-	match args.operation:
-		"+":
-			node.set(args.property, node.get(args.property) + args.value)
-		"-":
-			node.set(args.property, node.get(args.property) - args.value)
-		"*":
-			node.set(args.property, node.get(args.property) * args.value)
-		"=":
-			node.set(args.property, args.value)
-		_:
-			return
-
-	print(node, ":", args.property, " modified by ", args.operation, args.value)
+		stat.remove_bonus(args.value)
+		print(stat, " remove ", args.value)

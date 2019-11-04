@@ -34,6 +34,11 @@ func apply_effect():
 		print("apply effect")
 		Effects.call(data.effect.method, tile.unit, data.effect.args)
 
+func remove_effect():
+	if tile.unit and data.effect:
+		print("remove_effect")
+		Effects.call(data.effect.method, tile.unit, data.effect.args, true)
+
 func update_display():
 	name_label.text = data.alias
 	back.color = data.tint

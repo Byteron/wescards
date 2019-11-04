@@ -7,17 +7,16 @@
 script = ExtResource( 2 )
 method = "modify"
 args = {
-"operation": "+",
-"path": "MarginContainer/MarginContainer/VBoxContainer/Portrait/HBoxContainer/Defense",
-"property": "value",
+"stat": "Armor",
 "value": 1
 }
 
 [resource]
 script = ExtResource( 1 )
-cost = 6
+cost = 1
 id = "Fortress"
 alias = "Fortress"
 description = "Doesn't move."
 tint = Color( 0.4, 0.4, 0.4, 1 )
+type = 0
 effect = SubResource( 1 )

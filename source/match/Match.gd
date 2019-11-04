@@ -185,7 +185,10 @@ func move_unit(unit, tile, time = ANIMATION_TIME, use_all_actions := false):
 		tween.start()
 
 	if unit.tile:
+		if unit.tile.land and unit.tile.land.data.type == LandData.TYPE.PERSISTENT:
+			unit.tile.land.remove_effect()
 		unit.tile.unit = null
+
 	tile.unit = unit
 	unit.tile = tile
 
@@ -195,6 +198,8 @@ func move_unit(unit, tile, time = ANIMATION_TIME, use_all_actions := false):
 	if tile.land and tile.land.team != current_player.get_index():
 		tile.land.destroy()
 		tile.land = null
+	elif tile.land and tile.land.data.type == LandData.TYPE.PERSISTENT:
+			tile.land.apply_effect()
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
