@@ -49,7 +49,7 @@ func _input(event: InputEvent) -> void:
 		clear_castle()
 
 func update_land(player):
-	for c_tile in player.get_summon_tiles():
+	for c_tile in player.get_nonland_tiles():
 		_focus_land(c_tile)
 
 func update_castle(player):

@@ -94,6 +94,8 @@ func get_nonland_tiles():
 	var tiles = []
 	for tile in hero.tile.neighbors:
 		if not tile.land:
+			if tile.unit and tile.unit.team != team:
+				continue
 			tiles.append(tile)
 	return tiles
 
