@@ -15,7 +15,7 @@ func add_bonus(amount):
 
 func remove_bonus(amount):
 	bonus -= amount
-	value = clamp(value, 0, _get_maximum())
+	value = clamp(value - amount, 0, _get_maximum())
 	emit_signal("stat_changed")
 
 func reset_bonus():
@@ -44,4 +44,4 @@ func _get_maximum():
 	return maximum + bonus
 
 func _get_value():
-	return value
+	return clamp(value, 0, _get_maximum())

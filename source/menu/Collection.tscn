@@ -18,10 +18,10 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer"]
-margin_left = 59.0
-margin_top = 139.0
-margin_right = 1859.0
-margin_bottom = 939.0
+margin_left = 60.0
+margin_top = 140.0
+margin_right = 1860.0
+margin_bottom = 940.0
 rect_min_size = Vector2( 1800, 800 )
 scroll_vertical_enabled = false
 

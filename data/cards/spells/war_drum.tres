@@ -9,16 +9,16 @@ type = 2
 curable = false
 method = "modify"
 args = {
-"stat": "Melee",
-"value": 4
+"stat": "Actions",
+"value": 1
 }
 
 [resource]
 script = ExtResource( 1 )
-cost = 5
-id = "Arcane Blade"
-alias = "Arcane Blade"
-description = "Melee + 4"
+cost = 4
+id = "War Drum"
+alias = "War Drum"
+description = "Actions +1"
 tint = Color( 0.4, 0.4, 0.4, 1 )
 duration = 0
 effect = SubResource( 1 )

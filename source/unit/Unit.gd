@@ -94,7 +94,7 @@ func update_display():
 
 func add_effect(effect):
 	if effect.type == EffectData.TYPE.INSTANT:
-		apply_effect(effect)
+		var diff = apply_effect(effect)
 		instant_effects.append(effect)
 
 func apply_effect(effect):

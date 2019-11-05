@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 id = "Humans"
 alias = "Humans"
 hero = "General"
-cards = [ "Spearman", "Spearman", "Spearman", "Spearman", "Bowman", "Bowman", "Bowman", "Bowman", "Mage", "Mage", "Mage", "Mage", "Cavalryman", "Cavalryman", "Cavalryman", "Cavalryman", "Footpad", "Footpad", "Footpad", "Footpad", "Shrine", "Shrine", "Road", "Road", "Fortress", "Fortress", "Archery", "Archery", "Weaponry", "Weaponry", "Healing Hand", "Healing Hand", "Healing Hand", "Healing Hand" ]
+cards = [ "Spearman", "Spearman", "Spearman", "Spearman", "Bowman", "Bowman", "Bowman", "Bowman", "Mage", "Mage", "Mage", "Mage", "Cavalryman", "Cavalryman", "Cavalryman", "Cavalryman", "Footpad", "Footpad", "Footpad", "Footpad", "Shrine", "Shrine", "Road", "Road", "Fortress", "Fortress", "Archery", "Archery", "Weaponry", "Weaponry", "Healing Hand", "Healing Hand", "Healing Hand", "Healing Hand", "Armor Breaker", "Armor Breaker", "Armor Breaker", "Armor Breaker" ]
