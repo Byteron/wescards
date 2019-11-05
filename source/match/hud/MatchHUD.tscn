@@ -29,9 +29,9 @@ __meta__ = {
 [node name="ActivePosition" type="Control" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 240.0
+margin_left = 250.0
 margin_top = -240.0
-margin_right = 460.0
+margin_right = 490.0
 margin_bottom = 140.0
 __meta__ = {
 "_edit_use_anchors_": false

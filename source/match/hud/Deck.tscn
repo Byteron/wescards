@@ -9,7 +9,7 @@
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -240.0
-margin_right = 220.0
+margin_right = 240.0
 margin_bottom = 140.0
 script = ExtResource( 4 )
 

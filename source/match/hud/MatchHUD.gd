@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const CARD_DISTANCE = -62
+const CARD_DISTANCE = -90
 const ANIMATION_TIME = 0.25
 
 onready var tween = $Tween
@@ -125,7 +125,7 @@ func play_card(card, tile):
 	elif card is LandCard:
 		get_tree().call_group("Match", "place_land", card.data, tile, pos)
 	elif card is SpellCard:
-		get_tree().call_group("Match", "play_spell", card.data, tile, pos)
+		get_tree().call_group("Match", "play_spell", card.data, tile)
 
 
 	_set_active_card(null)

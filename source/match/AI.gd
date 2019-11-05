@@ -141,18 +141,22 @@ func _take_action(game, unit, actions: Dictionary):
 	call_deferred("emit_signal", "action_taken")
 
 func _play_cards(game, player):
-	for card in player.hand:
-		if card.cost <= player.gold:
+	for card_data in player.hand:
+		if card_data.cost <= player.gold:
 			var tile = null
-			if card is UnitData:
+			if card_data is UnitData:
 				tile = _get_free_castle_tile(player)
-			elif card is LandData:
+			elif card_data is LandData:
 				tile = _get_free_nonland_tile(player)
+#			elif card_data is SpellData:
+#				tile = _get_best_spell_tile(player, card_data)
 			if tile:
-				if card is UnitData:
-					game.place_unit(card, tile, tile.rect_global_position)
-				elif card is LandData:
-					game.place_land(card, tile, tile.rect_global_position)
+				if card_data is UnitData:
+					game.place_unit(card_data, tile, tile.rect_global_position)
+				elif card_data is LandData:
+					game.place_land(card_data, tile, tile.rect_global_position)
+#				elif card_data is SpellData:
+#					game.play_spell(card_data, tile)
 
 				yield(get_tree().create_timer(game.ANIMATION_TIME), "timeout")
 	call_deferred("emit_signal", "cards_played")

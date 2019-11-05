@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/DeckData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "Elves"
+alias = "Elves"
+hero = "Elvish Captain"
+cards = [ "Elvish Fighter", "Elvish Fighter", "Elvish Fighter", "Elvish Fighter", "Elvish Archer", "Elvish Archer", "Elvish Archer", "Elvish Archer", "Elvish Druid", "Elvish Druid", "Elvish Druid", "Elvish Druid", "Elvish Shyde", "Elvish Shyde", "Elvish Shyde", "Elvish Shyde", "Elvish Scout", "Elvish Scout", "Elvish Scout", "Elvish Scout", "Shrine", "Shrine", "Shrine", "Archery", "Archery", "Archery", "Healing Hand", "Healing Hand", "Healing Hand", "Healing Hand" ]

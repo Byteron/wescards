@@ -157,7 +157,7 @@ func place_unit(card_data, tile, pos):
 
 	move_unit(unit, tile, ANIMATION_TIME, true)
 
-func play_spell(card_data, tile, pos):
+func play_spell(card_data, tile):
 	current_player.hand.erase(card_data)
 	current_player.gold -= card_data.cost
 
@@ -167,6 +167,10 @@ func play_spell(card_data, tile, pos):
 		hovered_tile.unit.add_effect(card_data.effect)
 	else:
 		hovered_tile.unit.apply_effect(card_data.effect)
+
+	if hovered_tile.unit.is_dead:
+		hovered_tile.unit.kill()
+		hovered_tile.unit = null
 
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
