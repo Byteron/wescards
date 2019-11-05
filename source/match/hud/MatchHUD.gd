@@ -19,6 +19,9 @@ var active_card = null setget _set_active_card
 var hovered_card = null
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		get_tree().reload_current_scene()
+
 	if event.is_action_pressed("LMB") and not active_card and hovered_card:
 
 		if player.gold < hovered_card.cost.value:
@@ -33,6 +36,8 @@ func _input(event: InputEvent) -> void:
 			update_land(player)
 		elif active_card is UnitCard:
 			update_castle(player)
+		elif active_card is SpellCard:
+			update_spell(the_game.board.tiles.values())
 
 	elif event.is_action_pressed("LMB") and active_card:
 		var game = get_tree().get_nodes_in_group("Match")[0]
@@ -47,6 +52,11 @@ func _input(event: InputEvent) -> void:
 		_set_active_card(null)
 		_on_Card_mouse_exited(hovered_card)
 		clear_castle()
+
+func update_spell(tiles):
+	for tile in tiles:
+		if tile.unit:
+			_focus_spell(tile)
 
 func update_land(player):
 	for c_tile in player.get_nonland_tiles():
@@ -114,6 +124,9 @@ func play_card(card, tile):
 		get_tree().call_group("Match", "place_unit", card.data, tile, pos)
 	elif card is LandCard:
 		get_tree().call_group("Match", "place_land", card.data, tile, pos)
+	elif card is SpellCard:
+		get_tree().call_group("Match", "play_spell", card.data, tile, pos)
+
 
 	_set_active_card(null)
 	hovered_card = null
@@ -124,6 +137,8 @@ func _get_card_instance(card_data):
 		return UnitCard.instance()
 	elif card_data is LandData:
 		return LandCard.instance()
+	elif card_data is SpellData:
+		return SpellCard.instance()
 	return Card.instance()
 
 func _set_active_card(card):
@@ -147,6 +162,12 @@ func _focus_land(tile):
 
 	if tile.land:
 		return
+
+	castles.add_child(highlighter)
+
+func _focus_spell(tile):
+	var highlighter = TileHighlighter.instance()
+	highlighter.rect_global_position = tile.rect_global_position
 
 	castles.add_child(highlighter)
 

@@ -104,7 +104,7 @@ func upkeep():
 	draw_hand()
 
 	for land in lands:
-		if land.data.type == LandData.TYPE.TURN_REFRESH:
+		if land.data.effect.type == EffectData.TYPE.TURN_REFRESH:
 			land.apply_effect()
 
 	for unit in units:

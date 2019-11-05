@@ -22,6 +22,8 @@ var rest := 2
 var is_hero = false
 var is_dead = false
 
+var instant_effects := []
+var effects := []
 
 onready var tween := $Tween
 
@@ -90,6 +92,17 @@ func update_display():
 
 	border.self_modulate = team_color
 
+func add_effect(effect):
+	if effect.type == EffectData.TYPE.INSTANT:
+		apply_effect(effect)
+		instant_effects.append(effect)
+
+func apply_effect(effect):
+	Effects.call(effect.method, self, effect.args)
+
+func remove_effect(effect):
+	Effects.call(effect.method, self, effect.args, true)
+
 func harm(damage):
 	if not damage:
 		return
@@ -151,7 +164,9 @@ func restore():
 	actions.restore()
 
 func cleanup():
-	pass
+	for effect in instant_effects:
+		remove_effect(effect)
+	instant_effects = []
 
 func is_damaged():
 	return health_banner.value < health.maximum

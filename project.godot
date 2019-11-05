@@ -69,6 +69,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/PopupLabel.gd"
 }, {
+"base": "Card",
+"class": "SpellCard",
+"language": "GDScript",
+"path": "res://source/interface/card/cards/spell/SpellCard.gd"
+}, {
+"base": "CardData",
+"class": "SpellData",
+"language": "GDScript",
+"path": "res://source/SpellData.gd"
+}, {
 "base": "Node",
 "class": "Stat",
 "language": "GDScript",
@@ -112,6 +122,8 @@ _global_script_class_icons={
 "Orb": "",
 "Player": "",
 "PopupLabel": "",
+"SpellCard": "",
+"SpellData": "",
 "Stat": "",
 "Tile": "",
 "TileHighlighter": "",

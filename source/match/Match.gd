@@ -123,7 +123,7 @@ func place_land(land_data, tile, pos):
 	tile.land = land
 	land.tile = tile
 
-	if tile.unit and land.data.type == LandData.TYPE.PERSISTENT:
+	if tile.unit and land.data.effect.type == EffectData.TYPE.PERSISTENT:
 		land.apply_effect()
 
 	land.rect_global_position = pos
@@ -157,6 +157,17 @@ func place_unit(card_data, tile, pos):
 
 	move_unit(unit, tile, ANIMATION_TIME, true)
 
+func play_spell(card_data, tile, pos):
+	current_player.hand.erase(card_data)
+	current_player.gold -= card_data.cost
+
+	get_tree().call_group("MatchHUD", "update_player", current_player)
+
+	if card_data.effect.method == "modify":
+		hovered_tile.unit.add_effect(card_data.effect)
+	else:
+		hovered_tile.unit.apply_effect(card_data.effect)
+
 func next_player():
 	var index = (current_player.get_index() + 1) % players.get_child_count()
 	_set_current_player(players.get_child(index))
@@ -167,6 +178,8 @@ func can_place_card(card):
 		return hovered_tile and current_player.get_summon_tiles().has(hovered_tile) and not hovered_tile.unit
 	elif card is LandCard:
 		return hovered_tile and current_player.get_summon_tiles().has(hovered_tile) and not hovered_tile.land
+	elif card is SpellCard:
+		return hovered_tile and hovered_tile.unit
 	return false
 
 # Move to separate Board class
@@ -188,7 +201,7 @@ func move_unit(unit, tile, time = ANIMATION_TIME, use_all_actions := false):
 		tween.start()
 
 	if unit.tile:
-		if unit.tile.land and unit.tile.land.data.type == LandData.TYPE.PERSISTENT:
+		if unit.tile.land and unit.tile.land.data.effect.type == EffectData.TYPE.PERSISTENT:
 			unit.tile.land.remove_effect()
 		unit.tile.unit = null
 
@@ -201,7 +214,7 @@ func move_unit(unit, tile, time = ANIMATION_TIME, use_all_actions := false):
 	if tile.land and tile.land.team != current_player.get_index():
 		tile.land.destroy()
 		tile.land = null
-	elif tile.land and tile.land.data.type == LandData.TYPE.PERSISTENT:
+	elif tile.land and tile.land.data.effect.type == EffectData.TYPE.PERSISTENT:
 			tile.land.apply_effect()
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)

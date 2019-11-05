@@ -31,13 +31,11 @@ func destroy():
 
 func apply_effect():
 	if tile.unit and data.effect:
-		print("apply effect")
-		Effects.call(data.effect.method, tile.unit, data.effect.args)
+		tile.unit.apply_effect(data.effect)
 
 func remove_effect():
 	if tile.unit and data.effect:
-		print("remove_effect")
-		Effects.call(data.effect.method, tile.unit, data.effect.args, true)
+		tile.unit.remove_effect(data.effect)
 
 func update_display():
 	name_label.text = data.alias

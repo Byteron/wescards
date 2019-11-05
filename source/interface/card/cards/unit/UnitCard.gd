@@ -14,6 +14,7 @@ static func instance():
 
 func update_display():
 	.update_display()
+	type.text = "Unit"
 
 	melee.value = data.melee
 	ranged.value = data.ranged

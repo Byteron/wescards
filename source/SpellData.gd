@@ -1,4 +1,5 @@
 extends CardData
-class_name LandData
+class_name SpellData
 
+export var duration := 0
 export var effect : Resource = null

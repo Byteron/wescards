@@ -5,6 +5,8 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
+type = 0
+curable = false
 method = "modify"
 args = {
 "stat": "Ranged",
@@ -20,5 +22,4 @@ description = "Ranged Damage +4
 
 There is nothing an arrow can't handle."
 tint = Color( 0.4, 0.4, 0.4, 1 )
-type = 0
 effect = SubResource( 1 )

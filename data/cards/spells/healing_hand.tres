@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://source/LandData.gd" type="Script" id=1]
+[ext_resource path="res://source/SpellData.gd" type="Script" id=1]
 [ext_resource path="res://source/EffectData.gd" type="Script" id=2]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-type = 1
+type = 2
 curable = false
 method = "heal"
 args = {
@@ -14,11 +14,10 @@ args = {
 
 [resource]
 script = ExtResource( 1 )
-cost = 8
-id = "Shrine"
-alias = "Shrine"
-description = "Heals +2 Health in the beginning of your turn.
-
-Only works if you believe in God."
+cost = 3
+id = "Healing Hand"
+alias = "Healing Hand"
+description = "Heals +2"
 tint = Color( 0.4, 0.4, 0.4, 1 )
+duration = 0
 effect = SubResource( 1 )
