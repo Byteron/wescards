@@ -3,6 +3,15 @@ extends CanvasLayer
 const CARD_DISTANCE = -90
 const ANIMATION_TIME = 0.25
 
+var player = null
+var prev_index = 0
+
+var active_card = null setget _set_active_card
+var hovered_card = null
+
+var info_unit = null
+var info_land = null
+
 onready var tween = $Tween
 onready var hand = $Hand
 onready var deck = $Deck
@@ -10,13 +19,11 @@ onready var gold_label := $Gold/Label
 
 onready var reachable := $Reachable
 onready var castles := $Castles
+
 onready var active_position = $ActivePosition.rect_global_position
 
-var player = null
-var prev_index = 0
-
-var active_card = null setget _set_active_card
-var hovered_card = null
+onready var unit_info_position = $InfoBox/CenterContainer/VBoxContainer/UnitInfo.rect_global_position
+onready var land_info_position = $InfoBox/CenterContainer/VBoxContainer/LandInfo.rect_global_position
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -79,6 +86,36 @@ func clear_reachable():
 	for child in reachable.get_children():
 		reachable.remove_child(child)
 		child.queue_free()
+
+func update_tile_info(tile):
+	clear_tile_info()
+
+	if tile.unit:
+		info_unit = UnitCard.instance()
+		add_child(info_unit)
+		info_unit.initialize(tile.unit.data)
+		info_unit.team_color = tile.unit.team_color
+		info_unit.rect_global_position = unit_info_position
+		info_unit.update_display()
+
+	if tile.land:
+		info_land = LandCard.instance()
+		add_child(info_land)
+		info_land.initialize(tile.land.data)
+		info_land.team_color = tile.land.team_color
+		info_land.rect_global_position = land_info_position
+		info_land.update_display()
+
+func clear_tile_info():
+	if info_unit:
+		remove_child(info_unit)
+		info_unit.queue_free()
+		info_unit = null
+
+	if info_land:
+		remove_child(info_land)
+		info_land.queue_free()
+		info_land = null
 
 func update_player(new_player):
 

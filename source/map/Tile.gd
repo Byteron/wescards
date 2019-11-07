@@ -1,6 +1,8 @@
 extends ColorRect
 class_name Tile
 
+const INFO_DELAY = 1
+
 signal captured(cell)
 
 var unit = null
@@ -14,6 +16,8 @@ export var is_village = false
 export var income = 0
 
 export(Array, Vector2) var neighbors = []
+
+onready var hover_timer := $HoverTimer
 
 onready var flag := $Flag
 onready var flag_label := $Flag/Label
@@ -44,3 +48,13 @@ func is_save_for_team(team):
 		if n_tile.unit and n_tile.unit.team != team:
 			return false
 	return true
+
+func _on_Tile_mouse_entered() -> void:
+	hover_timer.start(INFO_DELAY)
+
+func _on_Tile_mouse_exited() -> void:
+	hover_timer.stop()
+	get_tree().call_group("MatchHUD", "clear_tile_info")
+
+func _on_HoverTimer_timeout() -> void:
+	get_tree().call_group("MatchHUD", "update_tile_info", self)

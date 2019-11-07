@@ -89,7 +89,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -408.0
+margin_left = -400.0
 margin_top = -130.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 3 )
@@ -98,4 +98,39 @@ text = "End Turn"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InfoBox" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_bottom = -130.0
+rect_min_size = Vector2( 400, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="InfoBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoBox/CenterContainer"]
+margin_left = 75.0
+margin_top = 93.0
+margin_right = 325.0
+margin_bottom = 857.0
+
+[node name="UnitInfo" type="Control" parent="InfoBox/CenterContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 250, 380 )
+
+[node name="LandInfo" type="Control" parent="InfoBox/CenterContainer/VBoxContainer"]
+margin_top = 384.0
+margin_right = 250.0
+margin_bottom = 764.0
+rect_min_size = Vector2( 250, 380 )
 [connection signal="pressed" from="EndTurn" to="." method="_on_EndTurn_pressed"]

@@ -54,6 +54,8 @@ func _ready() -> void:
 		stat.connect("stat_changed", self, "_on_Stat_stat_changed")
 
 func initialize(unit_data):
+	data = unit_data
+
 	is_hero = unit_data.is_hero
 
 	actions.maximum = unit_data.actions
