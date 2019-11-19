@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/match/hud/MatchHUD.gd" type="Script" id=1]
 [ext_resource path="res://source/match/hud/Deck.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/circle-white.png" type="Texture" id=5]
 [ext_resource path="res://graphics/fonts/lato/lato-48.tres" type="DynamicFont" id=6]
+[ext_resource path="res://graphics/images/interface/vignette-text-white.png" type="Texture" id=7]
 
 [node name="MatchHUD" type="CanvasLayer" groups=[
 "MatchHUD",
@@ -84,6 +85,22 @@ __meta__ = {
 
 [node name="Deck" parent="." instance=ExtResource( 2 )]
 
+[node name="DiscardButton" type="Button" parent="Deck"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Deck/DiscardButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+
 [node name="EndTurn" type="Button" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -133,4 +150,5 @@ margin_top = 384.0
 margin_right = 250.0
 margin_bottom = 764.0
 rect_min_size = Vector2( 250, 380 )
+[connection signal="pressed" from="Deck/DiscardButton" to="." method="_on_DiscardButton_pressed"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_EndTurn_pressed"]

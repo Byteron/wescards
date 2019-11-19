@@ -87,6 +87,12 @@ func draw_card():
 
 	get_tree().call_group("MatchHUD", "update_player", current_player)
 
+func discard_card(card) -> void:
+	current_player.hand.erase(card)
+	current_player.gold += 1
+
+	get_tree().call_group("MatchHUD", "update_player", current_player)
+
 func place_hero(player):
 	var hero = Unit.instance()
 

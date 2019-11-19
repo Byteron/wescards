@@ -25,19 +25,22 @@ onready var active_position = $ActivePosition.rect_global_position
 onready var unit_info_position = $InfoBox/CenterContainer/VBoxContainer/UnitInfo.rect_global_position
 onready var land_info_position = $InfoBox/CenterContainer/VBoxContainer/LandInfo.rect_global_position
 
+onready var discard_button := $Deck/DiscardButton as Button
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		get_tree().reload_current_scene()
 
 	if event.is_action_pressed("LMB") and not active_card and hovered_card:
 
-		if player.gold < hovered_card.cost.value:
-			return
-
 		_set_active_card(hovered_card)
 		active_card.locked = true
 
 		_move_card(active_card, active_position, ANIMATION_TIME)
+
+		if player.gold < hovered_card.cost.value:
+			return
+
 		var the_game = get_tree().get_nodes_in_group("Match")[0]
 		if active_card is LandCard:
 			update_land(player)
@@ -47,6 +50,10 @@ func _input(event: InputEvent) -> void:
 			update_spell(the_game.board.tiles.values())
 
 	elif event.is_action_pressed("LMB") and active_card:
+
+		if player.gold < hovered_card.cost.value:
+			return
+
 		var game = get_tree().get_nodes_in_group("Match")[0]
 		if game.can_place_card(active_card):
 			play_card(active_card, game.hovered_tile)
@@ -181,8 +188,10 @@ func _get_card_instance(card_data):
 func _set_active_card(card):
 	active_card = card
 	if active_card:
+		discard_button.show()
 		get_tree().call_group("Match", "set_process_input", false)
 	else:
+		discard_button.hide()
 		get_tree().call_group("Match", "set_process_input", true)
 
 func _resize_hand():
@@ -263,3 +272,25 @@ func _on_EndTurn_pressed() -> void:
 	if the_game.current_player.controller == Player.CONTROLLER.AI:
 		return
 	the_game.next_player()
+
+
+func _on_DiscardButton_pressed() -> void:
+	if not active_card:
+		return
+
+	var card = active_card
+
+	hand.remove_child(card)
+
+	_set_active_card(null)
+	hovered_card = null
+
+	card.disconnect("mouse_entered", self, "_on_Card_mouse_entered")
+	card.disconnect("mouse_exited", self, "_on_Card_mouse_exited")
+
+	card.locked = false
+
+	get_tree().call_group("Match", "discard_card", card.data)
+
+	_resize_hand()
+
